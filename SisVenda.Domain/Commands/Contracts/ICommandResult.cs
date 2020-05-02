@@ -1,4 +1,4 @@
-﻿namespace SisVenda.Shared.Commands
+﻿namespace SisVenda.Domain.Commands.Contracts
 {
     public interface ICommandResult
     {

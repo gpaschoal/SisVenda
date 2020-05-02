@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SisVenda.Domain.Base.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace SisVenda.Domain.Entities

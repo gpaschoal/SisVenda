@@ -1,4 +1,4 @@
-﻿using SisVenda.Shared.Commands;
+﻿using SisVenda.Domain.Commands.Contracts;
 
 namespace SisVenda.Shared.Handlers
 {

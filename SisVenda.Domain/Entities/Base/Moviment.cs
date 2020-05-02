@@ -1,9 +1,10 @@
-﻿using SisVenda.Shared.Entities;
+﻿using SisVenda.Domain.Entities;
+using SisVenda.Shared.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SisVenda.Domain.Entities
+namespace SisVenda.Domain.Base.Entities
 {
     public class Moviment : Entity
     {
@@ -19,21 +20,21 @@ namespace SisVenda.Domain.Entities
         }
 
         [Required]
-        public string PeopleId { get; private set; }
+        public string PeopleId { get; set; }
         public People People { get; }
         [Column(TypeName = "datetime")]
-        public DateTime DtMoviment { get; private set; }
+        public DateTime DtMoviment { get; set; }
         [Required]
         public string PaymentStatusId { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
-        public double AmountDiscount { get; private set; }
+        public double AmountDiscount { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
-        public double AmountAddition { get; private set; }
+        public double AmountAddition { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
-        public double Total { get; private set; }
+        public double Total { get; set; }
         [Required]
         [Column(TypeName = "varchar(150)")]
-        public string Description { get; private set; }
+        public string Description { get; set; }
     }
 }

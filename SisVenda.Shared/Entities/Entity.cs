@@ -17,5 +17,10 @@ namespace SisVenda.Shared.Entities
 
         [Column(TypeName = "datetime")]
         public DateTime? DtDeleted { get; private set; }
+
+        public void Delete()
+        {
+            DtDeleted = DateTime.Now;
+        }
     }
 }

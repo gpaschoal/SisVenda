@@ -1,9 +1,10 @@
-﻿using SisVenda.Shared.Entities;
+﻿using SisVenda.Domain.Entities;
+using SisVenda.Shared.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SisVenda.Domain.Entities
+namespace SisVenda.Domain.Base.Entities
 {
     public class Payment : Entity
     {
@@ -17,15 +18,15 @@ namespace SisVenda.Domain.Entities
 
         [Required]
         [Column(TypeName = "datetime")]
-        public DateTime DtPaymentForecast { get; private set; }
+        public DateTime DtPaymentForecast { get; set; }
 
         [Column(TypeName = "datetime")]
-        public DateTime? DtPayment { get; private set; }
+        public DateTime? DtPayment { get; set; }
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
-        public double Value { get; private set; }
+        public double Value { get; set; }
         [Required]
-        public string PaymentMethodsId { get; private set; }
+        public string PaymentMethodsId { get; set; }
         public PaymentMethods PaymentMethods { get; }
     }
 }

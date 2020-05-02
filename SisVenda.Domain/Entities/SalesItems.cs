@@ -1,4 +1,6 @@
-﻿namespace SisVenda.Domain.Entities
+﻿using SisVenda.Domain.Base.Entities;
+
+namespace SisVenda.Domain.Entities
 {
     public class SalesItems : MovimentItems
     {

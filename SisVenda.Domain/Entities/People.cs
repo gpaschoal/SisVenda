@@ -7,13 +7,14 @@ namespace SisVenda.Domain.Entities
 {
     public class People : Entity
     {
-        public People(bool? isCustomer, bool? isSupplier, string name, string contact, string cPFCNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail)
+        public People(bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail)
         {
             IsCustomer = isCustomer;
             IsSupplier = isSupplier;
             Name = name;
             Contact = contact;
-            CPFCNPJ = cPFCNPJ;
+            CPF = cPF;
+            CNPJ = cNPJ;
             Street = street;
             Number = number;
             Neighborhood = neighborhood;
@@ -30,9 +31,10 @@ namespace SisVenda.Domain.Entities
         public string Name { get; private set; }
         [Column(TypeName = "char(150)")]
         public string Contact { get; private set; }
-        [Column(TypeName = "char(25)")]
-        public string CPFCNPJ { get; private set; }
-
+        [Column(TypeName = "char(11)")]
+        public string CPF { get; private set; }
+        [Column(TypeName = "char(14)")]
+        public string CNPJ { get; private set; }
         [Column(TypeName = "char(100)")]
         public string Street { get; private set; }
         [Column(TypeName = "char(10)")]

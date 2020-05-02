@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 namespace SisVenda.Domain.Repositories
 {
-    public interface IPessoasRepository
+    public interface IPeopleRepository
     {
         void Create(People People);
         void Update(People People);
-        People GetById(Guid id);
+        void Delete(string id);
+        People GetById(string id);
         IEnumerable<People> GetAll();
         IEnumerable<People> GetCustomer();
         IEnumerable<People> GetSupplier();

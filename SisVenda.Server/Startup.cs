@@ -29,7 +29,7 @@ namespace SisVenda.Server
             services.AddScoped<SisVendaContext, SisVendaContext>();
             services.AddControllers(opt => opt.EnableEndpointRouting = false);
 
-            services.AddTransient<IPessoasRepository, PessoasRepository>();
+            services.AddTransient<IPeopleRepository, PessoasRepository>();
 
             //byte[] key = Encoding.ASCII.GetBytes(Settings.SECRET);
             //services.AddAuthentication(x =>
