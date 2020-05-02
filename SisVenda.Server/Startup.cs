@@ -24,8 +24,9 @@ namespace SisVenda.Server
             string conn = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddCors();
-            services.AddDbContext<Context>(opt => opt.UseSqlServer(conn, b => b.MigrationsAssembly("SisVenda.Server")));
-            services.AddScoped<Context, Context>();
+            services.AddDbContext<SisVendaContext>(opt => opt.UseSqlServer(conn, b => b.MigrationsAssembly("SisVenda.Server")));
+            //New Migrations: dotnet ef migrations add NewMigration --project SisVenda.Infra
+            services.AddScoped<SisVendaContext, SisVendaContext>();
             services.AddControllers(opt => opt.EnableEndpointRouting = false);
 
             services.AddTransient<IPessoasRepository, PessoasRepository>();

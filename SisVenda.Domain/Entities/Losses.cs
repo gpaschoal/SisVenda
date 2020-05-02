@@ -7,18 +7,20 @@ namespace SisVenda.Domain.Entities
 {
     public class Losses : Entity
     {
-        public Losses(Guid idProduct, DateTime dtMoviment, string description)
+        public Losses(string productId, DateTime dtMoviment, string description)
         {
-            IdProduct = idProduct;
+            ProductId = productId;
             DtMoviment = dtMoviment;
             Description = description;
         }
 
-        public Guid IdProduct { get; private set; }
-        public Product Product { get; private set; }
+        [Required]
+        public string ProductId { get; private set; }
+        public Products Product { get; }
         [Required]
         [Column(TypeName = "datetime")]
         public DateTime DtMoviment { get; private set; }
+        [Required]
         [Column(TypeName = "varchar(150)")]
         public string Description { get; private set; }
     }

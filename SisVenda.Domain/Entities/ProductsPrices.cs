@@ -5,18 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SisVenda.Domain.Entities
 {
-    public class ProductPrices : Entity
+    public class ProductsPrices : Entity
     {
-        public ProductPrices(Guid idProduct, DateTime dtEffective, double salesCost, double salesPrice)
+        public ProductsPrices(string productId, DateTime dtEffective, double salesCost, double salesPrice)
         {
-            IdProduct = idProduct;
+            ProductId = productId;
             DtEffective = dtEffective;
             SalesCost = salesCost;
             SalesPrice = salesPrice;
         }
 
-        public Guid IdProduct { get; private set; }
-        public Product Product { get; }
+        public string ProductId { get; private set; }
+        public Products Product { get; }
         [Required]
         [Column(TypeName = "datetime")]
         public DateTime DtEffective { get; private set; }

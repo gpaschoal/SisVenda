@@ -1,7 +1,4 @@
-﻿using Flunt.Validations;
-using SisVenda.Shared.ValueObjects;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using SisVenda.Shared.ValueObjects;
 
 namespace SisVenda.Domain.ValueObjects
 {

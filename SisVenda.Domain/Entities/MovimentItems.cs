@@ -1,21 +1,22 @@
 ﻿using SisVenda.Shared.Entities;
-using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SisVenda.Domain.Entities
 {
     public class MovimentItems : Entity
     {
-        public MovimentItems(Guid idProduct, int quantityItem, double costPrice, double salePrice)
+        public MovimentItems(string productsId, int quantityItem, double costPrice, double salePrice)
         {
-            IdProduct = idProduct;
+            ProductsId = productsId;
             QuantityItem = quantityItem;
             CostPrice = costPrice;
             SalePrice = salePrice;
         }
 
-        public Guid IdProduct { get; private set; }
-        public Product Product { get; }
+        [Required]
+        public string ProductsId { get; private set; }
+        public Products Product { get; }
         [Column(TypeName = "decimal(10, 2)")]
         public int QuantityItem { get; private set; }
         [Column(TypeName = "decimal(10, 2)")]

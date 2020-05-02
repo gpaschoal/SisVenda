@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SisVenda.Domain.Entities
 {
     public class Purchases : Moviment
     {
-        public Purchases(Guid idPeople, DateTime dtMoviment, DateTime? dtPayment, DateTime? dtPaymentForecast, Guid idPaymentMethods, double amountDiscount, double amountAddition, double total)
-            : base(idPeople, dtMoviment, dtPayment, dtPaymentForecast, idPaymentMethods, amountDiscount, amountAddition, total)
+        public Purchases(string peopleId, DateTime dtMoviment, string paymentStatusId, double amountDiscount, double amountAddition, double total, string description)
+            : base(peopleId, dtMoviment, paymentStatusId, amountDiscount, amountAddition, total, description)
         {
         }
+
+        public IEnumerable<PurchasesItems> PurchasesItems { get; }
+        public IEnumerable<PurchasesPayments> PurchasePayments { get; }
     }
 }

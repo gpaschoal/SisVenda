@@ -5,7 +5,7 @@ using SisVenda.Infra.SeedData;
 
 namespace SisVenda.Infra.Maps
 {
-    public class UsuariosMap : IEntityTypeConfiguration<Users>
+    public class UsersMap : IEntityTypeConfiguration<Users>
     {
         public void Configure(EntityTypeBuilder<Users> builder)
         {

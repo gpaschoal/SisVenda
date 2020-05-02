@@ -4,11 +4,11 @@ using SisVenda.Domain.Entities;
 
 namespace SisVenda.Infra.Maps
 {
-    public class PercasMap : IEntityTypeConfiguration<Losses>
+    class UnitMeasurementMap : IEntityTypeConfiguration<UnitMeasurement>
     {
-        public void Configure(EntityTypeBuilder<Losses> builder)
+        public void Configure(EntityTypeBuilder<UnitMeasurement> builder)
         {
-            //builder.HasKey(x => new { x.IdPerca });
+            //builder.HasOne(x=> x.p)
         }
     }
 }

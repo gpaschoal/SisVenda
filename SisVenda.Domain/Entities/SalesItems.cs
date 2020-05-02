@@ -1,15 +1,13 @@
-﻿using System;
-
-namespace SisVenda.Domain.Entities
+﻿namespace SisVenda.Domain.Entities
 {
     public class SalesItems : MovimentItems
     {
-        public SalesItems(Guid idSales, Guid idProduct, int quantityItem, double costPrice, double salePrice) : base(idProduct, quantityItem, costPrice, salePrice)
+        public SalesItems(string salesId, string productsId, int quantityItem, double costPrice, double salePrice) : base(productsId, quantityItem, costPrice, salePrice)
         {
-            IdSales = idSales;
+            SalesId = salesId;
         }
 
-        public Guid IdSales { get; private set; }
+        public string SalesId { get; private set; }
         public Sales Sales { get; }
     }
 }

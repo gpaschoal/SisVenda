@@ -8,8 +8,8 @@ namespace SisVenda.Server.Controllers
     [ApiController]
     public class PessoasController : ControllerBase
     {
-        private readonly Context context;
-        public PessoasController(Context context)
+        private readonly SisVendaContext context;
+        public PessoasController(SisVendaContext context)
         {
             this.context = context;
         }
