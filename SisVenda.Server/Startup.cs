@@ -31,7 +31,7 @@ namespace SisVenda.Server
             services.AddControllers(opt => opt.EnableEndpointRouting = false);
 
             //Repos
-            services.AddTransient<IPeopleRepository, PessoasRepository>();
+            services.AddTransient<IPeopleRepository, PeopleRepository>();
 
             //Handlers
             services.AddTransient<PeopleHandler, PeopleHandler>();

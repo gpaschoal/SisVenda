@@ -8,10 +8,10 @@ using System.Linq;
 
 namespace SisVenda.Infra.Repositories
 {
-    public class PessoasRepository : IPeopleRepository
+    public class PeopleRepository : IPeopleRepository
     {
         private readonly SisVendaContext _context;
-        public PessoasRepository(SisVendaContext context)
+        public PeopleRepository(SisVendaContext context)
         {
             _context = context;
         }
