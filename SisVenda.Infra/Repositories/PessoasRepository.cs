@@ -1,4 +1,6 @@
-﻿using SisVenda.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SisVenda.Domain.Entities;
+using SisVenda.Domain.Queries;
 using SisVenda.Domain.Repositories;
 using SisVenda.Infra.Contexts;
 using System.Collections.Generic;
@@ -13,10 +15,10 @@ namespace SisVenda.Infra.Repositories
         {
             _context = context;
         }
-        public void Create(People pessoa)
+        public void Create(People people)
         {
-            _context.People.Add(pessoa);
-            _ = _context.SaveChangesAsync();
+            _context.People.Add(people);
+            _context.SaveChangesAsync();
         }
 
         public People GetById(string id)
@@ -24,14 +26,10 @@ namespace SisVenda.Infra.Repositories
             return _context.People.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Update(People pessoa)
+        public void Update(People people)
         {
-            People person = _context.People.FirstOrDefault(x => x.Id == pessoa.Id);
-            if (person != null)
-            {
-                person = pessoa;
-                _ = _context.SaveChangesAsync();
-            }
+            _context.Entry(people).State = EntityState.Modified;
+            _context.SaveChangesAsync();
         }
 
         public void Delete(string id)
@@ -40,23 +38,23 @@ namespace SisVenda.Infra.Repositories
             if (person != null)
             {
                 person.Delete();
-                _ = _context.SaveChangesAsync();
+                _context.SaveChangesAsync();
             }
         }
 
         public IEnumerable<People> GetAll()
         {
-            return _context.People.Where(x => x.DtDeleted == null);
+            return _context.People.AsNoTracking().Where(PeopleQuery.GetAll());
         }
 
         public IEnumerable<People> GetCustomer()
         {
-            return _context.People.Where(x => x.IsCustomer == true && x.DtDeleted == null);
+            return _context.People.AsNoTracking().Where(PeopleQuery.GetCustomer());
         }
 
         public IEnumerable<People> GetSupplier()
         {
-            return _context.People.Where(x => x.IsSupplier == true && x.DtDeleted == null);
+            return _context.People.AsNoTracking().Where(PeopleQuery.GetSupplier());
         }
     }
 }
