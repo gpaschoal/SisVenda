@@ -1,7 +1,6 @@
 ﻿using SisVenda.Domain.Entities;
 using SisVenda.Domain.Repositories;
 using SisVenda.Infra.Contexts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,6 +16,7 @@ namespace SisVenda.Infra.Repositories
         public void Create(People pessoa)
         {
             _context.People.Add(pessoa);
+            _ = _context.SaveChangesAsync();
         }
 
         public People GetById(string id)

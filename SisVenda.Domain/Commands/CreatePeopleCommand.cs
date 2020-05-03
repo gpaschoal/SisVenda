@@ -41,10 +41,14 @@ namespace SisVenda.Domain.Commands
 
         public void Validate()
         {
+            if (!(IsCustomer ?? false) && !(IsSupplier ?? false))
+            {
+                AddNotification(new Notification("IsCustomer", "É necessário que seja Cliente ou fornecedor!"));
+                AddNotification(new Notification("IsSupplier", "É necessário que seja Cliente ou fornecedor!"));
+            }
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .IsTrue(!(IsCustomer ?? false) && !(IsSupplier ?? false), "IsCustomer IsSupplier", "É necessário que seja Cliente ou fornecedor!")
                     .HasMinLen(Name, 3, "Name", "O Nome precisa ter pelo menos 3 dígitos")
                     .HasMinLen(Contact, 4, "Contact", "O Contato precisa ter no mínimo 4 dígitos")
                     .HasMinLen(Street, 6, "Street", "A rua precisa ter no mínimo 6 dígitos")

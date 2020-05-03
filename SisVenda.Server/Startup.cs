@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SisVenda.Domain.Handlers;
 using SisVenda.Domain.Repositories;
 using SisVenda.Infra.Contexts;
 using SisVenda.Infra.Repositories;
@@ -29,7 +30,11 @@ namespace SisVenda.Server
             services.AddScoped<SisVendaContext, SisVendaContext>();
             services.AddControllers(opt => opt.EnableEndpointRouting = false);
 
+            //Repos
             services.AddTransient<IPeopleRepository, PessoasRepository>();
+
+            //Handlers
+            services.AddTransient<PeopleHandler, PeopleHandler>();
 
             //byte[] key = Encoding.ASCII.GetBytes(Settings.SECRET);
             //services.AddAuthentication(x =>

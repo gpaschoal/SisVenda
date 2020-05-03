@@ -1,5 +1,4 @@
 ﻿using SisVenda.Domain.Entities;
-using System;
 using System.Collections.Generic;
 
 namespace SisVenda.Domain.Repositories

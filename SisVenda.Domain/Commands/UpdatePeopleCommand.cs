@@ -1,9 +1,6 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
 using SisVenda.Domain.Commands.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SisVenda.Domain.Commands
 {
@@ -11,8 +8,9 @@ namespace SisVenda.Domain.Commands
     {
         public UpdatePeopleCommand() { }
 
-        public UpdatePeopleCommand(bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail)
+        public UpdatePeopleCommand(string id, bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail)
         {
+            Id = id;
             IsCustomer = isCustomer;
             IsSupplier = isSupplier;
             Name = name;
@@ -28,6 +26,7 @@ namespace SisVenda.Domain.Commands
             AdressEmail = adressEmail;
         }
 
+        public string Id { get; set; }
         public bool? IsCustomer { get; set; }
         public bool? IsSupplier { get; set; }
         public string Name { get; set; }
@@ -44,10 +43,15 @@ namespace SisVenda.Domain.Commands
 
         public void Validate()
         {
+            if (!(IsCustomer ?? false) && !(IsSupplier ?? false))
+            {
+                AddNotification(new Notification("IsCustomer", "É necessário que seja Cliente ou fornecedor!"));
+                AddNotification(new Notification("IsSupplier", "É necessário que seja Cliente ou fornecedor!"));
+            }
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .IsTrue(!(IsCustomer ?? false) && !(IsSupplier ?? false), "IsCustomer IsSupplier", "É necessário que seja Cliente ou fornecedor!")
+                    .IsNotNullOrEmpty(Id, "Id", "É necessário identificar o código")
                     .HasMinLen(Name, 3, "Name", "O Nome precisa ter pelo menos 3 dígitos")
                     .HasMinLen(Contact, 4, "Contact", "O Contato precisa ter no mínimo 4 dígitos")
                     .HasMinLen(Street, 6, "Street", "A rua precisa ter no mínimo 6 dígitos")

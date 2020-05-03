@@ -10,7 +10,8 @@ namespace SisVenda.Domain.Handlers
     public class PeopleHandler :
         Notifiable,
         IHandler<CreatePeopleCommand>,
-        IHandler<UpdatePeopleCommand>
+        IHandler<UpdatePeopleCommand>,
+        IHandler<DeletePeopleCommand>
     {
         private readonly IPeopleRepository _repository;
         public PeopleHandler(IPeopleRepository repository)
@@ -35,10 +36,29 @@ namespace SisVenda.Domain.Handlers
             if (command.Invalid)
                 return new GenericCommandResult(false, "Houve erros na validação", command.Notifications);
 
-            People people = new People(command.IsCustomer, command.IsSupplier, command.Name, command.Contact, command.CPF, command.CNPJ, command.Street, command.Number, command.Neighborhood, command.City, command.State, command.ZipCode, command.AdressEmail);
-            _repository.Create(people);
+            People person = _repository.GetById(command.Id);
+            if (person is null)
+                return new GenericCommandResult(false, "O cadastro não existe para retificar!", command.Notifications);
 
-            return new GenericCommandResult(true, "Atualizado com sucesso", people);
+            person.Update(command.IsCustomer, command.IsSupplier, command.Name, command.Contact, command.CPF, command.CNPJ, command.Street, command.Number, command.Neighborhood, command.City, command.State, command.ZipCode, command.AdressEmail);
+            _repository.Update(person);
+
+            return new GenericCommandResult(true, "Atualizado com sucesso", person);
+        }
+
+        public ICommandResult Handle(DeletePeopleCommand command)
+        {
+            command.Validate();
+            if (command.Invalid)
+                return new GenericCommandResult(false, "Houve erros na validação", command.Notifications);
+
+            People person = _repository.GetById(command.Id);
+            if (person is null)
+                return new GenericCommandResult(false, "O cadastro não existe para deletar!", command.Notifications);
+
+            _repository.Delete(command.Id);
+
+            return new GenericCommandResult(true, "Deletado com sucesso", null);
         }
     }
 }

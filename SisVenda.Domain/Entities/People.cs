@@ -51,5 +51,21 @@ namespace SisVenda.Domain.Entities
         public string AdressEmail { get; private set; }
         public IEnumerable<Sales> Sales { get; }
         public IEnumerable<Purchases> Purchases { get; }
+        public void Update(bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail)
+        {
+            IsCustomer = isCustomer;
+            IsSupplier = isSupplier;
+            Name = name;
+            Contact = contact;
+            CPF = cPF;
+            CNPJ = cNPJ;
+            Street = street;
+            Number = number;
+            Neighborhood = neighborhood;
+            City = city;
+            State = state;
+            ZipCode = zipCode;
+            AdressEmail = adressEmail;
+        }
     }
 }
