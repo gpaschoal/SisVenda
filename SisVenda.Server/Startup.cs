@@ -1,13 +1,16 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using SisVenda.Domain.Handlers;
 using SisVenda.Domain.Repositories;
 using SisVenda.Infra.Contexts;
 using SisVenda.Infra.Repositories;
+using System.Text;
 
 namespace SisVenda.Server
 {
@@ -32,27 +35,29 @@ namespace SisVenda.Server
 
             //Repos
             services.AddTransient<IPeopleRepository, PeopleRepository>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
 
             //Handlers
             services.AddTransient<PeopleHandler, PeopleHandler>();
 
-            //byte[] key = Encoding.ASCII.GetBytes(Settings.SECRET);
-            //services.AddAuthentication(x =>
-            //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //}).AddJwtBearer(x =>
-            //{
-            //    x.RequireHttpsMetadata = false;
-            //    x.SaveToken = true;
-            //    x.TokenValidationParameters = new TokenValidationParameters()
-            //    {
-            //        ValidateIssuerSigningKey = true,
-            //        IssuerSigningKey = new SymmetricSecurityKey(key),
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false,
-            //    };
-            //});
+            byte[] key = Encoding.ASCII.GetBytes(Settings.SECRET);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
         }
 
         public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -69,8 +74,8 @@ namespace SisVenda.Server
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

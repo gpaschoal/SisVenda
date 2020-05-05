@@ -7,7 +7,7 @@ namespace SisVenda.Infra.SeedData
     {
         public static List<Users> Usuarios()
         {
-            return new List<Users> { new Users("Administrador", "123", "admin") };
+            return new List<Users> { new Users("Administrador", "admin", "123") };
         }
     }
 }
