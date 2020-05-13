@@ -24,7 +24,8 @@ namespace SisVenda.Domain.Handlers
             if (command.Invalid)
                 return new GenericCommandResult(false, "Houve erros na validação", command.Notifications);
 
-            People people = new People(command.IsCustomer, command.IsSupplier, command.Name, command.Contact, command.CPF, command.CNPJ, command.Street, command.Number, command.Neighborhood, command.City, command.State, command.ZipCode, command.AdressEmail);
+            People people = new People(command.IsCustomer, command.IsSupplier, command.Name, command.Contact, command.CPF, command.CNPJ, command.Street,
+                        command.Number, command.Neighborhood, command.City, command.State, command.ZipCode, command.AdressEmail, command.PhoneNumber);
             _repository.Create(people);
 
             return new GenericCommandResult(true, "Cadastrado com sucesso", people);
@@ -40,7 +41,7 @@ namespace SisVenda.Domain.Handlers
             if (person is null)
                 return new GenericCommandResult(false, "O cadastro não existe para retificar!", command.Notifications);
 
-            person.Update(command.IsCustomer, command.IsSupplier, command.Name, command.Contact, command.CPF, command.CNPJ, command.Street, command.Number, command.Neighborhood, command.City, command.State, command.ZipCode, command.AdressEmail);
+            person.Update(command.IsCustomer, command.IsSupplier, command.Name, command.Contact, command.CPF, command.CNPJ, command.Street, command.Number, command.Neighborhood, command.City, command.State, command.ZipCode, command.AdressEmail, command.PhoneNumber);
             _repository.Update(person);
 
             return new GenericCommandResult(true, "Atualizado com sucesso", person);

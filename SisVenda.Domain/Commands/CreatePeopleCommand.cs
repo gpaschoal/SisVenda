@@ -8,7 +8,7 @@ namespace SisVenda.Domain.Commands
     {
         public CreatePeopleCommand() { }
 
-        public CreatePeopleCommand(bool? isCustomer, bool? isSupplier, string name, string contact, string cpf, string cnpj, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail)
+        public CreatePeopleCommand(bool? isCustomer, bool? isSupplier, string name, string contact, string cpf, string cnpj, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail, string phoneNumber)
         {
             IsCustomer = isCustomer;
             IsSupplier = isSupplier;
@@ -23,6 +23,7 @@ namespace SisVenda.Domain.Commands
             State = state;
             ZipCode = zipCode;
             AdressEmail = adressEmail;
+            PhoneNumber = phoneNumber;
         }
 
         public bool? IsCustomer { get; set; }
@@ -38,7 +39,7 @@ namespace SisVenda.Domain.Commands
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string AdressEmail { get; set; }
-
+        public string PhoneNumber { get; set; }
         public void Validate()
         {
             if (!(IsCustomer ?? false) && !(IsSupplier ?? false))

@@ -6,6 +6,7 @@ import main from '../pages/main';
 import people from '../pages/people'
 import products from '../pages/products'
 import Dashboards from '../pages/dashboards'
+//import Notfound from '../pages/notfound'
 
 export default function Routes() {
 
@@ -25,9 +26,10 @@ export default function Routes() {
                 <Dashboards>
                     <PrivateRoute path="/" exact component={main} />
                     <PrivateRoute path="/products" exact component={products} />
-                    <PrivateRoute path="/customer" exact component={people} />
+                    <PrivateRoute path="/people" exact component={people} />
                 </Dashboards>
             </Switch>
         </BrowserRouter>
     )
 }
+//  <Route path='*' component={Notfound} />

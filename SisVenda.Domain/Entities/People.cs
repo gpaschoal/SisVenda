@@ -7,7 +7,7 @@ namespace SisVenda.Domain.Entities
 {
     public class People : Entity
     {
-        public People(bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail)
+        public People(bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail, string phoneNumber)
         {
             IsCustomer = isCustomer;
             IsSupplier = isSupplier;
@@ -22,6 +22,7 @@ namespace SisVenda.Domain.Entities
             State = state;
             ZipCode = zipCode;
             AdressEmail = adressEmail;
+            PhoneNumber = phoneNumber;
         }
         [Required]
         public bool? IsCustomer { get; private set; }
@@ -49,9 +50,12 @@ namespace SisVenda.Domain.Entities
         public string ZipCode { get; private set; }
         [Column(TypeName = "char(50)")]
         public string AdressEmail { get; private set; }
+        [Column(TypeName = "char(10)")]
+        public string PhoneNumber { get; set; }
         public IEnumerable<Sales> Sales { get; }
         public IEnumerable<Purchases> Purchases { get; }
-        public void Update(bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail)
+        public void Update(bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city,
+                    string state, string zipCode, string adressEmail, string phoneNumber)
         {
             IsCustomer = isCustomer;
             IsSupplier = isSupplier;
@@ -66,6 +70,7 @@ namespace SisVenda.Domain.Entities
             State = state;
             ZipCode = zipCode;
             AdressEmail = adressEmail;
+            PhoneNumber = phoneNumber;
         }
     }
 }
