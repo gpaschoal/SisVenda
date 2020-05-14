@@ -1,7 +1,4 @@
 import React from 'react';
-import Header from './header';
-import Menu from './menu';
-import Footer from './footer';
 
 interface IProps { }
 interface IState { }
@@ -13,11 +10,8 @@ export default class App extends React.Component<IProps, IState> {
     render() {
         return (
             <>
-                <div className="h-100 bg-dark text-light">
-                    <Header />
-                    <Menu />
-                    {this.props.children}
-                    <Footer />
+                <div className="fixed-bottom bg-dark">
+                    <h1> footer </h1>
                 </div>
             </>);
     }

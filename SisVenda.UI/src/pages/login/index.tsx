@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.scss'
 
 interface IProps { }
 interface IState { }
@@ -10,14 +9,18 @@ export default class App extends React.Component<IProps, IState> {
 
     render() {
         return (
-            <div className="login-container">
-                <form>
-                    <label className="title" >Acesso ao sistema</label>
-                    <label className="label"> Usuário: </label>
-                    <input placeholder="Digite o usuário..." />
-                    <label className="label"> Senha: </label>
-                    <input placeholder="Digite a senha..." type="password" />
-                    <button type="submit">Enviar</button>
+            <div className="container-fluid full">
+                <form className="col-12 col-sm-4 card bg-light mx-auto my-auto" >
+                    <h3 className="mt-3">Bem vindo de volta!</h3>
+                    <div className="form-group">
+                        <label>Usuário</label>
+                        <input type="email" className="form-control" placeholder="Digite o usuário" />
+                    </div>
+                    <div className="form-group">
+                        <label>Senha</label>
+                        <input type="password" className="form-control" placeholder="Digite a senha" />
+                    </div>
+                    <button type="submit" className="btn btn-primary btn-block mb-3">Submit</button>
                 </form>
             </div>
         )
