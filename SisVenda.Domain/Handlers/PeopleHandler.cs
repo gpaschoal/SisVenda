@@ -30,7 +30,6 @@ namespace SisVenda.Domain.Handlers
 
             return new GenericCommandResult(true, "Cadastrado com sucesso", people);
         }
-
         public ICommandResult Handle(UpdatePeopleCommand command)
         {
             command.Validate();
@@ -46,7 +45,6 @@ namespace SisVenda.Domain.Handlers
 
             return new GenericCommandResult(true, "Atualizado com sucesso", person);
         }
-
         public ICommandResult Handle(DeletePeopleCommand command)
         {
             command.Validate();

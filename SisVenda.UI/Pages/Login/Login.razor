@@ -1,6 +1,7 @@
-@inject HttpClient http;
+@inherits LoginBase
+@*@inject HttpClient http;
 @inject TokenAuthenticationProvider authStateProvider;
-@inject NavigationManager navigation;
+@inject NavigationManager navigation;*@
 
 <EditForm Model="loginCommand" class="col-12 col-sm-4 card bg-light mx-auto my-auto" OnValidSubmit="Logar" >
     <h3 class="mt-3">Bem vindo de volta!</h3>
@@ -14,20 +15,3 @@
     </div>
     <button type="submit" class="btn btn-primary btn-block mb-3">Submit</button>
 </EditForm>
-
-@code {
-    public CQRS.Commands.LoginUsersCommand loginCommand = new CQRS.Commands.LoginUsersCommand();
-    public async Task Logar()
-    {
-        //LoginResponse result = await http.PostJsonAsync<LoginResponse>("/Login/Login", loginCommand);
-        string loginAsJson = JsonSerializer.Serialize(loginCommand);
-        HttpResponseMessage httpResponse = await http.PostAsync("api/login/login", new StringContent(loginAsJson, Encoding.UTF8, "application/json"));
-        if (httpResponse.IsSuccessStatusCode)
-        {
-            string responseAsString = await httpResponse.Content.ReadAsStringAsync();
-            CQRS.Responses.LoginResponse loginResult = JsonSerializer.Deserialize<CQRS.Responses.LoginResponse>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            await authStateProvider.Login(loginResult.Token);
-            navigation.NavigateTo("/");
-        }
-    }
-}

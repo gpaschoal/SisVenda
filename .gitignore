@@ -340,6 +340,3 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-
-# Migrations - Temporariamente removido
-SisVenda.Server/Migrations/*

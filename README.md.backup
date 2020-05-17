@@ -3,7 +3,7 @@ SisVenda is a simple full sales software made with .Net Core at Backend and .Net
 
 
 
-#### EntityFramework - CMD Migrations
+## EntityFramework - CMD Migrations
 * dotnet ef migrations add "Migration name"
 * dotnet ef migrations remove
 * dotnet ef database update

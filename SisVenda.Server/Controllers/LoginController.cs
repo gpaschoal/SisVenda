@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SisVenda.Domain.Repositories;
 using SisVenda.Domain.Commands;
-using System;
 using SisVenda.Domain.Entities;
 using SisVenda.Server.Services;
 
