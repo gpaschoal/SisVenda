@@ -25,7 +25,7 @@ namespace SisVenda.Server.Controllers
             if (user is null)
                 return new GenericCommandResult(false, "Usuário ou senha inválidos", new object());
 
-            return new { token = TokenService.GenerateToken(user) };
+            return new { Token = TokenService.GenerateToken(user) };
         }
     }
 }
