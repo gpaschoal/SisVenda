@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using SisVenda.UI.Auth;
+using SisVenda.UI.Requests;
 
 namespace SisVenda.UI
 {
@@ -22,6 +23,8 @@ namespace SisVenda.UI
             builder.Services.AddScoped<TokenAuthenticationProvider>();
             builder.Services.AddScoped<IAuthorizeService, TokenAuthenticationProvider>(provider => provider.GetRequiredService<TokenAuthenticationProvider>());
             builder.Services.AddScoped<AuthenticationStateProvider, TokenAuthenticationProvider>(provider => provider.GetRequiredService<TokenAuthenticationProvider>());
+
+            builder.Services.AddScoped<LoginRequest>();
 
             await builder.Build().RunAsync();
         }
