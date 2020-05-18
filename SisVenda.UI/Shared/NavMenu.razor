@@ -14,22 +14,17 @@
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="people">
-                <span class="oi oi-plus" aria-hidden="true"></span> Pessoas
+                <span class="oi oi-person" aria-hidden="true"></span> Pessoas
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+        <li class="nav-item px-3 fixed-bottom">
+            <NavLink class="nav-link">
+                <LogoutStorage />
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
+    </ul>    
 </div>
-
+@* class="w-100 fixed-bottom" *@
 @code {
     private bool collapseNavMenu = true;
 

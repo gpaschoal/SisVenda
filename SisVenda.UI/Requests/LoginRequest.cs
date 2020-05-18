@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using SisVenda.UI.Auth;
 using SisVenda.UI.CQRS.Commands;
 using SisVenda.UI.CQRS.Responses;
@@ -10,7 +11,11 @@ namespace SisVenda.UI.Requests
 {
     public class LoginRequest : AbstractRequest
     {
-        public LoginRequest(HttpClient http, TokenAuthenticationProvider authStateProvider) : base(http, authStateProvider) { }
+        [Inject] public TokenAuthenticationProvider authStateProvider { get; set; }
+        public LoginRequest(HttpClient http, TokenAuthenticationProvider authStateProvider) : base(http)
+        {
+            this.authStateProvider = authStateProvider;
+        }
 
         public async Task<(bool, string)> Login(LoginUsersCommand loginCommand)
         {

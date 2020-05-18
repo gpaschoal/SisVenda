@@ -25,7 +25,7 @@ namespace SisVenda.UI
             builder.Services.AddScoped<AuthenticationStateProvider, TokenAuthenticationProvider>(provider => provider.GetRequiredService<TokenAuthenticationProvider>());
 
             builder.Services.AddScoped<LoginRequest>();
-
+            builder.Services.AddScoped<PeopleRequest>();
             await builder.Build().RunAsync();
         }
     }
