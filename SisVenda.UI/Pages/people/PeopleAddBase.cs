@@ -1,17 +1,25 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using SisVenda.UI.CQRS.Commands;
+using SisVenda.UI.CQRS.Responses;
 using SisVenda.UI.Requests;
+using System.Linq;
+using SisVenda.UI.Utils;
 
 namespace SisVenda.UI.Pages.people
 {
     public class PeopleAddBase : AbstractComponentBase
     {
         public CreatePeopleCommand command;
+        public bool ErrorAlert;
+        public List<string> Errors;
         [Inject] public PeopleRequest request { get; set; }
         public PeopleAddBase()
         {
             command = new CreatePeopleCommand();
+            ErrorAlert = false;
+            Errors = new List<string>();
         }
 
         public void Cancel()
@@ -22,7 +30,16 @@ namespace SisVenda.UI.Pages.people
         public async Task Save()
         {
             (bool result, string message, object data) = await request.Create(command);
-            //navigation.NavigateTo("/people");
+
+            if (result)
+            {
+                navigation.NavigateTo("/people");
+            }
+            else
+            {
+                ErrorAlert = true;
+                Errors = data.Deserialize<List<ErrorMessage>>().Select(x => x.message).ToList();
+            }
         }
     }
 }

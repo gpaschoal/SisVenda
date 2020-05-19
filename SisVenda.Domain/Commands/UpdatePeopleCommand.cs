@@ -58,7 +58,7 @@ namespace SisVenda.Domain.Commands
                     .HasMinLen(Contact, 4, "Contact", "O Contato precisa ter no mínimo 4 dígitos")
                     .HasMinLen(Street, 6, "Street", "A rua precisa ter no mínimo 6 dígitos")
                     .HasMinLen(Number, 1, "Number", "O número precisa ter pelo menos 1 dígito")
-                    .HasMinLen(Neighborhood, 5, "Neighborhood", "")
+                    .HasMinLen(Neighborhood, 5, "Neighborhood", "O bairro precisa ter no mínimo 5 dígitos")
                     .HasMinLen(State, 2, "State", "A UF do estado precisa ter 2 dígitos")
                     .HasMaxLen(State, 2, "State", "A UF do estado precisa ter 2 dígitos")
                     .IsEmail(AdressEmail, "AdressEmail", "O e-mail é Inválido, por favor digite um e-mail válido!")

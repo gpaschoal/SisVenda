@@ -13,18 +13,16 @@ namespace SisVenda.UI.Requests
 
         public async Task<(bool, string, object)> Create(CreatePeopleCommand command)
         {
-            Utils.PrintTest.PrintConsole(command);
-            Utils.PrintTest.PrintConsole(http);
-
             string json = JsonSerializer.Serialize(command);
             HttpResponseMessage httpResponse = await http.PostAsync("api/people/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
             GenericCommandResult result = JsonSerializer.Deserialize<GenericCommandResult>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            Utils.PrintTest.PrintConsole(result);
+            if (!httpResponse.IsSuccessStatusCode)
+                return (false, "Ops, houve um erro inexperado!", new object());
 
-            if (httpResponse.IsSuccessStatusCode)
+            if (result.Success)
                 return (true, "Cadastrado com sucesso!", result.Data);
 
             return (false, "Ops, houve algum erro ao cadastrar!", result.Data); ;
