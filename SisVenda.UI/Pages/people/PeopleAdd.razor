@@ -2,71 +2,71 @@
 @inherits PeopleAddBase
 
 <p class="lead">Novo Cliente / Fornecedor</p>
-<form class="m-2" @onsubmit="Save">
+<form class="m-2" model="command" @onsubmit="Save">
   <div class="form-group">
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" @bind-value="peopleCommand.IsCustomer">
+        <input class="form-check-input" type="checkbox" @bind-value="command.IsCustomer">
         <label class="form-check-label">Cliente</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" @bind-value="peopleCommand.IsSupplier">
+        <input class="form-check-input" type="checkbox" @bind-value="command.IsSupplier">
         <label class="form-check-label">Fornecedor</label>
     </div>
   </div>
   <div class="row">
     <div class="form-group col-12 col-sm-6">
         <label>Razão Social</label>
-        <input type="text" class="form-control" placeholder="Dígite a Razão Social..." @bind-value="peopleCommand.Name">
+        <input type="text" class="form-control" placeholder="Dígite a Razão Social..." @bind-value="command.Name">
     </div>
     <div class="form-group col-12 col-sm-6">
         <label>Contato</label>
-        <input type="text" class="form-control" placeholder="Dígite o contato..." @bind-value="peopleCommand.Contact">
+        <input type="text" class="form-control" placeholder="Dígite o contato..." @bind-value="command.Contact">
     </div>
   </div>
   <div class="row">
     <div class="form-group col-12 col-sm-4">
         <label>CPF</label>
-        <input type="text" class="form-control" placeholder="Dígite o CPF..." @bind-value="peopleCommand.CPF">
+        <input type="text" class="form-control" placeholder="Dígite o CPF..." @bind-value="command.CPF">
     </div>
     <div class="form-group col-12 col-sm-4">
         <label>CNPJ</label>
-        <input type="text" class="form-control" placeholder="Dígite o CNPJ..." @bind-value="peopleCommand.CNPJ">
+        <input type="text" class="form-control" placeholder="Dígite o CNPJ..." @bind-value="command.CNPJ">
     </div>
     <div class="form-group col-12 col-sm-4">
         <label>Telefone</label>
-        <input type="text" class="form-control" placeholder="Dígite o telefone..." @bind-value="peopleCommand.PhoneNumber">
+        <input type="text" class="form-control" placeholder="Dígite o telefone..." @bind-value="command.PhoneNumber">
     </div>
   </div>
   <div class="row">
     <div class="form-group col-12 col-sm-6">
         <label>Rua</label>
-        <input type="text" class="form-control" placeholder="Dígite a Rua..." @bind-value="peopleCommand.Street">
+        <input type="text" class="form-control" placeholder="Dígite a Rua..." @bind-value="command.Street">
     </div>
     <div class="form-group col-12 col-sm-2">
         <label>Número</label>
-        <input type="text" class="form-control" placeholder="Dígite o número..." @bind-value="peopleCommand.Number">
+        <input type="text" class="form-control" placeholder="Dígite o número..." @bind-value="command.Number">
     </div>
     <div class="form-group col-12 col-sm-4">
         <label>Bairro</label>
-        <input type="text" class="form-control" placeholder="Dígite bairro..." @bind-value="peopleCommand.Neighborhood">
+        <input type="text" class="form-control" placeholder="Dígite bairro..." @bind-value="command.Neighborhood">
     </div>
   </div>
   <div class="row">
     <div class="form-group col-12 col-sm-2">
         <label>Estado</label>
-        <input type="text" class="form-control" placeholder="Dígite o estado..." @bind-value="peopleCommand.State">
+        <input type="text" class="form-control" placeholder="Dígite o estado..." @bind-value="command.State">
     </div>
     <div class="form-group col-12 col-sm-2">
         <label>CEP</label>
-        <input type="text" class="form-control" placeholder="Dígite o CEP..." @bind-value="peopleCommand.ZipCode">
+        <input type="text" class="form-control" placeholder="Dígite o CEP..." @bind-value="command.ZipCode">
     </div>
     <div class="form-group col-12 col-sm-4">
         <label>Cidade</label>
-        <input type="text" class="form-control" placeholder="Dígite a cidade..." @bind-value="peopleCommand.City">
+        <input type="text" class="form-control" placeholder="Dígite a cidade..." @bind-value="command.City">
     </div>
     <div class="form-group col-12 col-sm-4">
         <label>E-mail</label>
-        <input type="text" class="form-control" placeholder="Dígite o E-mail..." @bind-value="peopleCommand.AdressEmail">
+        <input type="text" class="form-control" placeholder="Dígite o E-mail..." @bind-value="command.AdressEmail">
     </div>
   </div>
   <div class="float-right">

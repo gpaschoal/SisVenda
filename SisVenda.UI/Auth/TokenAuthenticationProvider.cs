@@ -18,23 +18,19 @@ namespace SisVenda.UI.Auth
         private readonly HttpClient http;
         public static readonly string tokenKey = "tokenKey";
 
-        public TokenAuthenticationProvider(IJSRuntime js, HttpClient http )
+        public TokenAuthenticationProvider(IJSRuntime js, HttpClient http)
         {
             this.js = js;
             this.http = http;
         }
 
-        private AuthenticationState notAuthenticate => 
-            new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+        private AuthenticationState notAuthenticate => new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
 
         public async override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var token = await js.GetFromLocalStorage(tokenKey);
+            string token = await js.GetFromLocalStorage(tokenKey);
 
-            if(string.IsNullOrEmpty(token))
-            {
-                return notAuthenticate;
-            }
+            if (string.IsNullOrEmpty(token)) return notAuthenticate;
             return CreateAuthenticationState(token);
         }
 
@@ -43,21 +39,18 @@ namespace SisVenda.UI.Auth
             // colocar o token obtido do localstorage no header do request 
             // na seção Authorization assim poderemos estar autenticando 
             // cada requisição HTTP enviada ao servidor por este cliente
-            http.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("bearer", token);
+            http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
 
             //extrair as claims
-            return new AuthenticationState(new ClaimsPrincipal
-                (new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt")));
+            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt")));
         }
 
         private IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
         {
-            var claims = new List<Claim>();
-            var payload = jwt.Split('.')[1];
-            var jsonBytes = ParseBase64WithoutPadding(payload);
-            var keyValuePairs = JsonSerializer
-                .Deserialize<Dictionary<string, object>>(jsonBytes);
+            List<Claim> claims = new List<Claim>();
+            string payload = jwt.Split('.')[1];
+            byte[] jsonBytes = ParseBase64WithoutPadding(payload);
+            Dictionary<string, object> keyValuePairs = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);
 
             keyValuePairs.TryGetValue(ClaimTypes.Role, out object roles);
 
@@ -65,11 +58,9 @@ namespace SisVenda.UI.Auth
             {
                 if (roles.ToString().Trim().StartsWith("["))
                 {
-                    var parsedRoles = JsonSerializer.Deserialize<string[]>(roles.ToString());
-                    foreach (var parsedRole in parsedRoles)
-                    {
+                    string[] parsedRoles = JsonSerializer.Deserialize<string[]>(roles.ToString());
+                    foreach (string parsedRole in parsedRoles)
                         claims.Add(new Claim(ClaimTypes.Role, parsedRole));
-                    }
                 }
                 else
                 {
@@ -78,8 +69,7 @@ namespace SisVenda.UI.Auth
                 keyValuePairs.Remove(ClaimTypes.Role);
             }
 
-            claims.AddRange(keyValuePairs.Select(kvp => 
-            new Claim(kvp.Key, kvp.Value.ToString())));
+            claims.AddRange(keyValuePairs.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString())));
             return claims;
         }
 
@@ -98,13 +88,10 @@ namespace SisVenda.UI.Auth
             try
             {
                 await js.SetInLocalStorage(tokenKey, token);
-                var authState = CreateAuthenticationState(token);
+                AuthenticationState authState = CreateAuthenticationState(token);
                 NotifyAuthenticationStateChanged(Task.FromResult(authState));
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            catch (Exception) { throw; }
         }
 
         public async Task Logout()
@@ -115,10 +102,7 @@ namespace SisVenda.UI.Auth
                 http.DefaultRequestHeaders.Authorization = null;
                 NotifyAuthenticationStateChanged(Task.FromResult(notAuthenticate));
             }
-            catch (Exception)
-            {
-                throw;
-            }           
+            catch (Exception) { throw; }
         }
     }
 }

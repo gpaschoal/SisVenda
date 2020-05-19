@@ -1,13 +1,17 @@
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using SisVenda.UI.CQRS.Commands;
+using SisVenda.UI.Requests;
 
 namespace SisVenda.UI.Pages.people
 {
     public class PeopleAddBase : AbstractComponentBase
     {
-        public CreatePeopleCommand peopleCommand;
+        public CreatePeopleCommand command;
+        [Inject] public PeopleRequest request { get; set; }
         public PeopleAddBase()
         {
-            peopleCommand = new CreatePeopleCommand();
+            command = new CreatePeopleCommand();
         }
 
         public void Cancel()
@@ -15,9 +19,10 @@ namespace SisVenda.UI.Pages.people
             navigation.NavigateTo("/people");
         }
 
-        public void Save()
+        public async Task Save()
         {
-            navigation.NavigateTo("/people");
+            (bool result, string message, object data) = await request.Create(command);
+            //navigation.NavigateTo("/people");
         }
     }
 }

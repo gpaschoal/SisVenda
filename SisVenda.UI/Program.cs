@@ -18,7 +18,7 @@ namespace SisVenda.UI
 
             //builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(@"http://localhost:56673/api") });
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(@"http://localhost:56673/api") });
             builder.Services.AddAuthorizationCore();
             builder.Services.AddScoped<TokenAuthenticationProvider>();
             builder.Services.AddScoped<IAuthorizeService, TokenAuthenticationProvider>(provider => provider.GetRequiredService<TokenAuthenticationProvider>());
