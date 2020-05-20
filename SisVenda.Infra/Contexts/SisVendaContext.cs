@@ -38,5 +38,8 @@ namespace SisVenda.Infra.Contexts
         public DbSet<SalesPayment> SalesPayment { get; set; }
         public DbSet<PurchasesPayments> PurchasePayments { get; set; }
         public DbSet<PaymentStatus> PaymentStatus { get; set; }
+        public DbSet<Bank> Bank { get; set; }
+        public DbSet<BankAgency> BankAgency { get; set; }
+        public DbSet<BankAccount> BankAccount { get; set; }
     }
 }
