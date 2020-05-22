@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using SisVenda.UI.Auth;
+using System.Threading.Tasks;
 
 namespace SisVenda.UI.Pages.Login
 {

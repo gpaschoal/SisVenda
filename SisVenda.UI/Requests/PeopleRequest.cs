@@ -1,9 +1,9 @@
+using SisVenda.UI.CQRS.Commands;
 using System;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using SisVenda.UI.CQRS.Commands;
 
 namespace SisVenda.UI.Requests
 {

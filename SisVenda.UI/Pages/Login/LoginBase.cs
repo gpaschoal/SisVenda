@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using SisVenda.UI.CQRS.Commands;
 using SisVenda.UI.Requests;
+using System.Threading.Tasks;
 
 namespace SisVenda.UI.Pages.Login
 {

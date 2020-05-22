@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SisVenda.Domain.Repositories;
 using SisVenda.Domain.Commands;
 using SisVenda.Domain.Entities;
+using SisVenda.Domain.Repositories;
 using SisVenda.Server.Services;
 
 namespace SisVenda.Server.Controllers

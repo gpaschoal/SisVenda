@@ -9,7 +9,7 @@ namespace SisVenda.Domain.Repositories
         void Update(People People);
         void Delete(string id);
         People GetById(string id);
-        IEnumerable<People> GetAll();
+        IEnumerable<People> GetAll(Shared.DTO.Filters.PeopleFilter filter);
         IEnumerable<People> GetCustomer();
         IEnumerable<People> GetSupplier();
     }

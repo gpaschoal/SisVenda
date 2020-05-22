@@ -3,6 +3,7 @@ using SisVenda.Domain.Entities;
 using SisVenda.Domain.Queries;
 using SisVenda.Domain.Repositories;
 using SisVenda.Infra.Contexts;
+using SisVenda.Shared.DTO.Filters;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,9 +43,9 @@ namespace SisVenda.Infra.Repositories
             }
         }
 
-        public IEnumerable<People> GetAll()
+        public IEnumerable<People> GetAll(PeopleFilter filter)
         {
-            return _context.People.AsNoTracking().Where(PeopleQuery.GetAll());
+            return _context.People.AsNoTracking().Where(PeopleQuery.GetAll(filter));
         }
 
         public IEnumerable<People> GetCustomer()

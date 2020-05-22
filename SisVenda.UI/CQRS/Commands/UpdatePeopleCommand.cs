@@ -1,6 +1,6 @@
 ﻿namespace SisVenda.UI.CQRS.Commands
 {
-    public class UpdatePeopleCommand 
+    public class UpdatePeopleCommand
     {
         public string Id { get; set; }
         public bool? IsCustomer { get; set; }

@@ -1,9 +1,9 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using SisVenda.Shared.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SisVenda.Domain.Entities
 {
-    public class BankAccount: Entity
+    public class BankAccount : Entity
     {
         public BankAccount(string account, string bankAgencyId)
         {

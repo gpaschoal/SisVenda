@@ -1,11 +1,11 @@
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using SisVenda.UI.Auth;
 using SisVenda.UI.CQRS.Commands;
 using SisVenda.UI.CQRS.Responses;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace SisVenda.UI.Requests
 {

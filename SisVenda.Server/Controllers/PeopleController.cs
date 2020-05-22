@@ -4,7 +4,11 @@ using SisVenda.Domain.Commands;
 using SisVenda.Domain.Entities;
 using SisVenda.Domain.Handlers;
 using SisVenda.Domain.Repositories;
+using SisVenda.Domain.Responses;
+using SisVenda.Shared.DTO.Filters;
+using SisVenda.Shared.Extencoes;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SisVenda.Server.Controllers
 {
@@ -46,9 +50,19 @@ namespace SisVenda.Server.Controllers
         [Route("")]
         [HttpGet]
         [Authorize]
-        public IEnumerable<People> GetAll([FromServices] IPeopleRepository repository)
+        public GenericPaginatorResponse<PeopleResponse> GetAll([FromServices] IPeopleRepository repository, [FromQuery] PeopleFilter filter)
         {
-            return repository.GetAll();
+            /* Getting all filtered people from my repo */
+            IEnumerable<People> filteredPeople = repository.GetAll(filter);
+
+            /* Getting page, pagenumber and number of pages */
+            (IQueryable<People> page, int pageNumber, int pageCount) = filteredPeople.AsQueryable().Paginator(filter);
+
+            /* Filtering data to my response */
+            List<PeopleResponse> response = page.ToList().Select(x => new PeopleResponse(x)).ToList();
+
+            /* Creating my Generic Response */
+            return new GenericPaginatorResponse<PeopleResponse>(response, pageNumber);
         }
 
         [Route("customer")]

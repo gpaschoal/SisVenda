@@ -514,7 +514,7 @@ namespace SisVenda.Server.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d06806588cdf40159f1d5707070db38a",
+                            Id = "e55c658093e44dacb722906e298c789e",
                             Name = "Administrador",
                             Password = "123",
                             User = "admin"

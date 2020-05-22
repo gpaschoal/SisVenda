@@ -24,7 +24,7 @@ namespace SisVenda.Domain.Handlers
             if (command.Invalid)
                 return new GenericCommandResult(false, "Houve erros na validação", command.Notifications);
 
-            People people = new People(command.IsCustomer, command.IsSupplier, command.Name, command.Contact, command.CPF, command.CNPJ, command.Street,
+            People people = new People(command.IsCustomer ?? false, command.IsSupplier ?? false, command.Name, command.Contact, command.CPF, command.CNPJ, command.Street,
                         command.Number, command.Neighborhood, command.City, command.State, command.ZipCode, command.AdressEmail, command.PhoneNumber);
             _repository.Create(people);
 

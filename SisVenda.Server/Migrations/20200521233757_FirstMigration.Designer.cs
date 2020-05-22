@@ -10,7 +10,7 @@ using SisVenda.Infra.Contexts;
 namespace SisVenda.Server.Migrations
 {
     [DbContext(typeof(SisVendaContext))]
-    [Migration("20200520110937_First Migration")]
+    [Migration("20200521233757_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -516,7 +516,7 @@ namespace SisVenda.Server.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d06806588cdf40159f1d5707070db38a",
+                            Id = "e55c658093e44dacb722906e298c789e",
                             Name = "Administrador",
                             Password = "123",
                             User = "admin"

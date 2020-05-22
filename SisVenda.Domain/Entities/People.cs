@@ -7,7 +7,7 @@ namespace SisVenda.Domain.Entities
 {
     public class People : Entity
     {
-        public People(bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail, string phoneNumber)
+        public People(bool isCustomer, bool isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail, string phoneNumber)
         {
             IsCustomer = isCustomer;
             IsSupplier = isSupplier;
@@ -25,9 +25,9 @@ namespace SisVenda.Domain.Entities
             PhoneNumber = phoneNumber;
         }
         [Required]
-        public bool? IsCustomer { get; private set; }
+        public bool IsCustomer { get; private set; }
         [Required]
-        public bool? IsSupplier { get; private set; }
+        public bool IsSupplier { get; private set; }
         [Column(TypeName = "char(150)")]
         public string Name { get; private set; }
         [Column(TypeName = "char(150)")]
@@ -51,14 +51,14 @@ namespace SisVenda.Domain.Entities
         [Column(TypeName = "char(50)")]
         public string AdressEmail { get; private set; }
         [Column(TypeName = "char(10)")]
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; private set; }
         public IEnumerable<Sales> Sales { get; }
         public IEnumerable<Purchases> Purchases { get; }
         public void Update(bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, string number, string neighborhood, string city,
                     string state, string zipCode, string adressEmail, string phoneNumber)
         {
-            IsCustomer = isCustomer;
-            IsSupplier = isSupplier;
+            IsCustomer = isCustomer ?? false;
+            IsSupplier = isSupplier ?? false;
             Name = name;
             Contact = contact;
             CPF = cPF;

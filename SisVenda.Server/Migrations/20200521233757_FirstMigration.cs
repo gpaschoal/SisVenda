@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace SisVenda.Server.Migrations
 {
@@ -389,7 +389,7 @@ namespace SisVenda.Server.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "DtDeleted", "Name", "Password", "User" },
-                values: new object[] { "d06806588cdf40159f1d5707070db38a", null, "Administrador", "123", "admin" });
+                values: new object[] { "e55c658093e44dacb722906e298c789e", null, "Administrador", "123", "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BankAccount_BankAgencyId",

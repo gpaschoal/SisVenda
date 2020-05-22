@@ -1,6 +1,5 @@
-using System.Net.Http;
 using Microsoft.AspNetCore.Components;
-using SisVenda.UI.Auth;
+using System.Net.Http;
 
 namespace SisVenda.UI.Requests
 {

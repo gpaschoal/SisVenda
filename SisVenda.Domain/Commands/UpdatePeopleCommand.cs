@@ -8,7 +8,7 @@ namespace SisVenda.Domain.Commands
     {
         public UpdatePeopleCommand() { }
 
-        public UpdatePeopleCommand(string id, bool? isCustomer, bool? isSupplier, string name, string contact, string cPF, string cNPJ, string street, 
+        public UpdatePeopleCommand(string id, bool? isCustomer, bool? isSupplier, string name, string contact, string CPF, string CNPJ, string street,
                 string number, string neighborhood, string city, string state, string zipCode, string adressEmail, string phoneNumber)
         {
             Id = id;
@@ -16,8 +16,8 @@ namespace SisVenda.Domain.Commands
             IsSupplier = isSupplier;
             Name = name;
             Contact = contact;
-            CPF = cPF;
-            CNPJ = cNPJ;
+            this.CPF = CPF;
+            this.CNPJ = CNPJ;
             Street = street;
             Number = number;
             Neighborhood = neighborhood;
