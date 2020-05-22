@@ -6,20 +6,20 @@ namespace SisVenda.Domain.Responses
     {
         public PeopleResponse(People people)
         {
-            Id = people.Id;
+            Id = people.Id.Trim();
             IsCustomer = people.IsCustomer;
             IsSupplier = people.IsSupplier;
-            Name = people.Name;
-            Contact = people.Contact;
-            CPF = people.CPF;
-            CNPJ = people.CNPJ;
-            Street = people.Street;
-            Number = people.Number;
-            Neighborhood = people.Neighborhood;
-            City = people.City;
-            State = people.State;
-            ZipCode = people.ZipCode;
-            AdressEmail = people.AdressEmail;
+            Name = people.Name.Trim();
+            Contact = people.Contact.Trim();
+            CPF = people.CPF.Trim();
+            CNPJ = people.CNPJ.Trim();
+            Street = people.Street.Trim();
+            Number = people.Number.Trim();
+            Neighborhood = people.Neighborhood.Trim();
+            City = people.City.Trim();
+            State = people.State.Trim();
+            ZipCode = people.ZipCode.Trim();
+            AdressEmail = people.AdressEmail.Trim();
             PhoneNumber = people.PhoneNumber;
         }
 

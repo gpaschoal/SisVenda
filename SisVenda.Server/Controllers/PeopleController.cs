@@ -21,6 +21,7 @@ namespace SisVenda.Server.Controllers
         [Authorize]
         public GenericCommandResult Create([FromBody] CreatePeopleCommand command, [FromServices] PeopleHandler handler)
         {
+            /* Calling Handle to create */
             return (GenericCommandResult)handler.Handle(command);
         }
 
@@ -29,6 +30,7 @@ namespace SisVenda.Server.Controllers
         [Authorize]
         public GenericCommandResult Update([FromBody] UpdatePeopleCommand command, [FromServices] PeopleHandler handler)
         {
+            /* Calling Handle to Update */
             return (GenericCommandResult)handler.Handle(command);
         }
 
@@ -37,15 +39,16 @@ namespace SisVenda.Server.Controllers
         [Authorize]
         public GenericCommandResult Delete([FromBody] DeletePeopleCommand command, [FromServices] PeopleHandler handler)
         {
+            /* Calling Handle to Delete */
             return (GenericCommandResult)handler.Handle(command);
         }
 
         [Route("{id}")]
         [HttpGet]
         [Authorize]
-        public People GetById([FromServices] IPeopleRepository repository, string id)
+        public PeopleResponse GetById([FromServices] IPeopleRepository repository, string id)
         {
-            return repository.GetById(id);
+            return new PeopleResponse(repository.GetById(id));
         }
         [Route("")]
         [HttpGet]
@@ -56,13 +59,13 @@ namespace SisVenda.Server.Controllers
             IEnumerable<People> filteredPeople = repository.GetAll(filter);
 
             /* Getting page, pagenumber and number of pages */
-            (IQueryable<People> page, int pageNumber, int pageCount) = filteredPeople.AsQueryable().Paginator(filter);
+            (IQueryable<People> page, int pageNumber, int countsInThisPage, int pageCount) = filteredPeople.AsQueryable().Paginator(filter);
 
             /* Filtering data to my response */
             List<PeopleResponse> response = page.ToList().Select(x => new PeopleResponse(x)).ToList();
 
             /* Creating my Generic Response */
-            return new GenericPaginatorResponse<PeopleResponse>(response, pageNumber);
+            return new GenericPaginatorResponse<PeopleResponse>(pageNumber, countsInThisPage, pageCount, response);
         }
 
         [Route("customer")]

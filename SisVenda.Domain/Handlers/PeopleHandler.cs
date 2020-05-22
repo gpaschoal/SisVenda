@@ -3,6 +3,7 @@ using SisVenda.Domain.Commands;
 using SisVenda.Domain.Commands.Contracts;
 using SisVenda.Domain.Entities;
 using SisVenda.Domain.Repositories;
+using SisVenda.Domain.Responses;
 using SisVenda.Shared.Handlers;
 
 namespace SisVenda.Domain.Handlers
@@ -28,7 +29,7 @@ namespace SisVenda.Domain.Handlers
                         command.Number, command.Neighborhood, command.City, command.State, command.ZipCode, command.AdressEmail, command.PhoneNumber);
             _repository.Create(people);
 
-            return new GenericCommandResult(true, "Cadastrado com sucesso", people);
+            return new GenericCommandResult(true, "Cadastrado com sucesso", new PeopleResponse(people));
         }
         public ICommandResult Handle(UpdatePeopleCommand command)
         {
@@ -43,7 +44,7 @@ namespace SisVenda.Domain.Handlers
             person.Update(command.IsCustomer, command.IsSupplier, command.Name, command.Contact, command.CPF, command.CNPJ, command.Street, command.Number, command.Neighborhood, command.City, command.State, command.ZipCode, command.AdressEmail, command.PhoneNumber);
             _repository.Update(person);
 
-            return new GenericCommandResult(true, "Atualizado com sucesso", person);
+            return new GenericCommandResult(true, "Atualizado com sucesso", new PeopleResponse(person));
         }
         public ICommandResult Handle(DeletePeopleCommand command)
         {
