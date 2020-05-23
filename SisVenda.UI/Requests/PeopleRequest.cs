@@ -1,4 +1,7 @@
 using SisVenda.UI.CQRS.Commands;
+using SisVenda.UI.CQRS.Filters;
+using SisVenda.UI.CQRS.Responses;
+using SisVenda.UI.Utils;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -34,6 +37,22 @@ namespace SisVenda.UI.Requests
         public async Task<(bool, string, object)> Delete(DeletePeopleCommand command)
         {
             throw new NotImplementedException();
+        }
+        public async Task<(bool result, GenericPaginatorResponse<PeopleResponse>)> Get(PeopleFilter filter)
+        {
+            // Request my api
+            HttpResponseMessage httpResponse = await http.GetAsync("api/people/" + filter.HttpQueryBuilder());
+
+            // My result as string
+            string responseAsString = await httpResponse.Content.ReadAsStringAsync();
+
+            // If not success
+            if (!httpResponse.IsSuccessStatusCode) return (false, new GenericPaginatorResponse<PeopleResponse>());
+
+            //Desserialize my json req
+            GenericPaginatorResponse<PeopleResponse> response = responseAsString.Deserialize<GenericPaginatorResponse<PeopleResponse>>();
+
+            return (true, response);
         }
     }
 }

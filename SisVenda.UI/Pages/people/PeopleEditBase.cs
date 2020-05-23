@@ -1,4 +1,4 @@
-namespace SisVenda.UI.Pages.people
+namespace SisVenda.UI.Pages.People
 {
     public class PeopleEditBase : AbstractComponentBase
     {

@@ -11,7 +11,7 @@ namespace SisVenda.Domain.Queries
         {
             filter.Normalize();
             return people => people.DtDeleted == null &&
-                    people.IsCustomer == filter.IsCustomer && people.IsSupplier == filter.IsSupplier &&
+                    (people.IsCustomer == filter.IsCustomer || people.IsSupplier == filter.IsSupplier) &&
                     (people.Name ?? "").Trim().ToUpper().Contains(filter.Name) &&
                     (people.Contact ?? "").Trim().ToUpper().Contains(filter.Contact) &&
                     (people.CPF ?? "").Trim().ToUpper().Contains(filter.CPF) &&

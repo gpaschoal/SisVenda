@@ -1,8 +1,9 @@
 using SisVenda.UI.CQRS.Filters;
 using SisVenda.UI.CQRS.Responses;
+using SisVenda.UI.Utils;
 using System.Collections.Generic;
 
-namespace SisVenda.UI.Pages.people
+namespace SisVenda.UI.Pages.People
 {
     public class PeopleBase : AbstractComponentBase
     {
@@ -23,6 +24,11 @@ namespace SisVenda.UI.Pages.people
         public void ToggleFilter()
         {
             filter = !filter;
+        }
+
+        public void Get()
+        {
+            PrintTest.PrintConsole(peopleFilter.HttpQueryBuilder());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SisVenda.UI.CQRS.Filters
 {
-    public class PeopleFilter
+    public class PeopleFilter : IFilter
     {
         public bool? IsCustomer { get; set; }
         public bool? IsSupplier { get; set; }

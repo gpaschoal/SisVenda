@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SisVenda.UI.Pages.people
+namespace SisVenda.UI.Pages.People
 {
     public class PeopleAddBase : AbstractComponentBase
     {
