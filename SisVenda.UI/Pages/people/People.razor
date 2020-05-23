@@ -1,10 +1,111 @@
-@page "/people"
+﻿@page "/people"
 @inherits PeopleBase
+@using SisVenda.UI.CQRS.Responses
 
 <button class="btn btn-outline-success" @onclick="AddNewPeople"><span class="oi oi-plus" aria-hidden="true"></span> Adicionar </button>
-<form class="pt-3">
-    <p class="lead">Pesquisar</p>
-</form>
 
-@*<Success Show="true" Message="This is a success message!" />
-<Error Show="true" Message="This is an error message!" />*@
+<p class="lead">Pesquisar</p>
+<button class="btn btn-secondary" @onclick="ToggleFilter"> <span class="oi oi-align-left" aria-hidden="true"></span> Filtro </button>
+<br />
+<br />
+<form class="@Display">
+    <div class="form-group">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" @bind-value="peopleFilter.IsCustomer">
+            <label class="form-check-label">Cliente</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" @bind-value="peopleFilter.IsSupplier">
+            <label class="form-check-label">Fornecedor</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-sm-6">
+            <label>Razão Social</label>
+            <input type="text" class="form-control" placeholder="Dígite a Razão Social..." @bind-value="peopleFilter.Name">
+        </div>
+        <div class="form-group col-12 col-sm-6">
+            <label>Contato</label>
+            <input type="text" class="form-control" placeholder="Dígite o contato..." @bind-value="peopleFilter.Contact">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-sm-4">
+            <label>CPF</label>
+            <input type="text" class="form-control" placeholder="Dígite o CPF..." @bind-value="peopleFilter.CPF">
+        </div>
+        <div class="form-group col-12 col-sm-4">
+            <label>CNPJ</label>
+            <input type="text" class="form-control" placeholder="Dígite o CNPJ..." @bind-value="peopleFilter.CNPJ">
+        </div>
+        <div class="form-group col-12 col-sm-4">
+            <label>Telefone</label>
+            <input type="text" class="form-control" placeholder="Dígite o telefone..." @bind-value="peopleFilter.PhoneNumber">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-sm-6">
+            <label>Rua</label>
+            <input type="text" class="form-control" placeholder="Dígite a Rua..." @bind-value="peopleFilter.Street">
+        </div>
+        <div class="form-group col-12 col-sm-2">
+            <label>Número</label>
+            <input type="text" class="form-control" placeholder="Dígite o número..." @bind-value="peopleFilter.Number">
+        </div>
+        <div class="form-group col-12 col-sm-4">
+            <label>Bairro</label>
+            <input type="text" class="form-control" placeholder="Dígite bairro..." @bind-value="peopleFilter.Neighborhood">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-sm-2">
+            <label>Estado</label>
+            <input type="text" class="form-control" placeholder="Dígite o estado..." @bind-value="peopleFilter.State">
+        </div>
+        <div class="form-group col-12 col-sm-2">
+            <label>CEP</label>
+            <input type="text" class="form-control" placeholder="Dígite o CEP..." @bind-value="peopleFilter.ZipCode">
+        </div>
+        <div class="form-group col-12 col-sm-4">
+            <label>Cidade</label>
+            <input type="text" class="form-control" placeholder="Dígite a cidade..." @bind-value="peopleFilter.City">
+        </div>
+        <div class="form-group col-12 col-sm-4">
+            <label>E-mail</label>
+            <input type="text" class="form-control" placeholder="Dígite o E-mail..." @bind-value="peopleFilter.AdressEmail">
+        </div>
+    </div>
+    <div class="float-right">
+        <button type="submit" class="btn btn-secondary"> Pesquisar </button>
+    </div>
+    <br />
+    <br />
+</form>
+<table class="table" style="overflow-y: scroll;" >
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Detalhes</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Contato</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <button class="btn btn-outline-primary"> <span class="oi oi-browser" aria-hidden="true"></span> </button>
+        <tr>
+            @foreach (PeopleResponse response in responseList)
+            {
+                <td>
+                    <button class="btn btn-secondary"> <span class="oi oi-browser" aria-hidden="true"></span> </button>
+                </td>
+                <td>@response.Name</td>
+                <td>@response.Contact</td>
+                <td>@response.City</td>
+                <td>@response.PhoneNumber</td>
+                <td>@response.AdressEmail</td>
+            }
+        </tr>
+    </tbody>
+</table>
