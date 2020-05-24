@@ -50,10 +50,10 @@ namespace SisVenda.Server.Controllers
         {
             return new PeopleResponse(repository.GetById(id));
         }
-        [Route("")]
-        [HttpGet]
+        [Route("Get")]
+        [HttpPost]
         [Authorize]
-        public GenericPaginatorResponse<PeopleResponse> GetAll([FromServices] IPeopleRepository repository, [FromQuery] PeopleFilter filter)
+        public GenericPaginatorResponse<PeopleResponse> GetAll([FromServices] IPeopleRepository repository, [FromBody] PeopleFilter filter)
         {
             /* Getting all filtered people from my repo */
             IEnumerable<People> filteredPeople = repository.GetAll(filter);

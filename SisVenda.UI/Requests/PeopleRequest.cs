@@ -38,10 +38,13 @@ namespace SisVenda.UI.Requests
         {
             throw new NotImplementedException();
         }
-        public async Task<(bool result, GenericPaginatorResponse<PeopleResponse>)> Get(PeopleFilter filter)
+        public async Task<(bool result, GenericPaginatorResponse<PeopleResponse> response)> Get(PeopleFilter filter)
         {
-            // Request my api
-            HttpResponseMessage httpResponse = await http.GetAsync("api/people/" + filter.HttpQueryBuilder());
+            //serializing my filter
+            string json = JsonSerializer.Serialize(filter);
+
+            // Request my api // if were a get filter.HttpQueryBuilder()
+            HttpResponseMessage httpResponse = await http.PostAsync("api/people/get", new StringContent(json, Encoding.UTF8, "application/json"));
 
             // My result as string
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
@@ -49,7 +52,7 @@ namespace SisVenda.UI.Requests
             // If not success
             if (!httpResponse.IsSuccessStatusCode) return (false, new GenericPaginatorResponse<PeopleResponse>());
 
-            //Desserialize my json req
+            //Desserialize my json response
             GenericPaginatorResponse<PeopleResponse> response = responseAsString.Deserialize<GenericPaginatorResponse<PeopleResponse>>();
 
             return (true, response);

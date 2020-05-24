@@ -22,12 +22,15 @@ namespace SisVenda.UI.Utils
             foreach (PropertyInfo prop in value.GetType().GetProperties())
                 if (prop.GetValue(value) != null)
                 {
+                    PrintTest.PrintConsole(tempQuery);
                     if (string.IsNullOrEmpty(tempQuery)) tempQuery = "?";
                     else tempQuery += @"&";
-                    tempQuery += $"{prop.Name}={prop.GetValue(value)}" ;
+                    PrintTest.PrintConsole(tempQuery);
+                    tempQuery += $"{prop.Name}={prop.GetValue(value)}";
                 }
 
-            return tempQuery;
+            PrintTest.PrintConsole(tempQuery);
+            return tempQuery.Replace("&", "");
         }
     }
 }
