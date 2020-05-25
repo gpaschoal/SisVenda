@@ -17,7 +17,7 @@ namespace SisVenda.UI.Pages.People
         [Inject] public PeopleRequest request { get; set; }
         public PeopleAddBase()
         {
-            command = new CreatePeopleCommand();
+            command = new CreatePeopleCommand() { IsCustomer = true, IsSupplier = true };
             ErrorAlert = false;
             Errors = new List<string>();
         }

@@ -165,12 +165,10 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime?>("DtDeleted")
                         .HasColumnType("datetime");
 
-                    b.Property<bool?>("IsCustomer")
-                        .IsRequired()
+                    b.Property<bool>("IsCustomer")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsSupplier")
-                        .IsRequired()
+                    b.Property<bool>("IsSupplier")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -514,7 +512,7 @@ namespace SisVenda.Server.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e55c658093e44dacb722906e298c789e",
+                            Id = "e6c7ab3e5fd14f14b0f36629f35acabe",
                             Name = "Administrador",
                             Password = "123",
                             User = "admin"

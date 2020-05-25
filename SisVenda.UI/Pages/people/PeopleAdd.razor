@@ -5,11 +5,11 @@
 <form class="m-2" model="command" @onsubmit="Save">
   <div class="form-group">
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" @bind-value="command.IsCustomer">
+        <input class="form-check-input" type="checkbox" @bind-value="command.IsCustomer" checked>
         <label class="form-check-label">Cliente</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" @bind-value="command.IsSupplier">
+        <input class="form-check-input" type="checkbox" @bind-value="command.IsSupplier" checked>
         <label class="form-check-label">Fornecedor</label>
     </div>
   </div>

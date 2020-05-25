@@ -81,15 +81,17 @@
     <br />
     <br />
 </form>
-<table class="table" style="overflow-y: scroll;" >
+<table class="table" style="overflow-x: scroll;" >
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Detalhes</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Contato</th>
-            <th scope="col">Cidade</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Email</th>
+            <th class="col-1">Detalhes</th>
+            <th class="col-1">Cliente</th>
+            <th class="col-1">Fornecedor</th>
+            <th class="col-2">Nome</th>
+            <th class="col-2">Contato</th>
+            <th class="col-2">Cidade</th>
+            <th class="col-1">Telefone</th>
+            <th class="col-2">Email</th>
         </tr>
     </thead>
     <tbody>
@@ -97,6 +99,8 @@
         {
             <tr>
                 <td><button class="btn btn-outline-primary"> <span class="oi oi-browser" aria-hidden="true"></span> </button></td>
+                <td>@Status(response.IsCustomer)</td>
+                <td>@Status(response.IsSupplier)</td>
                 <td>@response.Name</td>
                 <td>@response.Contact</td>
                 <td>@response.City</td>
@@ -106,3 +110,8 @@
         }
     </tbody>
 </table>
+
+@code
+{
+    private static string Status (bool? status) => status ?? false ? "S" : "N";
+}

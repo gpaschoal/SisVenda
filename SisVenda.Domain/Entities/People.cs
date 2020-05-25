@@ -50,7 +50,7 @@ namespace SisVenda.Domain.Entities
         public string ZipCode { get; private set; }
         [Column(TypeName = "char(50)")]
         public string AdressEmail { get; private set; }
-        [Column(TypeName = "char(10)")]
+        [Column(TypeName = "char(11)")]
         public string PhoneNumber { get; private set; }
         public IEnumerable<Sales> Sales { get; }
         public IEnumerable<Purchases> Purchases { get; }
