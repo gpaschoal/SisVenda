@@ -21,15 +21,22 @@ namespace SisVenda.UI.Pages.People
             filter = true;
             responseList = new List<PeopleResponse>();
         }
+        protected override async Task OnInitializedAsync()
+        {
+            await Get();
+        }
         public void AddNewPeople()
         {
             navigation.NavigateTo("/people/add");
+        }
+        public void EditPeople(string id)
+        {
+            navigation.NavigateTo("/people/Edit/" + id);
         }
         public void ToggleFilter()
         {
             filter = !filter;
         }
-
         public async Task Get()
         {
             (bool result, GenericPaginatorResponse<PeopleResponse> response) = await request.Get(peopleFilter);

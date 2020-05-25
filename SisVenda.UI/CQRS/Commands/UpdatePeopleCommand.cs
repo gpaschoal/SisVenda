@@ -1,7 +1,28 @@
-﻿namespace SisVenda.UI.CQRS.Commands
+﻿using SisVenda.UI.CQRS.Responses;
+
+namespace SisVenda.UI.CQRS.Commands
 {
     public class UpdatePeopleCommand
     {
+        public UpdatePeopleCommand() { }
+        public UpdatePeopleCommand(PeopleResponse response)
+        {
+            Id = response.Id;
+            IsCustomer = response.IsCustomer;
+            IsSupplier = response.IsSupplier;
+            Name = response.Name;
+            Contact = response.Contact;
+            CPF = response.CPF;
+            CNPJ = response.CNPJ;
+            Street = response.Street;
+            Number = response.Number;
+            Neighborhood = response.Neighborhood;
+            City = response.City;
+            State = response.State;
+            ZipCode = response.ZipCode;
+            AdressEmail = response.AdressEmail;
+            PhoneNumber = response.PhoneNumber;
+        }
         public string Id { get; set; }
         public bool? IsCustomer { get; set; }
         public bool? IsSupplier { get; set; }

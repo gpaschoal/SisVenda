@@ -6,21 +6,23 @@ namespace SisVenda.Domain.Responses
     {
         public PeopleResponse(People people)
         {
-            Id = people.Id.Trim();
+            if (people is null) return;
+
+            Id = people.Id?.Trim();
             IsCustomer = people.IsCustomer;
             IsSupplier = people.IsSupplier;
-            Name = people.Name.Trim();
-            Contact = people.Contact.Trim();
-            CPF = people.CPF.Trim();
-            CNPJ = people.CNPJ.Trim();
-            Street = people.Street.Trim();
-            Number = people.Number.Trim();
-            Neighborhood = people.Neighborhood.Trim();
-            City = people.City.Trim();
-            State = people.State.Trim();
-            ZipCode = people.ZipCode.Trim();
-            AdressEmail = people.AdressEmail.Trim();
-            PhoneNumber = people.PhoneNumber;
+            Name = people.Name?.Trim();
+            Contact = people.Contact?.Trim();
+            CPF = people.CPF?.Trim();
+            CNPJ = people.CNPJ?.Trim();
+            Street = people.Street?.Trim();
+            Number = people.Number?.Trim();
+            Neighborhood = people.Neighborhood?.Trim();
+            City = people.City?.Trim();
+            State = people.State?.Trim();
+            ZipCode = people.ZipCode?.Trim();
+            AdressEmail = people.AdressEmail?.Trim();
+            PhoneNumber = people.PhoneNumber?.Trim();
         }
 
         public string Id { get; private set; }
