@@ -19,5 +19,11 @@ namespace SisVenda.Domain.Entities
         [Column(TypeName = "decimal(10, 2)")]
         public double QuantityLosses { get; private set; }
         public IEnumerable<Products> Products { get; set; }
+
+        public void Update(string name, double quantityLosses)
+        {
+            Name = name;
+            QuantityLosses = quantityLosses;
+        }
     }
 }

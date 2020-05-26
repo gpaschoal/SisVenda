@@ -24,7 +24,7 @@ namespace SisVenda.Infra.Repositories
 
         public People GetById(string id)
         {
-            return _context.People.FirstOrDefault(x => x.Id == id);
+            return _context.People.AsNoTracking().FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(People people)

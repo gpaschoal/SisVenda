@@ -1,6 +1,6 @@
-using System.Reflection;
 using Newtonsoft.Json;
 using SisVenda.UI.CQRS.Filters;
+using System.Reflection;
 
 namespace SisVenda.UI.Utils
 {

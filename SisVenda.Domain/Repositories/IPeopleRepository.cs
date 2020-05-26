@@ -1,4 +1,5 @@
 ﻿using SisVenda.Domain.Entities;
+using SisVenda.Shared.DTO.Filters;
 using System.Collections.Generic;
 
 namespace SisVenda.Domain.Repositories
@@ -9,7 +10,7 @@ namespace SisVenda.Domain.Repositories
         void Update(People People);
         void Delete(string id);
         People GetById(string id);
-        IEnumerable<People> GetAll(Shared.DTO.Filters.PeopleFilter filter);
+        IEnumerable<People> GetAll(PeopleFilter filter);
         IEnumerable<People> GetCustomer();
         IEnumerable<People> GetSupplier();
     }

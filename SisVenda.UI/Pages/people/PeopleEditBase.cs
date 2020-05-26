@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using SisVenda.UI.CQRS.Commands;
 using SisVenda.UI.CQRS.Responses;
 using SisVenda.UI.Requests;
 using SisVenda.UI.Utils;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SisVenda.UI.Pages.People
 {

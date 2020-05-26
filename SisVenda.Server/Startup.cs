@@ -36,6 +36,7 @@ namespace SisVenda.Server
             //Repos
             services.AddTransient<IPeopleRepository, PeopleRepository>();
             services.AddTransient<IUsersRepository, UsersRepository>();
+            services.AddTransient<IUnitMeasurementRepository, UnitMeasurementRepository>();
 
             //Handlers
             services.AddTransient<PeopleHandler, PeopleHandler>();

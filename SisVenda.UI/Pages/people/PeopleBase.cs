@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Components;
 using SisVenda.UI.CQRS.Filters;
 using SisVenda.UI.CQRS.Responses;
 using SisVenda.UI.Requests;
-using SisVenda.UI.Utils;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
