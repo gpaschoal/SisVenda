@@ -3,6 +3,7 @@ using SisVenda.UI.CQRS.Filters;
 using SisVenda.UI.CQRS.Responses;
 using SisVenda.UI.Utils;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -14,37 +15,37 @@ namespace SisVenda.UI.Requests
     {
         public PeopleRequest(HttpClient http) : base(http) { }
 
-        public async Task<(bool result, string message, object response)> Create(CreatePeopleCommand command)
+        public async Task<(bool result, string message, List<ErrorMessage> Notifications, PeopleResponse Data)> Create(CreatePeopleCommand command)
         {
             string json = JsonSerializer.Serialize(command);
             HttpResponseMessage httpResponse = await http.PostAsync("api/people/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
-            GenericCommandResult result = JsonSerializer.Deserialize<GenericCommandResult>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            GenericCommandResult<PeopleResponse> result = JsonSerializer.Deserialize<GenericCommandResult<PeopleResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             if (!httpResponse.IsSuccessStatusCode)
-                return (false, "Ops, houve um erro inexperado!", new object());
+                return (false, "Ops, houve um erro inexperado!", new List<ErrorMessage>(), new PeopleResponse());
 
             if (result.Success)
-                return (true, "Cadastrado com sucesso!", result.Data);
+                return (true, "Cadastrado com sucesso!", result.Notifications, result.Data);
 
-            return (false, "Ops, houve algum erro ao cadastrar!", result.Data);
+            return (false, "Ops, houve algum erro ao cadastrar!", result.Notifications, result.Data);
         }
-        public async Task<(bool result, string message, object response)> Update(UpdatePeopleCommand command)
+        public async Task<(bool result, string message, List<ErrorMessage> Notifications, PeopleResponse Data)> Update(UpdatePeopleCommand command)
         {
             string json = JsonSerializer.Serialize(command);
             HttpResponseMessage httpResponse = await http.PutAsync("api/people/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
-            GenericCommandResult result = JsonSerializer.Deserialize<GenericCommandResult>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            GenericCommandResult<PeopleResponse> result = JsonSerializer.Deserialize<GenericCommandResult<PeopleResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             if (!httpResponse.IsSuccessStatusCode)
-                return (false, "Ops, houve um erro inexperado!", new object());
+                return (false, "Ops, houve um erro inexperado!", new List<ErrorMessage>(), new PeopleResponse());
 
             if (result.Success)
-                return (true, "Editado com sucesso!", result.Data);
+                return (true, "Editado com sucesso!", result.Notifications, result.Data);
 
-            return (false, "Ops, houve algum erro ao editar!", result.Data);
+            return (false, "Ops, houve algum erro ao editar!", result.Notifications, result.Data);
         }
         public async Task<(bool result, string message, object response)> Delete(DeletePeopleCommand command)
         {

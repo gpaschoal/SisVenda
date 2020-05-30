@@ -40,6 +40,7 @@ namespace SisVenda.Server
 
             //Handlers
             services.AddTransient<PeopleHandler, PeopleHandler>();
+            services.AddTransient<UnitMeasurementHandler, UnitMeasurementHandler>();
 
             byte[] key = Encoding.ASCII.GetBytes(Settings.SECRET);
             services.AddAuthentication(x =>

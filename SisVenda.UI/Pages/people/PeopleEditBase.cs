@@ -34,7 +34,7 @@ namespace SisVenda.UI.Pages.People
 
         public async Task Save()
         {
-            (bool result, string message, object data) = await request.Update(command);
+            (bool result, string message, List<ErrorMessage> Errors, _) = await request.Update(command);
             PrintTest.PrintConsole(result);
             PrintTest.PrintConsole(message);
             if (result)
@@ -44,7 +44,7 @@ namespace SisVenda.UI.Pages.People
             else
             {
                 ErrorAlert = true;
-                Errors = data.Deserialize<List<ErrorMessage>>().Select(x => x.message).ToList();
+                this.Errors = Errors.Select(x => x.message).ToList();
             }
         }
 

@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SisVenda.Server.Migrations
 {
@@ -13,6 +13,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Name = table.Column<string>(type: "char(150)", nullable: true),
                     Code = table.Column<string>(type: "char(10)", nullable: true)
                 },
@@ -27,6 +28,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Name = table.Column<string>(type: "char(150)", nullable: false)
                 },
                 constraints: table =>
@@ -40,6 +42,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Description = table.Column<string>(type: "char(150)", nullable: true)
                 },
                 constraints: table =>
@@ -53,6 +56,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsCustomer = table.Column<bool>(nullable: false),
                     IsSupplier = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "char(150)", nullable: true),
@@ -66,7 +70,7 @@ namespace SisVenda.Server.Migrations
                     State = table.Column<string>(type: "char(2)", nullable: true),
                     ZipCode = table.Column<string>(type: "char(10)", nullable: true),
                     AdressEmail = table.Column<string>(type: "char(50)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "char(10)", nullable: true)
+                    PhoneNumber = table.Column<string>(type: "char(11)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -79,6 +83,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Name = table.Column<string>(type: "varchar(150)", nullable: false),
                     QuantityLosses = table.Column<decimal>(type: "decimal(10, 2)", nullable: false)
                 },
@@ -93,6 +98,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Name = table.Column<string>(type: "char(150)", nullable: false),
                     User = table.Column<string>(type: "char(20)", nullable: false),
                     Password = table.Column<string>(type: "char(20)", nullable: false)
@@ -108,6 +114,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Name = table.Column<string>(type: "char(150)", nullable: true),
                     Code = table.Column<string>(type: "char(10)", nullable: true),
                     BankId = table.Column<string>(nullable: true)
@@ -129,6 +136,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     PeopleId = table.Column<string>(nullable: false),
                     DtMoviment = table.Column<DateTime>(type: "datetime", nullable: false),
                     PaymentStatusId = table.Column<string>(nullable: false),
@@ -160,6 +168,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     PeopleId = table.Column<string>(nullable: false),
                     DtMoviment = table.Column<DateTime>(type: "datetime", nullable: false),
                     PaymentStatusId = table.Column<string>(nullable: false),
@@ -191,6 +200,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Name = table.Column<string>(type: "varchar(150)", nullable: true),
                     Description = table.Column<string>(type: "varchar(150)", nullable: true),
                     UnitMeasurementId = table.Column<string>(nullable: true),
@@ -213,6 +223,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Account = table.Column<string>(type: "char(25)", nullable: true),
                     BankAgencyId = table.Column<string>(nullable: true)
                 },
@@ -233,6 +244,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     DtPaymentForecast = table.Column<DateTime>(type: "datetime", nullable: false),
                     DtPayment = table.Column<DateTime>(type: "datetime", nullable: true),
                     Value = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
@@ -262,6 +274,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     DtPaymentForecast = table.Column<DateTime>(type: "datetime", nullable: false),
                     DtPayment = table.Column<DateTime>(type: "datetime", nullable: true),
                     Value = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
@@ -291,6 +304,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     ProductId = table.Column<string>(nullable: false),
                     DtMoviment = table.Column<DateTime>(type: "datetime", nullable: false),
                     Description = table.Column<string>(type: "varchar(150)", nullable: false)
@@ -312,6 +326,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     ProductId = table.Column<string>(nullable: true),
                     DtEffective = table.Column<DateTime>(type: "datetime", nullable: false),
                     SalesCost = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
@@ -334,6 +349,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     ProductsId = table.Column<string>(nullable: false),
                     QuantityItem = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     CostPrice = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
@@ -363,6 +379,7 @@ namespace SisVenda.Server.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     ProductsId = table.Column<string>(nullable: false),
                     QuantityItem = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     CostPrice = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
@@ -388,8 +405,8 @@ namespace SisVenda.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "DtDeleted", "Name", "Password", "User" },
-                values: new object[] { "e6c7ab3e5fd14f14b0f36629f35acabe", null, "Administrador", "123", "admin" });
+                columns: new[] { "Id", "DtDeleted", "DtRegister", "Name", "Password", "User" },
+                values: new object[] { "fa0ce6d927ee4bf081dc338ad045de40", null, new DateTime(2020, 5, 30, 13, 51, 14, 480, DateTimeKind.Local).AddTicks(3110), "Administrador", "123", "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BankAccount_BankAgencyId",

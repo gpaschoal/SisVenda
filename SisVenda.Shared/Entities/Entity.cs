@@ -9,6 +9,7 @@ namespace SisVenda.Shared.Entities
         public Entity()
         {
             Id = Guid.NewGuid().ToString().Replace("-", "");
+            DtRegister = DateTime.Now;
         }
 
         [Key()]
@@ -17,6 +18,9 @@ namespace SisVenda.Shared.Entities
 
         [Column(TypeName = "datetime")]
         public DateTime? DtDeleted { get; private set; }
+
+        [Column(TypeName = "datetime")]
+        public DateTime DtRegister { get; private set; }
 
         public void Delete()
         {

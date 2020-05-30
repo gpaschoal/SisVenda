@@ -30,6 +30,9 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime?>("DtDeleted")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("DtRegister")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Name")
                         .HasColumnType("char(150)");
 
@@ -52,6 +55,9 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime?>("DtDeleted")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("DtRegister")
+                        .HasColumnType("datetime");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BankAgencyId");
@@ -71,6 +77,9 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("char(10)");
 
                     b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Name")
@@ -98,6 +107,9 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime>("DtMoviment")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("DtRegister")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("ProductId")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
@@ -115,6 +127,9 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Name")
@@ -135,6 +150,9 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("char(150)");
 
                     b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
                     b.HasKey("Id");
@@ -165,6 +183,9 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime?>("DtDeleted")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("DtRegister")
+                        .HasColumnType("datetime");
+
                     b.Property<bool>("IsCustomer")
                         .HasColumnType("bit");
 
@@ -181,7 +202,7 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("char(10)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("char(10)");
+                        .HasColumnType("char(11)");
 
                     b.Property<string>("State")
                         .HasColumnType("char(2)");
@@ -206,6 +227,9 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("varchar(150)");
 
                     b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Name")
@@ -233,6 +257,9 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("DtEffective")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
                     b.Property<string>("ProductId")
@@ -272,6 +299,9 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime>("DtMoviment")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("DtRegister")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("PaymentStatusId")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
@@ -301,6 +331,9 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("decimal(10, 2)");
 
                     b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
                     b.Property<string>("ProductsId")
@@ -337,6 +370,9 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("DtPaymentForecast")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
                     b.Property<string>("PaymentMethodsId")
@@ -379,6 +415,9 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime>("DtMoviment")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("DtRegister")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("PaymentStatusId")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
@@ -408,6 +447,9 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("decimal(10, 2)");
 
                     b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
                     b.Property<string>("ProductsId")
@@ -446,6 +488,9 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime>("DtPaymentForecast")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("DtRegister")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("PaymentMethodsId")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
@@ -473,6 +518,9 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime?>("DtDeleted")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("DtRegister")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(150)");
@@ -491,6 +539,9 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Name")
@@ -512,7 +563,8 @@ namespace SisVenda.Server.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e6c7ab3e5fd14f14b0f36629f35acabe",
+                            Id = "fa0ce6d927ee4bf081dc338ad045de40",
+                            DtRegister = new DateTime(2020, 5, 30, 13, 51, 14, 480, DateTimeKind.Local).AddTicks(3110),
                             Name = "Administrador",
                             Password = "123",
                             User = "admin"

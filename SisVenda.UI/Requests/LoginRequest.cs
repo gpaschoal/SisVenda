@@ -24,8 +24,8 @@ namespace SisVenda.UI.Requests
             if (httpResponse.IsSuccessStatusCode)
             {
                 string responseAsString = await httpResponse.Content.ReadAsStringAsync();
-                LoginResponse loginResult = JsonSerializer.Deserialize<LoginResponse>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                await authStateProvider.Login(loginResult.Token);
+                GenericCommandResult<LoginResponse> loginResult = JsonSerializer.Deserialize<GenericCommandResult<LoginResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                await authStateProvider.Login(loginResult.Data.Token);
                 return (true, "Logado com sucesso!");
             }
 

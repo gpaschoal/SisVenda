@@ -29,7 +29,7 @@ namespace SisVenda.UI.Pages.People
 
         public async Task Save()
         {
-            (bool result, string message, object data) = await request.Create(command);
+            (bool result, string message, List<ErrorMessage> Errors, _) = await request.Create(command);
 
             if (result)
             {
@@ -38,7 +38,7 @@ namespace SisVenda.UI.Pages.People
             else
             {
                 ErrorAlert = true;
-                Errors = data.Deserialize<List<ErrorMessage>>().Select(x => x.message).ToList();
+                this.Errors = Errors.Select(x => x.message).ToList();
             }
         }
     }
