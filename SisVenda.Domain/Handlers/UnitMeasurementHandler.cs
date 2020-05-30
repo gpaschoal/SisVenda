@@ -10,9 +10,9 @@ namespace SisVenda.Domain.Handlers
 {
     public class UnitMeasurementHandler :
             Notifiable,
-            IHandler<CreateUnitMeasurement>,
-            IHandler<UpdateUnitMeasurement>,
-            IHandler<DeleteUnitMeasurement>
+            IHandler<CreateUnitMeasurementCommand, UnitMeasurementResponse>,
+            IHandler<UpdateUnitMeasurementCommand, UnitMeasurementResponse>,
+            IHandler<DeleteUnitMeasurementCommand, UnitMeasurementResponse>
     {
         private readonly IUnitMeasurementRepository _repository;
 
@@ -21,46 +21,46 @@ namespace SisVenda.Domain.Handlers
             _repository = repository;
         }
 
-        public ICommandResult Handle(CreateUnitMeasurement command)
+        public ICommandResult<UnitMeasurementResponse> Handle(CreateUnitMeasurementCommand command)
         {
             command.Validate();
             if (command.Invalid)
-                return new GenericCommandResult(false, "Houve erros na validação", command.Notifications);
+                return new GenericCommandResult<UnitMeasurementResponse>(false, "Houve erros na validação", command.Notifications);
 
             UnitMeasurement unitMeasurement = new UnitMeasurement(command.Name, command.QuantityLosses);
             _repository.Create(unitMeasurement);
 
-            return new GenericCommandResult(true, "Cadastrado com sucesso", new UnitMeasurementResponse(unitMeasurement));
+            return new GenericCommandResult<UnitMeasurementResponse>(true, "Cadastrado com sucesso", new UnitMeasurementResponse(unitMeasurement));
         }
 
-        public ICommandResult Handle(UpdateUnitMeasurement command)
+        public ICommandResult<UnitMeasurementResponse> Handle(UpdateUnitMeasurementCommand command)
         {
             command.Validate();
             if (command.Invalid)
-                return new GenericCommandResult(false, "Houve erros na validação", command.Notifications);
+                return new GenericCommandResult<UnitMeasurementResponse>(false, "Houve erros na validação", command.Notifications);
 
             UnitMeasurement unitMeasurement = _repository.GetById(command.Id);
             if (unitMeasurement is null)
-                return new GenericCommandResult(false, "O cadastro não existe para retificar!", command.Notifications);
+                return new GenericCommandResult<UnitMeasurementResponse>(false, "O cadastro não existe para retificar!", command.Notifications);
 
             unitMeasurement.Update(command.Name, command.QuantityLosses);
             _repository.Update(unitMeasurement);
 
-            return new GenericCommandResult(true, "Atualizado com sucesso", new UnitMeasurementResponse(unitMeasurement));
+            return new GenericCommandResult<UnitMeasurementResponse>(true, "Atualizado com sucesso", new UnitMeasurementResponse(unitMeasurement));
         }
 
-        public ICommandResult Handle(DeleteUnitMeasurement command)
+        public ICommandResult<UnitMeasurementResponse> Handle(DeleteUnitMeasurementCommand command)
         {
             command.Validate();
             if (command.Invalid)
-                return new GenericCommandResult(false, "Houve erros na validação", command.Notifications);
+                return new GenericCommandResult<UnitMeasurementResponse>(false, "Houve erros na validação", command.Notifications);
 
             UnitMeasurement unitMeasurement = _repository.GetById(command.Id);
             if (unitMeasurement is null)
-                return new GenericCommandResult(false, "O cadastro não existe para deletar!", command.Notifications);
+                return new GenericCommandResult<UnitMeasurementResponse>(false, "O cadastro não existe para deletar!", command.Notifications);
 
             _repository.Delete(command.Id);
-            return new GenericCommandResult(true, "Deletado com sucesso", null);
+            return new GenericCommandResult<UnitMeasurementResponse>(true, "Deletado com sucesso", new UnitMeasurementResponse());
         }
     }
 }

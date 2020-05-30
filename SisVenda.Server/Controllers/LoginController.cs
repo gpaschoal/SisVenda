@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SisVenda.Domain.Commands;
 using SisVenda.Domain.Entities;
 using SisVenda.Domain.Repositories;
+using SisVenda.Domain.Responses;
 using SisVenda.Server.Services;
 
 namespace SisVenda.Server.Controllers
@@ -14,17 +15,17 @@ namespace SisVenda.Server.Controllers
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public ActionResult<dynamic> Authenticate([FromServices] IUsersRepository repository, [FromBody] LoginUsersCommand login)
+        public ActionResult<GenericCommandResult<LoginTokenResponse>> Authenticate([FromServices] IUsersRepository repository, [FromBody] LoginUsersCommand login)
         {
             login.Validate();
             if (login.Invalid)
-                return new GenericCommandResult(false, "Houve erro na validação", login.Notifications);
+                return new GenericCommandResult<LoginTokenResponse>(false, "Houve erro na validação", login.Notifications);
 
             Users user = repository.Login(login.Username, login.Password);
             if (user is null)
-                return new GenericCommandResult(false, "Usuário ou senha inválidos", new object());
+                return new GenericCommandResult<LoginTokenResponse>(false, "Usuário ou senha inválidos", new LoginTokenResponse());
 
-            return new { Token = TokenService.GenerateToken(user) };
+            return new GenericCommandResult<LoginTokenResponse>(true, "Usuário válido!", new LoginTokenResponse(TokenService.GenerateToken(user)));
         }
     }
 }

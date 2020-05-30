@@ -4,10 +4,10 @@ using SisVenda.Domain.Commands.Contracts;
 
 namespace SisVenda.Domain.Commands
 {
-    public class CreateUnitMeasurement : Notifiable, ICommand
+    public class CreateUnitMeasurementCommand : Notifiable, ICommand
     {
-        public CreateUnitMeasurement() { }
-        public CreateUnitMeasurement(string name, double quantityLosses)
+        public CreateUnitMeasurementCommand() { }
+        public CreateUnitMeasurementCommand(string name, double quantityLosses)
         {
             Name = name;
             QuantityLosses = quantityLosses;

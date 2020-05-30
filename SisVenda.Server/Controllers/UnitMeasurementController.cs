@@ -20,28 +20,28 @@ namespace SisVenda.Server.Controllers
         [Route("")]
         [HttpPost]
         [Authorize]
-        public GenericCommandResult Create([FromBody] CreateUnitMeasurement command, [FromServices] UnitMeasurementHandler handler)
+        public GenericCommandResult<UnitMeasurementResponse> Create([FromBody] CreateUnitMeasurementCommand command, [FromServices] UnitMeasurementHandler handler)
         {
             /* Calling Handle to create */
-            return (GenericCommandResult)handler.Handle(command);
+            return (GenericCommandResult<UnitMeasurementResponse>)handler.Handle(command);
         }
 
         [Route("")]
         [HttpPut]
         [Authorize]
-        public GenericCommandResult Update([FromBody] UpdateUnitMeasurement command, [FromServices] UnitMeasurementHandler handler)
+        public GenericCommandResult<UnitMeasurementResponse> Update([FromBody] UpdateUnitMeasurementCommand command, [FromServices] UnitMeasurementHandler handler)
         {
             /* Calling Handle to Update */
-            return (GenericCommandResult)handler.Handle(command);
+            return (GenericCommandResult<UnitMeasurementResponse>)handler.Handle(command);
         }
 
         [Route("")]
         [HttpDelete]
         [Authorize]
-        public GenericCommandResult Delete([FromBody] DeleteUnitMeasurement command, [FromServices] UnitMeasurementHandler handler)
+        public GenericCommandResult<UnitMeasurementResponse> Delete([FromBody] DeleteUnitMeasurementCommand command, [FromServices] UnitMeasurementHandler handler)
         {
             /* Calling Handle to Delete */
-            return (GenericCommandResult)handler.Handle(command);
+            return (GenericCommandResult<UnitMeasurementResponse>)handler.Handle(command);
         }
 
         [Route("{id}")]

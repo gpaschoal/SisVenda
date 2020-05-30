@@ -4,6 +4,7 @@ namespace SisVenda.Domain.Responses
 {
     public class PeopleResponse : IResponse
     {
+        public PeopleResponse() { }
         public PeopleResponse(People people)
         {
             if (people is null) return;

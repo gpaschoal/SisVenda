@@ -4,10 +4,10 @@ using SisVenda.Domain.Commands.Contracts;
 
 namespace SisVenda.Domain.Commands
 {
-    public class DeleteUnitMeasurement : Notifiable, ICommand
+    public class DeleteUnitMeasurementCommand : Notifiable, ICommand
     {
-        public DeleteUnitMeasurement() { }
-        public DeleteUnitMeasurement(string id)
+        public DeleteUnitMeasurementCommand() { }
+        public DeleteUnitMeasurementCommand(string id)
         {
             Id = id;
         }

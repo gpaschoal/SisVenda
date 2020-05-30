@@ -19,28 +19,28 @@ namespace SisVenda.Server.Controllers
         [Route("")]
         [HttpPost]
         [Authorize]
-        public GenericCommandResult Create([FromBody] CreatePeopleCommand command, [FromServices] PeopleHandler handler)
+        public GenericCommandResult<PeopleResponse> Create([FromBody] CreatePeopleCommand command, [FromServices] PeopleHandler handler)
         {
             /* Calling Handle to create */
-            return (GenericCommandResult)handler.Handle(command);
+            return (GenericCommandResult<PeopleResponse>)handler.Handle(command);
         }
 
         [Route("")]
         [HttpPut]
         [Authorize]
-        public GenericCommandResult Update([FromBody] UpdatePeopleCommand command, [FromServices] PeopleHandler handler)
+        public GenericCommandResult<PeopleResponse> Update([FromBody] UpdatePeopleCommand command, [FromServices] PeopleHandler handler)
         {
             /* Calling Handle to Update */
-            return (GenericCommandResult)handler.Handle(command);
+            return (GenericCommandResult<PeopleResponse>)handler.Handle(command);
         }
 
         [Route("")]
         [HttpDelete]
         [Authorize]
-        public GenericCommandResult Delete([FromBody] DeletePeopleCommand command, [FromServices] PeopleHandler handler)
+        public GenericCommandResult<PeopleResponse> Delete([FromBody] DeletePeopleCommand command, [FromServices] PeopleHandler handler)
         {
             /* Calling Handle to Delete */
-            return (GenericCommandResult)handler.Handle(command);
+            return (GenericCommandResult<PeopleResponse>)handler.Handle(command);
         }
 
         [Route("{id}")]

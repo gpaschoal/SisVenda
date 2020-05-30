@@ -4,6 +4,7 @@ namespace SisVenda.Domain.Responses
 {
     public class UnitMeasurementResponse : IResponse
     {
+        public UnitMeasurementResponse() { }
         public UnitMeasurementResponse(UnitMeasurement unitMeasurement)
         {
             if (unitMeasurement is null) return;
