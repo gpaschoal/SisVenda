@@ -1,4 +1,4 @@
-﻿using SisVenda.Shared.Entities;
+﻿using SisVenda.Domain.Base.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,21 +7,24 @@ namespace SisVenda.Domain.Entities
 {
     public class ProductsPrices : Entity
     {
-        public ProductsPrices(string productId, DateTime dtEffective, double salesCost, double salesPrice)
+        public ProductsPrices(string productsProfileId, DateTime dtEffective, double averagePurchaseCost, double salesPrice)
         {
-            ProductId = productId;
+            ProductsProfileId = productsProfileId;
             DtEffective = dtEffective;
-            SalesCost = salesCost;
+            AveragePurchaseCost = averagePurchaseCost;
             SalesPrice = salesPrice;
         }
-
-        public string ProductId { get; private set; }
-        public Products Product { get; }
+        [Required]
+        [Column(TypeName = "varchar(32)")]
+        public string ProductsProfileId { get; private set; }
+        public ProductsProfile ProductsProfile { get; }
         [Required]
         [Column(TypeName = "datetime")]
         public DateTime DtEffective { get; private set; }
+        [Required]
         [Column(TypeName = "decimal(10, 2)")]
-        public double SalesCost { get; private set; }
+        public double AveragePurchaseCost { get; private set; }
+        [Required]
         [Column(TypeName = "decimal(10, 2)")]
         public double SalesPrice { get; private set; }
     }

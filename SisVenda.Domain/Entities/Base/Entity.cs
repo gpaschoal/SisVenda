@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SisVenda.Shared.Entities
+namespace SisVenda.Domain.Base.Entities
 {
     public abstract class Entity
     {

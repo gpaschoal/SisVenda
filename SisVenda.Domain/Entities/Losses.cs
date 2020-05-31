@@ -1,4 +1,4 @@
-﻿using SisVenda.Shared.Entities;
+﻿using SisVenda.Domain.Base.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,16 +7,16 @@ namespace SisVenda.Domain.Entities
 {
     public class Losses : Entity
     {
-        public Losses(string productId, DateTime dtMoviment, string description)
+        public Losses(string productsProfileId, DateTime dtMoviment, string description)
         {
-            ProductId = productId;
+            ProductsProfileId = productsProfileId;
             DtMoviment = dtMoviment;
             Description = description;
         }
-
         [Required]
-        public string ProductId { get; private set; }
-        public Products Product { get; }
+        [Column(TypeName = "varchar(32)")]
+        public string ProductsProfileId { get; private set; }
+        public ProductsProfile ProductsProfile { get; }
         [Required]
         [Column(TypeName = "datetime")]
         public DateTime DtMoviment { get; private set; }

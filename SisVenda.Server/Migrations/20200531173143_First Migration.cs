@@ -43,7 +43,7 @@ namespace SisVenda.Server.Migrations
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
                     DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Description = table.Column<string>(type: "char(150)", nullable: true)
+                    Description = table.Column<string>(type: "char(150)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,22 +59,38 @@ namespace SisVenda.Server.Migrations
                     DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsCustomer = table.Column<bool>(nullable: false),
                     IsSupplier = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(type: "char(150)", nullable: true),
-                    Contact = table.Column<string>(type: "char(150)", nullable: true),
-                    CPF = table.Column<string>(type: "char(11)", nullable: true),
-                    CNPJ = table.Column<string>(type: "char(14)", nullable: true),
-                    Street = table.Column<string>(type: "char(100)", nullable: true),
-                    Number = table.Column<string>(type: "char(10)", nullable: true),
-                    Neighborhood = table.Column<string>(type: "char(30)", nullable: true),
-                    City = table.Column<string>(type: "char(50)", nullable: true),
-                    State = table.Column<string>(type: "char(2)", nullable: true),
-                    ZipCode = table.Column<string>(type: "char(10)", nullable: true),
-                    AdressEmail = table.Column<string>(type: "char(50)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "char(11)", nullable: true)
+                    Name = table.Column<string>(type: "char(150)", nullable: false),
+                    Contact = table.Column<string>(type: "char(150)", nullable: false),
+                    CPF = table.Column<string>(type: "char(11)", nullable: false),
+                    CNPJ = table.Column<string>(type: "char(14)", nullable: false),
+                    Street = table.Column<string>(type: "char(100)", nullable: false),
+                    Number = table.Column<string>(type: "char(10)", nullable: false),
+                    Neighborhood = table.Column<string>(type: "char(30)", nullable: false),
+                    City = table.Column<string>(type: "char(50)", nullable: false),
+                    State = table.Column<string>(type: "char(2)", nullable: false),
+                    ZipCode = table.Column<string>(type: "char(10)", nullable: false),
+                    AdressEmail = table.Column<string>(type: "char(50)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "char(11)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_People", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(32)", nullable: false),
+                    DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Name = table.Column<string>(type: "varchar(150)", nullable: false),
+                    Description = table.Column<string>(type: "varchar(150)", nullable: false),
+                    QuantityStock = table.Column<decimal>(type: "decimal(10, 2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,7 +133,7 @@ namespace SisVenda.Server.Migrations
                     DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Name = table.Column<string>(type: "char(150)", nullable: true),
                     Code = table.Column<string>(type: "char(10)", nullable: true),
-                    BankId = table.Column<string>(nullable: true)
+                    BankId = table.Column<string>(type: "varchar(32)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,7 +143,7 @@ namespace SisVenda.Server.Migrations
                         column: x => x.BankId,
                         principalTable: "Bank",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,26 +211,31 @@ namespace SisVenda.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "ProductsProfile",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
                     DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Name = table.Column<string>(type: "varchar(150)", nullable: true),
-                    Description = table.Column<string>(type: "varchar(150)", nullable: true),
-                    UnitMeasurementId = table.Column<string>(nullable: true),
-                    QtdStock = table.Column<decimal>(type: "decimal(10, 2)", nullable: false)
+                    UnitMeasurementId = table.Column<string>(type: "varchar(32)", nullable: false),
+                    ProductsId = table.Column<string>(type: "varchar(32)", nullable: false),
+                    BarCode = table.Column<string>(type: "char(100)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_ProductsProfile", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_UnitMeasurement_UnitMeasurementId",
+                        name: "FK_ProductsProfile_Products_ProductsId",
+                        column: x => x.ProductsId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductsProfile_UnitMeasurement_UnitMeasurementId",
                         column: x => x.UnitMeasurementId,
                         principalTable: "UnitMeasurement",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -225,7 +246,7 @@ namespace SisVenda.Server.Migrations
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
                     DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
                     Account = table.Column<string>(type: "char(25)", nullable: true),
-                    BankAgencyId = table.Column<string>(nullable: true)
+                    BankAgencyId = table.Column<string>(type: "varchar(32)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -235,7 +256,7 @@ namespace SisVenda.Server.Migrations
                         column: x => x.BankAgencyId,
                         principalTable: "BankAgency",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,7 +270,7 @@ namespace SisVenda.Server.Migrations
                     DtPayment = table.Column<DateTime>(type: "datetime", nullable: true),
                     Value = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     PaymentMethodsId = table.Column<string>(nullable: false),
-                    PurchasesId = table.Column<string>(nullable: true)
+                    PurchasesId = table.Column<string>(type: "varchar(32)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -265,7 +286,7 @@ namespace SisVenda.Server.Migrations
                         column: x => x.PurchasesId,
                         principalTable: "Purchases",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -279,7 +300,7 @@ namespace SisVenda.Server.Migrations
                     DtPayment = table.Column<DateTime>(type: "datetime", nullable: true),
                     Value = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     PaymentMethodsId = table.Column<string>(nullable: false),
-                    SalesId = table.Column<string>(nullable: true)
+                    SalesId = table.Column<string>(type: "varchar(32)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -295,7 +316,7 @@ namespace SisVenda.Server.Migrations
                         column: x => x.SalesId,
                         principalTable: "Sales",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -305,7 +326,7 @@ namespace SisVenda.Server.Migrations
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
                     DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ProductId = table.Column<string>(nullable: false),
+                    ProductsProfileId = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtMoviment = table.Column<DateTime>(type: "datetime", nullable: false),
                     Description = table.Column<string>(type: "varchar(150)", nullable: false)
                 },
@@ -313,9 +334,9 @@ namespace SisVenda.Server.Migrations
                 {
                     table.PrimaryKey("PK_Losses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Losses_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
+                        name: "FK_Losses_ProductsProfile_ProductsProfileId",
+                        column: x => x.ProductsProfileId,
+                        principalTable: "ProductsProfile",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -327,20 +348,20 @@ namespace SisVenda.Server.Migrations
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
                     DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ProductId = table.Column<string>(nullable: true),
+                    ProductsProfileId = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtEffective = table.Column<DateTime>(type: "datetime", nullable: false),
-                    SalesCost = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
+                    AveragePurchaseCost = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     SalesPrice = table.Column<decimal>(type: "decimal(10, 2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductPrices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductPrices_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
+                        name: "FK_ProductPrices_ProductsProfile_ProductsProfileId",
+                        column: x => x.ProductsProfileId,
+                        principalTable: "ProductsProfile",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -350,19 +371,19 @@ namespace SisVenda.Server.Migrations
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
                     DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ProductsId = table.Column<string>(nullable: false),
+                    ProductsProfileId = table.Column<string>(nullable: false),
                     QuantityItem = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     CostPrice = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     SalePrice = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
-                    PurchasesId = table.Column<string>(nullable: true)
+                    PurchasesId = table.Column<string>(type: "varchar(32)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PurchasesItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PurchasesItems_Products_ProductsId",
-                        column: x => x.ProductsId,
-                        principalTable: "Products",
+                        name: "FK_PurchasesItems_ProductsProfile_ProductsProfileId",
+                        column: x => x.ProductsProfileId,
+                        principalTable: "ProductsProfile",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -370,7 +391,7 @@ namespace SisVenda.Server.Migrations
                         column: x => x.PurchasesId,
                         principalTable: "Purchases",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -380,19 +401,19 @@ namespace SisVenda.Server.Migrations
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
                     DtDeleted = table.Column<DateTime>(type: "datetime", nullable: true),
                     DtRegister = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ProductsId = table.Column<string>(nullable: false),
+                    ProductsProfileId = table.Column<string>(nullable: false),
                     QuantityItem = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     CostPrice = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     SalePrice = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
-                    SalesId = table.Column<string>(nullable: true)
+                    SalesId = table.Column<string>(type: "varchar(32)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SalesItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SalesItems_Products_ProductsId",
-                        column: x => x.ProductsId,
-                        principalTable: "Products",
+                        name: "FK_SalesItems_ProductsProfile_ProductsProfileId",
+                        column: x => x.ProductsProfileId,
+                        principalTable: "ProductsProfile",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -400,13 +421,13 @@ namespace SisVenda.Server.Migrations
                         column: x => x.SalesId,
                         principalTable: "Sales",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "DtDeleted", "DtRegister", "Name", "Password", "User" },
-                values: new object[] { "fa0ce6d927ee4bf081dc338ad045de40", null, new DateTime(2020, 5, 30, 13, 51, 14, 480, DateTimeKind.Local).AddTicks(3110), "Administrador", "123", "admin" });
+                values: new object[] { "b39e91b31f8f49f5b650f9c79097632e", null, new DateTime(2020, 5, 31, 14, 31, 42, 920, DateTimeKind.Local).AddTicks(9403), "Administrador", "123", "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BankAccount_BankAgencyId",
@@ -419,18 +440,23 @@ namespace SisVenda.Server.Migrations
                 column: "BankId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Losses_ProductId",
+                name: "IX_Losses_ProductsProfileId",
                 table: "Losses",
-                column: "ProductId");
+                column: "ProductsProfileId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductPrices_ProductId",
+                name: "IX_ProductPrices_ProductsProfileId",
                 table: "ProductPrices",
-                column: "ProductId");
+                column: "ProductsProfileId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_UnitMeasurementId",
-                table: "Products",
+                name: "IX_ProductsProfile_ProductsId",
+                table: "ProductsProfile",
+                column: "ProductsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductsProfile_UnitMeasurementId",
+                table: "ProductsProfile",
                 column: "UnitMeasurementId");
 
             migrationBuilder.CreateIndex(
@@ -454,9 +480,9 @@ namespace SisVenda.Server.Migrations
                 column: "PeopleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PurchasesItems_ProductsId",
+                name: "IX_PurchasesItems_ProductsProfileId",
                 table: "PurchasesItems",
-                column: "ProductsId");
+                column: "ProductsProfileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PurchasesItems_PurchasesId",
@@ -474,9 +500,9 @@ namespace SisVenda.Server.Migrations
                 column: "PeopleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SalesItems_ProductsId",
+                name: "IX_SalesItems_ProductsProfileId",
                 table: "SalesItems",
-                column: "ProductsId");
+                column: "ProductsProfileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesItems_SalesId",
@@ -527,7 +553,7 @@ namespace SisVenda.Server.Migrations
                 name: "Purchases");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductsProfile");
 
             migrationBuilder.DropTable(
                 name: "PaymentMethods");
@@ -537,6 +563,9 @@ namespace SisVenda.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "Bank");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "UnitMeasurement");

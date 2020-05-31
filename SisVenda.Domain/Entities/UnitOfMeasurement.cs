@@ -1,4 +1,4 @@
-﻿using SisVenda.Shared.Entities;
+﻿using SisVenda.Domain.Base.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,7 +18,7 @@ namespace SisVenda.Domain.Entities
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
         public double QuantityLosses { get; private set; }
-        public IEnumerable<Products> Products { get; set; }
+        public IEnumerable<ProductsProfile> ProductsProfile { get; set; }
 
         public void Update(string name, double quantityLosses)
         {

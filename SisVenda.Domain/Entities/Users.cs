@@ -1,4 +1,4 @@
-﻿using SisVenda.Shared.Entities;
+﻿using SisVenda.Domain.Base.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,14 +13,14 @@ namespace SisVenda.Domain.Entities
             Password = password;
         }
 
+        [Required]
         [Column(TypeName = "char(150)")]
-        [Required]
         public string Name { get; private set; }
-        [Column(TypeName = "char(20)")]
         [Required]
+        [Column(TypeName = "char(20)")]
         public string User { get; private set; }
-        [Column(TypeName = "char(20)")]
         [Required]
+        [Column(TypeName = "char(20)")]
         public string Password { get; private set; }
     }
 }

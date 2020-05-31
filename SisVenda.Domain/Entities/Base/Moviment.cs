@@ -1,5 +1,4 @@
 ﻿using SisVenda.Domain.Entities;
-using SisVenda.Shared.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

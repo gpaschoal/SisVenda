@@ -1,4 +1,4 @@
-using SisVenda.Shared.Entities;
+using SisVenda.Domain.Base.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,8 +8,8 @@ namespace SisVenda.Domain.Entities
     {
         public Bank(string name, string code)
         {
-            this.Name = name;
-            this.Code = code;
+            Name = name;
+            Code = code;
         }
         [Column(TypeName = "char(150)")]
         public string Name { get; private set; }

@@ -1,5 +1,7 @@
 ﻿using SisVenda.Domain.Base.Entities;
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SisVenda.Domain.Entities
 {
@@ -10,7 +12,8 @@ namespace SisVenda.Domain.Entities
         {
             SalesId = salesId;
         }
-
+        [Required]
+        [Column(TypeName = "varchar(32)")]
         public string SalesId { get; private set; }
         public Sales Sales { get; }
     }

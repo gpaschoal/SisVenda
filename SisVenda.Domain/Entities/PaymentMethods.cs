@@ -1,4 +1,4 @@
-﻿using SisVenda.Shared.Entities;
+﻿using SisVenda.Domain.Base.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,7 +15,7 @@ namespace SisVenda.Domain.Entities
         [Column(TypeName = "char(150)")]
         [Required]
         public string Name { get; private set; }
-        public List<PurchasesPayments> PurchasesPayments { get; }
-        public List<SalesPayment> SalesPayment { get; }
+        public IEnumerable<PurchasesPayments> PurchasesPayments { get; }
+        public IEnumerable<SalesPayment> SalesPayment { get; }
     }
 }

@@ -10,7 +10,7 @@ using SisVenda.Infra.Contexts;
 namespace SisVenda.Server.Migrations
 {
     [DbContext(typeof(SisVendaContext))]
-    [Migration("20200530165114_First Migration")]
+    [Migration("20200531173143_First Migration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,7 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("char(25)");
 
                     b.Property<string>("BankAgencyId")
+                        .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.Property<DateTime?>("DtDeleted")
@@ -73,6 +74,7 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("BankId")
+                        .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("Code")
@@ -112,13 +114,13 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("ProductId")
+                    b.Property<string>("ProductsProfileId")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsProfileId");
 
                     b.ToTable("Losses");
                 });
@@ -149,6 +151,7 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("char(150)");
 
                     b.Property<DateTime?>("DtDeleted")
@@ -168,18 +171,23 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("AdressEmail")
+                        .IsRequired()
                         .HasColumnType("char(50)");
 
                     b.Property<string>("CNPJ")
+                        .IsRequired()
                         .HasColumnType("char(14)");
 
                     b.Property<string>("CPF")
+                        .IsRequired()
                         .HasColumnType("char(11)");
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("char(50)");
 
                     b.Property<string>("Contact")
+                        .IsRequired()
                         .HasColumnType("char(150)");
 
                     b.Property<DateTime?>("DtDeleted")
@@ -195,24 +203,31 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("char(150)");
 
                     b.Property<string>("Neighborhood")
+                        .IsRequired()
                         .HasColumnType("char(30)");
 
                     b.Property<string>("Number")
+                        .IsRequired()
                         .HasColumnType("char(10)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("char(11)");
 
                     b.Property<string>("State")
+                        .IsRequired()
                         .HasColumnType("char(2)");
 
                     b.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("char(100)");
 
                     b.Property<string>("ZipCode")
+                        .IsRequired()
                         .HasColumnType("char(10)");
 
                     b.HasKey("Id");
@@ -226,6 +241,7 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("varchar(150)");
 
                     b.Property<DateTime?>("DtDeleted")
@@ -235,17 +251,13 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("varchar(150)");
 
-                    b.Property<decimal>("QtdStock")
+                    b.Property<decimal>("QuantityStock")
                         .HasColumnType("decimal(10, 2)");
 
-                    b.Property<string>("UnitMeasurementId")
-                        .HasColumnType("varchar(32)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UnitMeasurementId");
 
                     b.ToTable("Products");
                 });
@@ -254,6 +266,9 @@ namespace SisVenda.Server.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(32)");
+
+                    b.Property<decimal>("AveragePurchaseCost")
+                        .HasColumnType("decimal(10, 2)");
 
                     b.Property<DateTime?>("DtDeleted")
                         .HasColumnType("datetime");
@@ -264,20 +279,50 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("ProductId")
+                    b.Property<string>("ProductsProfileId")
+                        .IsRequired()
                         .HasColumnType("varchar(32)");
-
-                    b.Property<decimal>("SalesCost")
-                        .HasColumnType("decimal(10, 2)");
 
                     b.Property<decimal>("SalesPrice")
                         .HasColumnType("decimal(10, 2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsProfileId");
 
                     b.ToTable("ProductPrices");
+                });
+
+            modelBuilder.Entity("SisVenda.Domain.Entities.ProductsProfile", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("BarCode")
+                        .IsRequired()
+                        .HasColumnType("char(100)");
+
+                    b.Property<DateTime?>("DtDeleted")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DtRegister")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("ProductsId")
+                        .IsRequired()
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("UnitMeasurementId")
+                        .IsRequired()
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductsId");
+
+                    b.HasIndex("UnitMeasurementId");
+
+                    b.ToTable("ProductsProfile");
                 });
 
             modelBuilder.Entity("SisVenda.Domain.Entities.Purchases", b =>
@@ -338,11 +383,12 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("ProductsId")
+                    b.Property<string>("ProductsProfileId")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("PurchasesId")
+                        .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.Property<decimal>("QuantityItem")
@@ -353,7 +399,7 @@ namespace SisVenda.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductsId");
+                    b.HasIndex("ProductsProfileId");
 
                     b.HasIndex("PurchasesId");
 
@@ -382,6 +428,7 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("PurchasesId")
+                        .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.Property<decimal>("Value")
@@ -454,7 +501,7 @@ namespace SisVenda.Server.Migrations
                     b.Property<DateTime>("DtRegister")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("ProductsId")
+                    b.Property<string>("ProductsProfileId")
                         .IsRequired()
                         .HasColumnType("varchar(32)");
 
@@ -465,11 +512,12 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("decimal(10, 2)");
 
                     b.Property<string>("SalesId")
+                        .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductsId");
+                    b.HasIndex("ProductsProfileId");
 
                     b.HasIndex("SalesId");
 
@@ -498,6 +546,7 @@ namespace SisVenda.Server.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("SalesId")
+                        .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.Property<decimal>("Value")
@@ -565,8 +614,8 @@ namespace SisVenda.Server.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fa0ce6d927ee4bf081dc338ad045de40",
-                            DtRegister = new DateTime(2020, 5, 30, 13, 51, 14, 480, DateTimeKind.Local).AddTicks(3110),
+                            Id = "b39e91b31f8f49f5b650f9c79097632e",
+                            DtRegister = new DateTime(2020, 5, 31, 14, 31, 42, 920, DateTimeKind.Local).AddTicks(9403),
                             Name = "Administrador",
                             Password = "123",
                             User = "admin"
@@ -577,37 +626,51 @@ namespace SisVenda.Server.Migrations
                 {
                     b.HasOne("SisVenda.Domain.Entities.BankAgency", null)
                         .WithMany("BankAccount")
-                        .HasForeignKey("BankAgencyId");
+                        .HasForeignKey("BankAgencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SisVenda.Domain.Entities.BankAgency", b =>
                 {
                     b.HasOne("SisVenda.Domain.Entities.Bank", null)
                         .WithMany("BankAgency")
-                        .HasForeignKey("BankId");
-                });
-
-            modelBuilder.Entity("SisVenda.Domain.Entities.Losses", b =>
-                {
-                    b.HasOne("SisVenda.Domain.Entities.Products", "Product")
-                        .WithMany("Losses")
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("BankId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SisVenda.Domain.Entities.Products", b =>
+            modelBuilder.Entity("SisVenda.Domain.Entities.Losses", b =>
                 {
-                    b.HasOne("SisVenda.Domain.Entities.UnitMeasurement", "UnitMeasurement")
-                        .WithMany("Products")
-                        .HasForeignKey("UnitMeasurementId");
+                    b.HasOne("SisVenda.Domain.Entities.ProductsProfile", null)
+                        .WithMany("Losses")
+                        .HasForeignKey("ProductsProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SisVenda.Domain.Entities.ProductsPrices", b =>
                 {
-                    b.HasOne("SisVenda.Domain.Entities.Products", "Product")
+                    b.HasOne("SisVenda.Domain.Entities.ProductsProfile", null)
                         .WithMany("ProductsPrices")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductsProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SisVenda.Domain.Entities.ProductsProfile", b =>
+                {
+                    b.HasOne("SisVenda.Domain.Entities.Products", null)
+                        .WithMany("ProductsProfile")
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SisVenda.Domain.Entities.UnitMeasurement", null)
+                        .WithMany("ProductsProfile")
+                        .HasForeignKey("UnitMeasurementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SisVenda.Domain.Entities.Purchases", b =>
@@ -627,15 +690,17 @@ namespace SisVenda.Server.Migrations
 
             modelBuilder.Entity("SisVenda.Domain.Entities.PurchasesItems", b =>
                 {
-                    b.HasOne("SisVenda.Domain.Entities.Products", null)
+                    b.HasOne("SisVenda.Domain.Entities.ProductsProfile", null)
                         .WithMany("PurchasesItems")
-                        .HasForeignKey("ProductsId")
+                        .HasForeignKey("ProductsProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SisVenda.Domain.Entities.Purchases", null)
                         .WithMany("PurchasesItems")
-                        .HasForeignKey("PurchasesId");
+                        .HasForeignKey("PurchasesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SisVenda.Domain.Entities.PurchasesPayments", b =>
@@ -648,7 +713,9 @@ namespace SisVenda.Server.Migrations
 
                     b.HasOne("SisVenda.Domain.Entities.Purchases", null)
                         .WithMany("PurchasePayments")
-                        .HasForeignKey("PurchasesId");
+                        .HasForeignKey("PurchasesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SisVenda.Domain.Entities.Sales", b =>
@@ -668,15 +735,17 @@ namespace SisVenda.Server.Migrations
 
             modelBuilder.Entity("SisVenda.Domain.Entities.SalesItems", b =>
                 {
-                    b.HasOne("SisVenda.Domain.Entities.Products", null)
+                    b.HasOne("SisVenda.Domain.Entities.ProductsProfile", null)
                         .WithMany("SalesItems")
-                        .HasForeignKey("ProductsId")
+                        .HasForeignKey("ProductsProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SisVenda.Domain.Entities.Sales", null)
                         .WithMany("SalesItems")
-                        .HasForeignKey("SalesId");
+                        .HasForeignKey("SalesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SisVenda.Domain.Entities.SalesPayment", b =>
@@ -689,7 +758,9 @@ namespace SisVenda.Server.Migrations
 
                     b.HasOne("SisVenda.Domain.Entities.Sales", null)
                         .WithMany("SalesPayment")
-                        .HasForeignKey("SalesId");
+                        .HasForeignKey("SalesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
