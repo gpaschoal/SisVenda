@@ -19,7 +19,7 @@ namespace SisVenda.Server.Controllers
         [Route("")]
         [HttpPost]
         [Authorize]
-        public GenericCommandResult<PeopleResponse> Create([FromBody] CreatePeopleCommand command, [FromServices] PeopleHandler handler)
+        public GenericCommandResult<PeopleResponse> Create([FromBody] PeopleCreateCommand command, [FromServices] PeopleHandler handler)
         {
             /* Calling Handle to create */
             return (GenericCommandResult<PeopleResponse>)handler.Handle(command);
@@ -28,7 +28,7 @@ namespace SisVenda.Server.Controllers
         [Route("")]
         [HttpPut]
         [Authorize]
-        public GenericCommandResult<PeopleResponse> Update([FromBody] UpdatePeopleCommand command, [FromServices] PeopleHandler handler)
+        public GenericCommandResult<PeopleResponse> Update([FromBody] PeopleUpdateCommand command, [FromServices] PeopleHandler handler)
         {
             /* Calling Handle to Update */
             return (GenericCommandResult<PeopleResponse>)handler.Handle(command);
@@ -37,7 +37,7 @@ namespace SisVenda.Server.Controllers
         [Route("")]
         [HttpDelete]
         [Authorize]
-        public GenericCommandResult<PeopleResponse> Delete([FromBody] DeletePeopleCommand command, [FromServices] PeopleHandler handler)
+        public GenericCommandResult<PeopleResponse> Delete([FromBody] PeopleDeleteCommand command, [FromServices] PeopleHandler handler)
         {
             /* Calling Handle to Delete */
             return (GenericCommandResult<PeopleResponse>)handler.Handle(command);

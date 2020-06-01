@@ -3,11 +3,11 @@ using SisVenda.Domain.Commands.Contracts;
 
 namespace SisVenda.Domain.Commands
 {
-    public class LoginUsersCommand : Notifiable, ICommand
+    public class UsersLoginCommand : Notifiable, ICommand
     {
-        public LoginUsersCommand() { }
+        public UsersLoginCommand() { }
 
-        public LoginUsersCommand(string username, string password)
+        public UsersLoginCommand(string username, string password)
         {
             Username = username;
             Password = password;

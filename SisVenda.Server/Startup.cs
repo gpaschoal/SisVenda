@@ -34,13 +34,15 @@ namespace SisVenda.Server
             services.AddControllers(opt => opt.EnableEndpointRouting = false);
 
             //Repos
-            services.AddTransient<IPeopleRepository, PeopleRepository>();
             services.AddTransient<IUsersRepository, UsersRepository>();
+            services.AddTransient<IPeopleRepository, PeopleRepository>();
             services.AddTransient<IUnitMeasurementRepository, UnitMeasurementRepository>();
+            services.AddTransient<IProductsRepository, ProductsRepository>();
 
             //Handlers
             services.AddTransient<PeopleHandler, PeopleHandler>();
             services.AddTransient<UnitMeasurementHandler, UnitMeasurementHandler>();
+            services.AddTransient<ProductsHandler, ProductsHandler>();
 
             byte[] key = Encoding.ASCII.GetBytes(Settings.SECRET);
             services.AddAuthentication(x =>

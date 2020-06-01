@@ -14,7 +14,7 @@ namespace SisVenda.Domain.Base.Entities
             SalePrice = salePrice;
         }
 
-        [Required] 
+        [Required]
         public string ProductsProfileId { get; private set; }
         public ProductsProfile ProductsProfile { get; }
         [Column(TypeName = "decimal(10, 2)")]

@@ -18,7 +18,7 @@ namespace SisVenda.Infra.Contexts
         public DbSet<Bank> Bank { get; set; }
         public DbSet<BankAgency> BankAgency { get; set; }
         public DbSet<BankAccount> BankAccount { get; set; }
-        public DbSet<People> People { get; set; }        
+        public DbSet<People> People { get; set; }
         public DbSet<UnitMeasurement> UnitMeasurement { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<ProductsProfile> ProductsProfile { get; set; }

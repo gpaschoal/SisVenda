@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SisVenda.Domain.Responses
+﻿namespace SisVenda.Domain.Responses
 {
     public class LoginTokenResponse : IResponse
     {

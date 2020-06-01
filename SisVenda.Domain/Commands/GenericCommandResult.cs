@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SisVenda.Domain.Commands
 {
     /// <summary>
-    /// T -> My type return
+    /// T -> My return type return
     /// </summary>
     public class GenericCommandResult<T> : ICommandResult<T> where T : IResponse, new()
     {

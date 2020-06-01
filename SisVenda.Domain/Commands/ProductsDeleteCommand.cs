@@ -4,16 +4,16 @@ using SisVenda.Domain.Commands.Contracts;
 
 namespace SisVenda.Domain.Commands
 {
-    public class DeleteUnitMeasurementCommand : Notifiable, ICommand
+    public class ProductsDeleteCommand : Notifiable, ICommand
     {
-        public DeleteUnitMeasurementCommand() { }
-        public DeleteUnitMeasurementCommand(string id)
+        public ProductsDeleteCommand() { }
+
+        public ProductsDeleteCommand(string id)
         {
             Id = id;
         }
 
         public string Id { get; set; }
-
         public void Validate()
         {
             AddNotifications(

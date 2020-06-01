@@ -15,7 +15,7 @@ namespace SisVenda.Server.Controllers
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public ActionResult<GenericCommandResult<LoginTokenResponse>> Authenticate([FromServices] IUsersRepository repository, [FromBody] LoginUsersCommand login)
+        public ActionResult<GenericCommandResult<LoginTokenResponse>> Authenticate([FromServices] IUsersRepository repository, [FromBody] UsersLoginCommand login)
         {
             login.Validate();
             if (login.Invalid)

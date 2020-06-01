@@ -20,7 +20,7 @@ namespace SisVenda.Server.Controllers
         [Route("")]
         [HttpPost]
         [Authorize]
-        public GenericCommandResult<UnitMeasurementResponse> Create([FromBody] CreateUnitMeasurementCommand command, [FromServices] UnitMeasurementHandler handler)
+        public GenericCommandResult<UnitMeasurementResponse> Create([FromBody] UnitMeasurementCreateCommand command, [FromServices] UnitMeasurementHandler handler)
         {
             /* Calling Handle to create */
             return (GenericCommandResult<UnitMeasurementResponse>)handler.Handle(command);
@@ -29,7 +29,7 @@ namespace SisVenda.Server.Controllers
         [Route("")]
         [HttpPut]
         [Authorize]
-        public GenericCommandResult<UnitMeasurementResponse> Update([FromBody] UpdateUnitMeasurementCommand command, [FromServices] UnitMeasurementHandler handler)
+        public GenericCommandResult<UnitMeasurementResponse> Update([FromBody] UnitMeasurementUpdateCommand command, [FromServices] UnitMeasurementHandler handler)
         {
             /* Calling Handle to Update */
             return (GenericCommandResult<UnitMeasurementResponse>)handler.Handle(command);
@@ -38,7 +38,7 @@ namespace SisVenda.Server.Controllers
         [Route("")]
         [HttpDelete]
         [Authorize]
-        public GenericCommandResult<UnitMeasurementResponse> Delete([FromBody] DeleteUnitMeasurementCommand command, [FromServices] UnitMeasurementHandler handler)
+        public GenericCommandResult<UnitMeasurementResponse> Delete([FromBody] UnitMeasurementDeleteCommand command, [FromServices] UnitMeasurementHandler handler)
         {
             /* Calling Handle to Delete */
             return (GenericCommandResult<UnitMeasurementResponse>)handler.Handle(command);

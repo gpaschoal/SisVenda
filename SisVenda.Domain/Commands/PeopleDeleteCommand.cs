@@ -4,11 +4,11 @@ using SisVenda.Domain.Commands.Contracts;
 
 namespace SisVenda.Domain.Commands
 {
-    public class DeletePeopleCommand : Notifiable, ICommand
+    public class PeopleDeleteCommand : Notifiable, ICommand
     {
-        public DeletePeopleCommand() { }
+        public PeopleDeleteCommand() { }
 
-        public DeletePeopleCommand(string id)
+        public PeopleDeleteCommand(string id)
         {
             Id = id;
         }

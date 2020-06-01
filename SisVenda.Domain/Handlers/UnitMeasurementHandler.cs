@@ -10,9 +10,9 @@ namespace SisVenda.Domain.Handlers
 {
     public class UnitMeasurementHandler :
             Notifiable,
-            IHandler<CreateUnitMeasurementCommand, UnitMeasurementResponse>,
-            IHandler<UpdateUnitMeasurementCommand, UnitMeasurementResponse>,
-            IHandler<DeleteUnitMeasurementCommand, UnitMeasurementResponse>
+            IHandler<UnitMeasurementCreateCommand, UnitMeasurementResponse>,
+            IHandler<UnitMeasurementUpdateCommand, UnitMeasurementResponse>,
+            IHandler<UnitMeasurementDeleteCommand, UnitMeasurementResponse>
     {
         private readonly IUnitMeasurementRepository _repository;
 
@@ -21,7 +21,7 @@ namespace SisVenda.Domain.Handlers
             _repository = repository;
         }
 
-        public ICommandResult<UnitMeasurementResponse> Handle(CreateUnitMeasurementCommand command)
+        public ICommandResult<UnitMeasurementResponse> Handle(UnitMeasurementCreateCommand command)
         {
             command.Validate();
             if (command.Invalid)
@@ -33,7 +33,7 @@ namespace SisVenda.Domain.Handlers
             return new GenericCommandResult<UnitMeasurementResponse>(true, "Cadastrado com sucesso", new UnitMeasurementResponse(unitMeasurement));
         }
 
-        public ICommandResult<UnitMeasurementResponse> Handle(UpdateUnitMeasurementCommand command)
+        public ICommandResult<UnitMeasurementResponse> Handle(UnitMeasurementUpdateCommand command)
         {
             command.Validate();
             if (command.Invalid)
@@ -49,7 +49,7 @@ namespace SisVenda.Domain.Handlers
             return new GenericCommandResult<UnitMeasurementResponse>(true, "Atualizado com sucesso", new UnitMeasurementResponse(unitMeasurement));
         }
 
-        public ICommandResult<UnitMeasurementResponse> Handle(DeleteUnitMeasurementCommand command)
+        public ICommandResult<UnitMeasurementResponse> Handle(UnitMeasurementDeleteCommand command)
         {
             command.Validate();
             if (command.Invalid)

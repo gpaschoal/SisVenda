@@ -4,18 +4,20 @@ using SisVenda.Domain.Commands.Contracts;
 
 namespace SisVenda.Domain.Commands
 {
-    public class CreatePeopleCommand : Notifiable, ICommand
+    public class PeopleUpdateCommand : Notifiable, ICommand
     {
-        public CreatePeopleCommand() { }
+        public PeopleUpdateCommand() { }
 
-        public CreatePeopleCommand(bool? isCustomer, bool? isSupplier, string name, string contact, string cpf, string cnpj, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail, string phoneNumber)
+        public PeopleUpdateCommand(string id, bool? isCustomer, bool? isSupplier, string name, string contact, string CPF, string CNPJ, string street,
+                string number, string neighborhood, string city, string state, string zipCode, string adressEmail, string phoneNumber)
         {
+            Id = id;
             IsCustomer = isCustomer;
             IsSupplier = isSupplier;
             Name = name;
             Contact = contact;
-            CPF = cpf;
-            CNPJ = cnpj;
+            this.CPF = CPF;
+            this.CNPJ = CNPJ;
             Street = street;
             Number = number;
             Neighborhood = neighborhood;
@@ -26,6 +28,7 @@ namespace SisVenda.Domain.Commands
             PhoneNumber = phoneNumber;
         }
 
+        public string Id { get; set; }
         public bool? IsCustomer { get; set; }
         public bool? IsSupplier { get; set; }
         public string Name { get; set; }
@@ -49,6 +52,7 @@ namespace SisVenda.Domain.Commands
             AddNotifications(
                 new Contract()
                     .Requires()
+                    .IsNotNullOrEmpty(Id, "Id", "É necessário identificar o código")
                     .HasMinLen(Name, 3, "Name", "O Nome precisa ter pelo menos 3 dígitos")
                     .HasMaxLen(Name, 150, "Name", "O Nome precisa ter no máximo 150 dígitos")
                     .HasMinLen(Contact, 4, "Contact", "O Contato precisa ter no mínimo 4 dígitos")

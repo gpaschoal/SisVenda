@@ -10,16 +10,16 @@ namespace SisVenda.Domain.Handlers
 {
     public class PeopleHandler :
         Notifiable,
-        IHandler<CreatePeopleCommand, PeopleResponse>,
-        IHandler<UpdatePeopleCommand, PeopleResponse>,
-        IHandler<DeletePeopleCommand, PeopleResponse>
+        IHandler<PeopleCreateCommand, PeopleResponse>,
+        IHandler<PeopleUpdateCommand, PeopleResponse>,
+        IHandler<PeopleDeleteCommand, PeopleResponse>
     {
         private readonly IPeopleRepository _repository;
         public PeopleHandler(IPeopleRepository repository)
         {
             _repository = repository;
         }
-        public ICommandResult<PeopleResponse> Handle(CreatePeopleCommand command)
+        public ICommandResult<PeopleResponse> Handle(PeopleCreateCommand command)
         {
             command.Validate();
             if (command.Invalid)
@@ -31,7 +31,7 @@ namespace SisVenda.Domain.Handlers
 
             return new GenericCommandResult<PeopleResponse>(true, "Cadastrado com sucesso", new PeopleResponse(people));
         }
-        public ICommandResult<PeopleResponse> Handle(UpdatePeopleCommand command)
+        public ICommandResult<PeopleResponse> Handle(PeopleUpdateCommand command)
         {
             command.Validate();
             if (command.Invalid)
@@ -46,7 +46,7 @@ namespace SisVenda.Domain.Handlers
 
             return new GenericCommandResult<PeopleResponse>(true, "Atualizado com sucesso", new PeopleResponse(person));
         }
-        public ICommandResult<PeopleResponse> Handle(DeletePeopleCommand command)
+        public ICommandResult<PeopleResponse> Handle(PeopleDeleteCommand command)
         {
             command.Validate();
             if (command.Invalid)

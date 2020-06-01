@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using SisVenda.UI.CQRS.Responses;
+﻿using SisVenda.UI.CQRS.Responses;
+using System.Collections.Generic;
 
 namespace SisVenda.UI.CQRS.Commands
 {

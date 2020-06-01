@@ -8,11 +8,11 @@ namespace SisVenda.Domain.Entities
 {
     public class Products : Entity
     {
-        public Products(string name, string description, double quantityStock)
+        public Products(string name, string description)
         {
             Name = name;
             Description = description;
-            QuantityStock = quantityStock;
+            QuantityStock = 0;
         }
         [Required]
         [Column(TypeName = "varchar(150)")]
@@ -24,5 +24,11 @@ namespace SisVenda.Domain.Entities
         [Column(TypeName = "decimal(10, 2)")]
         public double QuantityStock { get; private set; }
         public IEnumerable<ProductsProfile> ProductsProfile { get; }
+
+        public void Update(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
     }
 }
