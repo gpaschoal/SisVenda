@@ -12,14 +12,14 @@ namespace SisVenda.UI.Pages.People
     public class PeopleEditBase : AbstractComponentBase
     {
         [Parameter] public string IdPeople { get; set; }
-        public UpdatePeopleCommand command;
+        public PeopleUpdateCommand command;
         public bool ErrorAlert;
         public List<string> Errors;
         [Inject] public PeopleRequest request { get; set; }
         public PeopleEditBase()
         {
             ErrorAlert = false;
-            command = new UpdatePeopleCommand();
+            command = new PeopleUpdateCommand();
             Errors = new List<string>();
         }
 
@@ -29,7 +29,7 @@ namespace SisVenda.UI.Pages.People
             if (!result)
                 navigation.NavigateTo("/people");
 
-            command = new UpdatePeopleCommand(response);
+            command = new PeopleUpdateCommand(response);
         }
 
         public async Task Save()

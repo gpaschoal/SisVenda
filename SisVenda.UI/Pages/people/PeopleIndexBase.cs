@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace SisVenda.UI.Pages.People
 {
-    public class PeopleBase : AbstractComponentBase
+    public class PeopleIndexBase : AbstractComponentBase
     {
         public PeopleFilter peopleFilter;
         public bool filter;
         public string Display => filter ? "d-none" : null;
         public List<PeopleResponse> responseList;
-        [Inject] public PeopleRequest request { get; set; }
-        public PeopleBase()
+        [Inject] public PeopleRequest Request { get; set; }
+        public PeopleIndexBase()
         {
             peopleFilter = new PeopleFilter { IsCustomer = true, IsSupplier = true, PageNumber = 1, RowsByPage = 20, };
             filter = true;
@@ -38,7 +38,7 @@ namespace SisVenda.UI.Pages.People
         }
         public async Task Get()
         {
-            (bool result, GenericPaginatorResponse<PeopleResponse> response) = await request.Get(peopleFilter);
+            (bool result, GenericPaginatorResponse<PeopleResponse> response) = await Request.Get(peopleFilter);
             if (result)
             {
                 responseList = response.Page;

@@ -1,6 +1,6 @@
 ﻿namespace SisVenda.UI.CQRS.Commands
 {
-    public class LoginUsersCommand
+    public class UsersLoginCommand
     {
         public string Username { get; set; }
         public string Password { get; set; }

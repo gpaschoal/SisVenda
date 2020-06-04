@@ -7,11 +7,11 @@ namespace SisVenda.UI.Pages.Login
 {
     public class LoginBase : AbstractComponentBase
     {
-        public LoginUsersCommand loginCommand;
+        public UsersLoginCommand loginCommand;
         [Inject] public LoginRequest request { get; set; }
         public LoginBase()
         {
-            loginCommand = new LoginUsersCommand() { Username = "admin", Password = "123" };
+            loginCommand = new UsersLoginCommand() { Username = "admin", Password = "123" };
         }
         public async Task Logar()
         {

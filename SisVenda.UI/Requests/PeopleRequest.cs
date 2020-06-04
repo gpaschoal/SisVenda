@@ -15,7 +15,7 @@ namespace SisVenda.UI.Requests
     {
         public PeopleRequest(HttpClient http) : base(http) { }
 
-        public async Task<(bool result, string message, List<ErrorMessage> Notifications, PeopleResponse Data)> Create(CreatePeopleCommand command)
+        public async Task<(bool result, string message, List<ErrorMessage> Notifications, PeopleResponse Data)> Create(PeopleCreateCommand command)
         {
             string json = JsonSerializer.Serialize(command);
             HttpResponseMessage httpResponse = await http.PostAsync("api/people/", new StringContent(json, Encoding.UTF8, "application/json"));
@@ -31,7 +31,7 @@ namespace SisVenda.UI.Requests
 
             return (false, "Ops, houve algum erro ao cadastrar!", result.Notifications, result.Data);
         }
-        public async Task<(bool result, string message, List<ErrorMessage> Notifications, PeopleResponse Data)> Update(UpdatePeopleCommand command)
+        public async Task<(bool result, string message, List<ErrorMessage> Notifications, PeopleResponse Data)> Update(PeopleUpdateCommand command)
         {
             string json = JsonSerializer.Serialize(command);
             HttpResponseMessage httpResponse = await http.PutAsync("api/people/", new StringContent(json, Encoding.UTF8, "application/json"));
@@ -47,7 +47,7 @@ namespace SisVenda.UI.Requests
 
             return (false, "Ops, houve algum erro ao editar!", result.Notifications, result.Data);
         }
-        public async Task<(bool result, string message, object response)> Delete(DeletePeopleCommand command)
+        public async Task<(bool result, string message, object response)> Delete(PeopleDeleteCommand command)
         {
             throw new NotImplementedException();
         }

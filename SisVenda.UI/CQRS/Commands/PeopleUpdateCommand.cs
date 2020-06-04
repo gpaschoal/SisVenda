@@ -2,10 +2,10 @@
 
 namespace SisVenda.UI.CQRS.Commands
 {
-    public class UpdatePeopleCommand
+    public class PeopleUpdateCommand
     {
-        public UpdatePeopleCommand() { }
-        public UpdatePeopleCommand(PeopleResponse response)
+        public PeopleUpdateCommand() { }
+        public PeopleUpdateCommand(PeopleResponse response)
         {
             Id = response.Id;
             IsCustomer = response.IsCustomer;

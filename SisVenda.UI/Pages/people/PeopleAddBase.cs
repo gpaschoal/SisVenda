@@ -10,13 +10,13 @@ namespace SisVenda.UI.Pages.People
 {
     public class PeopleAddBase : AbstractComponentBase
     {
-        public CreatePeopleCommand command;
+        public PeopleCreateCommand command;
         public bool ErrorAlert;
         public List<string> Errors;
         [Inject] public PeopleRequest request { get; set; }
         public PeopleAddBase()
         {
-            command = new CreatePeopleCommand() { IsCustomer = true, IsSupplier = true };
+            command = new PeopleCreateCommand() { IsCustomer = true, IsSupplier = true };
             ErrorAlert = false;
             Errors = new List<string>();
         }
