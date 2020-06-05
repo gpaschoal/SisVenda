@@ -26,6 +26,7 @@ namespace SisVenda.UI
 
             builder.Services.AddScoped<LoginRequest>();
             builder.Services.AddScoped<PeopleRequest>();
+            builder.Services.AddScoped<ProductsRequest>();
             await builder.Build().RunAsync();
         }
     }

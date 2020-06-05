@@ -1,2 +1,22 @@
-﻿@page "/Products/Edit"
+﻿@page "/Products/Edit/{IdProduct}"
 @inherits ProductsEditBase
+
+<p class="lead">Editar Cliente / Fornecedor</p>
+<form class="m-2" model="command" @onsubmit="Save">
+  <div class="row">
+    <div class="form-group col-12 col-sm-6">
+        <label>Nome</label>
+        <input type="text" class="form-control" placeholder="Dígite o Nome..." @bind-value="command.Name">
+    </div>
+    <div class="form-group col-12 col-sm-6">
+        <label>Descrição</label>
+        <input type="text" class="form-control" placeholder="Dígite a Descrição..." @bind-value="command.Description">
+    </div>
+  </div>
+  <div class="float-right">
+    <button type="button" class="btn btn-outline-danger" @onclick="Cancel">Cancelar</button>
+    <button type="submit" class="btn btn-success">Salvar</button>
+  </div>
+</form>
+<br/><br/><br/>
+<Error Show="ErrorAlert" Messages="Errors" />

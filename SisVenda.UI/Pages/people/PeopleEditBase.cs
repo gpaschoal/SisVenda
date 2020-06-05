@@ -35,8 +35,6 @@ namespace SisVenda.UI.Pages.People
         public async Task Save()
         {
             (bool result, string message, List<ErrorMessage> Errors, _) = await request.Update(command);
-            PrintTest.PrintConsole(result);
-            PrintTest.PrintConsole(message);
             if (result)
             {
                 navigation.NavigateTo("/people");

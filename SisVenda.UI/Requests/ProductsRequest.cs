@@ -67,16 +67,16 @@ namespace SisVenda.UI.Requests
 
             return (true, response);
         }
-        public async Task<(bool result, GenericPaginatorResponse<ProductResponse> response)> Get(PeopleFilter filter)
+        public async Task<(bool result, GenericPaginatorResponse<ProductResponse> response)> Get(ProductsFilter filter)
         {
             string json = JsonSerializer.Serialize(filter);
 
             // Request my api // if were a get filter.HttpQueryBuilder()
-            HttpResponseMessage httpResponse = await http.PostAsync("api/people/get", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await http.PostAsync("api/Products/get", new StringContent(json, Encoding.UTF8, "application/json"));
 
             // My result as string
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
-
+            
             // If not success
             if (!httpResponse.IsSuccessStatusCode)
                 return (false, new GenericPaginatorResponse<ProductResponse>());
