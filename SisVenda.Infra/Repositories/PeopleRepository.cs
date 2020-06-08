@@ -30,7 +30,7 @@ namespace SisVenda.Infra.Repositories
         public void Update(People people)
         {
             _context.Entry(people).State = EntityState.Modified;
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public void Delete(string id)

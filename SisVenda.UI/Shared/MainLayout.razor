@@ -1,11 +1,9 @@
 ﻿@inherits LayoutComponentBase
 <AuthorizeView>
     <Authorized>
-        <div class="sidebar">
-            <NavMenu />
-        </div>
+        <NavMenu />
         <div class="main">
-            <div class="content bg-light h-100 mh-100" style="overflow-y: scroll;" >
+            <div class="content bg-light h-100 mh-100" style="overflow-y: scroll;">
                 @Body
             </div>
         </div>

@@ -1,3 +1,6 @@
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +30,26 @@ namespace SisVenda.UI
             builder.Services.AddScoped<LoginRequest>();
             builder.Services.AddScoped<PeopleRequest>();
             builder.Services.AddScoped<ProductsRequest>();
-            await builder.Build().RunAsync();
+
+
+            // Blazorise
+            builder.Services
+                .AddBlazorise(options =>
+                {
+                    options.ChangeTextOnKeyPress = true;
+                })
+                .AddBootstrapProviders()
+                .AddFontAwesomeIcons();
+
+            var host = builder.Build();
+
+            host.Services
+                .UseBootstrapProviders()
+                .UseFontAwesomeIcons();
+
+            await host.RunAsync();
+
+            //            await builder.Build().RunAsync();
         }
     }
 }

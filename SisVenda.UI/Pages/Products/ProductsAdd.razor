@@ -2,7 +2,7 @@
 @inherits ProductsAddBase
 
 <p class="lead">Novo Cliente / Fornecedor</p>
-<form class="m-2" model="command" @onsubmit="Save">
+<Form Margin="Margin.Is2.OnAll" @onsubmit="Save">
   <div class="row">
     <div class="form-group col-12 col-sm-6">
         <label>Nome</label>
@@ -14,9 +14,9 @@
     </div>
   </div>
   <div class="float-right">
-    <button type="button" class="btn btn-outline-danger" @onclick="Cancel">Cancelar</button>
-    <button type="submit" class="btn btn-success">Salvar</button>
+      <Button Type="ButtonType.Button" @onclick="Cancel" Color="Color.Danger" Outline="true">Cancelar</Button>
+      <Button Type="ButtonType.Submit" Color="Color.Success">Salvar</Button>
   </div>
-</form>
+</Form>
 <br/><br/><br/>
 <Error Show="ErrorAlert" Messages="Errors" />

@@ -8,14 +8,14 @@ namespace SisVenda.UI.Pages.Login
     public class LoginBase : AbstractComponentBase
     {
         public UsersLoginCommand loginCommand;
-        [Inject] public LoginRequest request { get; set; }
+        [Inject] public LoginRequest Request { get; set; }
         public LoginBase()
         {
             loginCommand = new UsersLoginCommand() { Username = "admin", Password = "123" };
         }
         public async Task Logar()
         {
-            (bool result, string message) = await request.Login(loginCommand);
+            (bool result, _) = await Request.Login(loginCommand);
 
             if (result) navigation.NavigateTo("/");
             else {/*  */}

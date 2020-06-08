@@ -2,77 +2,71 @@
 @inherits PeopleEditBase
 
 <p class="lead">Editar Cliente / Fornecedor</p>
-<form class="m-2" model="command" @onsubmit="Save">
-  <div class="form-group">
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" @bind-value="command.IsCustomer" checked>
-        <label class="form-check-label">Cliente</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" @bind-value="command.IsSupplier" checked>
-        <label class="form-check-label">Fornecedor</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-12 col-sm-6">
-        <label>Razão Social</label>
-        <input type="text" class="form-control" placeholder="Dígite a Razão Social..." @bind-value="command.Name">
-    </div>
-    <div class="form-group col-12 col-sm-6">
-        <label>Contato</label>
-        <input type="text" class="form-control" placeholder="Dígite o contato..." @bind-value="command.Contact">
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-12 col-sm-4">
-        <label>CPF</label>
-        <input type="text" class="form-control" placeholder="Dígite o CPF..." @bind-value="command.CPF">
-    </div>
-    <div class="form-group col-12 col-sm-4">
-        <label>CNPJ</label>
-        <input type="text" class="form-control" placeholder="Dígite o CNPJ..." @bind-value="command.CNPJ">
-    </div>
-    <div class="form-group col-12 col-sm-4">
-        <label>Telefone</label>
-        <input type="text" class="form-control" placeholder="Dígite o telefone..." @bind-value="command.PhoneNumber">
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-12 col-sm-6">
-        <label>Rua</label>
-        <input type="text" class="form-control" placeholder="Dígite a Rua..." @bind-value="command.Street">
-    </div>
-    <div class="form-group col-12 col-sm-2">
-        <label>Número</label>
-        <input type="text" class="form-control" placeholder="Dígite o número..." @bind-value="command.Number">
-    </div>
-    <div class="form-group col-12 col-sm-4">
-        <label>Bairro</label>
-        <input type="text" class="form-control" placeholder="Dígite bairro..." @bind-value="command.Neighborhood">
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-12 col-sm-2">
-        <label>Estado</label>
-        <input type="text" class="form-control" placeholder="Dígite o estado..." @bind-value="command.State">
-    </div>
-    <div class="form-group col-12 col-sm-2">
-        <label>CEP</label>
-        <input type="text" class="form-control" placeholder="Dígite o CEP..." @bind-value="command.ZipCode">
-    </div>
-    <div class="form-group col-12 col-sm-4">
-        <label>Cidade</label>
-        <input type="text" class="form-control" placeholder="Dígite a cidade..." @bind-value="command.City">
-    </div>
-    <div class="form-group col-12 col-sm-4">
-        <label>E-mail</label>
-        <input type="text" class="form-control" placeholder="Dígite o E-mail..." @bind-value="command.AdressEmail">
-    </div>
-  </div>
-  <div class="float-right">
-    <button type="button" class="btn btn-outline-danger" @onclick="Cancel">Cancelar</button>
-    <button type="submit" class="btn btn-success">Salvar</button>
-  </div>
-</form>
-<br/><br/><br/>
+<Form Margin="Margin.Is2" @onsubmit="Save">
+    <Check @bind-Checked="command.IsCustomer">Cliente</Check>
+    <Check @bind-Checked="command.IsSupplier">Fornecedor</Check>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
+            <FieldLabel>Razão Social</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite a Razão Social..." @bind-Text="command.Name" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
+            <FieldLabel>Contato</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o contato..." @bind-Text="command.Contact" />
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>CPF</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o CPF..." @bind-Text="command.CPF" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>CNPJ</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o CNPJ..." @bind-Text="command.CNPJ" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>Telefone</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o telefone..." @bind-Text="command.PhoneNumber" />
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
+            <FieldLabel>Rua</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite a Rua..." @bind-Text="command.Street" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>Número</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o número..." @bind-Text="command.Number" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>Bairro</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite bairro..." @bind-Text="command.Neighborhood" />
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>Estado</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o estado..." @bind-Text="command.State" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>CEP</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o CEP..." @bind-Text="command.ZipCode" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>Cidade</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite a cidade..." @bind-Text="command.City" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>E-mail</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o E-mail..." @bind-Text="command.AdressEmail" />
+        </Column>
+    </Row>
+    <Row Float="Float.Right">
+        <Button Type="ButtonType.Button" Color="Color.Danger" Outline="true" @onclick="Cancel" Margin="Margin.Is0.FromRight.Is2">Cancelar</Button>
+        <Button Type="ButtonType.Submit" Color="Color.Success" Margin="Margin.Is0.FromRight.Is2">Salvar</Button>
+    </Row>
+</Form>
+<br />
+<br />
+<br />
 <Error Show="ErrorAlert" Messages="Errors" />

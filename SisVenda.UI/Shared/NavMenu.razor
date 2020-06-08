@@ -1,41 +1,54 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">SisVenda</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+﻿
+<Sidebar @ref="sidebar">
+    <SidebarContent>
+        <SidebarBrand>
+            <a href=""> SisVenda </a>
+        </SidebarBrand>
+        <SidebarNavigation>
+            <SidebarItem>
+                <SidebarLink To="people" Title="Pessoas">
+                    <i class="fas fa-address-card"></i> Pessoas
+                </SidebarLink>
+            </SidebarItem>
+            <SidebarItem>
+                <SidebarLink Toggled="(isOpen)=> productsSidebarSubItems.Toggle(isOpen)" IsShow="true">
+                    <i class="fas fa-boxes"></i> Produtos
+                </SidebarLink>
+                <SidebarSubItem @ref="productsSidebarSubItems" IsShow="true">
+                    <SidebarItem>
+                        <SidebarLink To="products">Produtos</SidebarLink>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <SidebarLink To="">Unidades de Medida</SidebarLink>
+                    </SidebarItem>
+                    @* other subitems *@
+                </SidebarSubItem>
+            </SidebarItem>
+            <SidebarItem>
+                <SidebarLink Toggled="(isOpen)=> appsSidebarSubItems.Toggle(isOpen)" IsShow="true">
+                    <Icon Name="IconName.Smartphone" Margin="Margin.Is3.FromRight" />Apps
+                </SidebarLink>
+                <SidebarSubItem @ref="appsSidebarSubItems" IsShow="true">
+                    <SidebarItem>
+                        <SidebarLink To="apps/todo">Todo List</SidebarLink>
+                    </SidebarItem>
+                </SidebarSubItem>
+            </SidebarItem>
+        </SidebarNavigation>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Principal
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="People">
-                <span class="oi oi-person" aria-hidden="true"></span> Pessoas
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Products">
-                <span class="oi oi-box" aria-hidden="true"></span> Produtos
-            </NavLink>
-        </li>
-        <li class="nav-item px-3 fixed-bottom">
-            <NavLink class="nav-link">
-                <LogoutStorage />
-            </NavLink>
-        </li>
-    </ul>    
-</div>
-@code {
-    private bool collapseNavMenu = true;
+        <SidebarBrand>
+            <LogoutStorage />
+        </SidebarBrand>
+    </SidebarContent>
+</Sidebar>
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+@code{
+    Sidebar sidebar;
+    SidebarSubItem productsSidebarSubItems;
+    SidebarSubItem appsSidebarSubItems;
 
-    private void ToggleNavMenu()
+    void ToggleSidebar()
     {
-        collapseNavMenu = !collapseNavMenu;
+        sidebar.Toggle();
     }
 }

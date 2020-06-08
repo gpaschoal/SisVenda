@@ -2,118 +2,108 @@
 @inherits PeopleIndexBase
 @using SisVenda.UI.CQRS.Responses
 
-<button class="btn btn-outline-success" @onclick="AddNewPeople"><span class="oi oi-plus" aria-hidden="true"></span> Adicionar </button>
-
-<p class="lead">Pesquisar</p>
-<button class="btn btn-secondary" @onclick="ToggleFilter"> <span class="oi oi-align-left" aria-hidden="true"></span> Filtro </button>
+<Button Color="Color.Success" Outline="true" @onclick="AddNewPeople"><i class="fas fa-plus"></i> Adicionar</Button>
+<Button class="btn btn-secondary" @onclick="ToggleFilter"><i class="fas fa-filter"></i> Filtro </Button>
 <br />
 <br />
-<form class="@Display" @onsubmit="Get" >
-    <div class="form-group">
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" @bind-value="peopleFilter.IsCustomer" checked>
-            <label class="form-check-label">Cliente</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" @bind-value="peopleFilter.IsSupplier" checked>
-            <label class="form-check-label">Fornecedor</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-12 col-sm-6">
-            <label>Razão Social</label>
-            <input type="text" class="form-control" placeholder="Dígite a Razão Social..." @bind-value="peopleFilter.Name">
-        </div>
-        <div class="form-group col-12 col-sm-6">
-            <label>Contato</label>
-            <input type="text" class="form-control" placeholder="Dígite o contato..." @bind-value="peopleFilter.Contact">
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-12 col-sm-4">
-            <label>CPF</label>
-            <input type="text" class="form-control" placeholder="Dígite o CPF..." @bind-value="peopleFilter.CPF">
-        </div>
-        <div class="form-group col-12 col-sm-4">
-            <label>CNPJ</label>
-            <input type="text" class="form-control" placeholder="Dígite o CNPJ..." @bind-value="peopleFilter.CNPJ">
-        </div>
-        <div class="form-group col-12 col-sm-4">
-            <label>Telefone</label>
-            <input type="text" class="form-control" placeholder="Dígite o telefone..." @bind-value="peopleFilter.PhoneNumber">
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-12 col-sm-6">
-            <label>Rua</label>
-            <input type="text" class="form-control" placeholder="Dígite a Rua..." @bind-value="peopleFilter.Street">
-        </div>
-        <div class="form-group col-12 col-sm-2">
-            <label>Número</label>
-            <input type="text" class="form-control" placeholder="Dígite o número..." @bind-value="peopleFilter.Number">
-        </div>
-        <div class="form-group col-12 col-sm-4">
-            <label>Bairro</label>
-            <input type="text" class="form-control" placeholder="Dígite bairro..." @bind-value="peopleFilter.Neighborhood">
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-12 col-sm-2">
-            <label>Estado</label>
-            <input type="text" class="form-control" placeholder="Dígite o estado..." @bind-value="peopleFilter.State">
-        </div>
-        <div class="form-group col-12 col-sm-2">
-            <label>CEP</label>
-            <input type="text" class="form-control" placeholder="Dígite o CEP..." @bind-value="peopleFilter.ZipCode">
-        </div>
-        <div class="form-group col-12 col-sm-4">
-            <label>Cidade</label>
-            <input type="text" class="form-control" placeholder="Dígite a cidade..." @bind-value="peopleFilter.City">
-        </div>
-        <div class="form-group col-12 col-sm-4">
-            <label>E-mail</label>
-            <input type="text" class="form-control" placeholder="Dígite o E-mail..." @bind-value="peopleFilter.AdressEmail">
-        </div>
-    </div>
-    <div class="float-right">
-        <button type="submit" class="btn btn-secondary"> Pesquisar </button>
-    </div>
+<Form class="@Display" @onsubmit="Get">
+    <Check @bind-Checked="peopleFilter.IsCustomer">Cliente</Check>
+    <Check @bind-Checked="peopleFilter.IsSupplier">Fornecedor</Check>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
+            <FieldLabel>Razão Social</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite a Razão Social..." @bind-Text="peopleFilter.Name" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
+            <FieldLabel>Contato</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o contato..." @bind-Text="peopleFilter.Contact" />
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>CPF</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o CPF..." @bind-Text="peopleFilter.CPF" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>CNPJ</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o CNPJ..." @bind-Text="peopleFilter.CNPJ" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>Telefone</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o telefone..." @bind-Text="peopleFilter.PhoneNumber" />
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
+            <FieldLabel>Rua</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite a Rua..." @bind-Text="peopleFilter.Street" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is2.OnTablet.Is12">
+            <FieldLabel>Número</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o número..." @bind-Text="peopleFilter.Number" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>Bairro</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite bairro..." @bind-Text="peopleFilter.Neighborhood" />
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is2.OnTablet.Is12">
+            <FieldLabel>Estado</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o estado..." @bind-Text="peopleFilter.State" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is2.OnTablet.Is12">
+            <FieldLabel>CEP</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o CEP..." @bind-Text="peopleFilter.ZipCode" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>Cidade</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite a cidade..." @bind-Text="peopleFilter.City" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4.OnTablet.Is12">
+            <FieldLabel>E-mail</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o E-mail..." @bind-Text="peopleFilter.AdressEmail" />
+        </Column>
+    </Row>
+    <Row Float="Float.Right">
+        <Button Type="ButtonType.Submit" Color="Color.Primary"> Pesquisar </Button>
+    </Row>
     <br />
     <br />
-</form>
-<table class="table" style="overflow-x: scroll;" >
-    <thead class="thead-dark">
-        <tr>
-            <th class="col-1">Detalhes</th>
-            <th class="col-1">Cliente</th>
-            <th class="col-1">Fornecedor</th>
-            <th class="col-2">Nome</th>
-            <th class="col-2">Contato</th>
-            <th class="col-2">Cidade</th>
-            <th class="col-1">Telefone</th>
-            <th class="col-2">Email</th>
-        </tr>
-    </thead>
-    <tbody>
+</Form>
+<Table Bordered="true" Hoverable="true" FullWidth="true">
+    <TableHeader ThemeContrast="ThemeContrast.Dark" >
+        <TableRow>
+            <TableHeaderCell>Detalhes</TableHeaderCell>
+            <TableHeaderCell>Cliente</TableHeaderCell>
+            <TableHeaderCell>Fornecedor</TableHeaderCell>
+            <TableHeaderCell>Nome</TableHeaderCell>
+            <TableHeaderCell>Contato</TableHeaderCell>
+            <TableHeaderCell>Cidade</TableHeaderCell>
+            <TableHeaderCell>Telefone</TableHeaderCell>
+            <TableHeaderCell>Email</TableHeaderCell>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
         @foreach (PeopleResponse response in responseList)
         {
-            <tr>
-                <td>
-                    <button class="btn btn-outline-primary" @onclick="(() => EditPeople(response.Id))"> <span class="oi oi-browser" aria-hidden="true"></span> </button>
-                </td>
-                <td>@Status(response.IsCustomer)</td>
-                <td>@Status(response.IsSupplier)</td>
-                <td>@response.Name</td>
-                <td>@response.Contact</td>
-                <td>@response.City</td>
-                <td>@response.PhoneNumber</td>
-                <td>@response.AdressEmail</td>
-            </tr>
+            <TableRow>
+                <TableRowCell>
+                    <Button Color="Color.Primary" Outline="true" @onclick="(() => EditPeople(response.Id))"><Icon Name="IconName.Edit" /></Button>
+                </TableRowCell>
+                <TableRowCell>@Status(response.IsCustomer)</TableRowCell>
+                <TableRowCell>@Status(response.IsSupplier)</TableRowCell>
+                <TableRowCell>@response.Name</TableRowCell>
+                <TableRowCell>@response.Contact</TableRowCell>
+                <TableRowCell>@response.City</TableRowCell>
+                <TableRowCell>@response.PhoneNumber</TableRowCell>
+                <TableRowCell>@response.AdressEmail</TableRowCell>
+            </TableRow>
         }
-    </tbody>
-</table>
+    </TableBody>
+</Table>
 
 @code
 {
-    private static string Status (bool? status) => status ?? false ? "S" : "N";
+    private static string Status(bool? status) => status ?? false ? "S" : "N";
 }

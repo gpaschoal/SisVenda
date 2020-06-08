@@ -13,7 +13,7 @@ namespace SisVenda.UI.Pages.People
         public PeopleCreateCommand command;
         public bool ErrorAlert;
         public List<string> Errors;
-        [Inject] public PeopleRequest request { get; set; }
+        [Inject] public PeopleRequest Request { get; set; }
         public PeopleAddBase()
         {
             command = new PeopleCreateCommand() { IsCustomer = true, IsSupplier = true };
@@ -28,7 +28,7 @@ namespace SisVenda.UI.Pages.People
 
         public async Task Save()
         {
-            (bool result, string message, List<ErrorMessage> Errors, _) = await request.Create(command);
+            (bool result, string message, List<ErrorMessage> Errors, _) = await Request.Create(command);
 
             if (result)
             {

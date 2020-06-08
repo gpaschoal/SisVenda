@@ -28,7 +28,7 @@ namespace SisVenda.UI.Auth
 
         public async override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            string token = await js.GetFromLocalStorage(tokenKey);
+            string token = await js.GetFromSessionStorage(tokenKey);
 
             if (string.IsNullOrEmpty(token)) return notAuthenticate;
             return CreateAuthenticationState(token);
@@ -87,7 +87,7 @@ namespace SisVenda.UI.Auth
         {
             try
             {
-                await js.SetInLocalStorage(tokenKey, token);
+                await js.SetInSessionStorage(tokenKey, token);
                 AuthenticationState authState = CreateAuthenticationState(token);
                 NotifyAuthenticationStateChanged(Task.FromResult(authState));
             }
@@ -98,7 +98,7 @@ namespace SisVenda.UI.Auth
         {
             try
             {
-                await js.RemoveItem(tokenKey);
+                await js.RemoveFromSessionStorage(tokenKey);
                 http.DefaultRequestHeaders.Authorization = null;
                 NotifyAuthenticationStateChanged(Task.FromResult(notAuthenticate));
             }

@@ -5,11 +5,14 @@ namespace SisVenda.UI.Utils
 {
     public static class IJSRuntimeExtensions
     {
-        public static ValueTask<object> SetInLocalStorage(this IJSRuntime js, string key, string content)
-             => js.InvokeAsync<object>("localStorage.setItem", key, content);
+        private static readonly string Storage = "sessionStorage";
+        public static ValueTask<object> SetInSessionStorage(this IJSRuntime js, string key, string content)
+             => js.InvokeAsync<object>($"{Storage}.setItem", key, content);
 
-        public static ValueTask<string> GetFromLocalStorage(this IJSRuntime js, string key) => js.InvokeAsync<string>("localStorage.getItem", key);
+        public static ValueTask<string> GetFromSessionStorage(this IJSRuntime js, string key) 
+            => js.InvokeAsync<string>($"{Storage}.getItem", key);
 
-        public static ValueTask<object> RemoveItem(this IJSRuntime js, string key) => js.InvokeAsync<object>("localStorage.removeItem", key);
+        public static ValueTask<object> RemoveFromSessionStorage(this IJSRuntime js, string key) 
+            => js.InvokeAsync<object>($"{Storage}.removeItem", key);
     }
 }
