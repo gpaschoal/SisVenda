@@ -2,21 +2,23 @@
 @inherits ProductsEditBase
 
 <p class="lead">Editar Cliente / Fornecedor</p>
-<form class="m-2" model="command" @onsubmit="Save">
-  <div class="row">
-    <div class="form-group col-12 col-sm-6">
-        <label>Nome</label>
-        <input type="text" class="form-control" placeholder="Dígite o Nome..." @bind-value="command.Name">
-    </div>
-    <div class="form-group col-12 col-sm-6">
-        <label>Descrição</label>
-        <input type="text" class="form-control" placeholder="Dígite a Descrição..." @bind-value="command.Description">
-    </div>
-  </div>
-  <div class="float-right">
-    <button type="button" class="btn btn-outline-danger" @onclick="Cancel">Cancelar</button>
-    <button type="submit" class="btn btn-success">Salvar</button>
-  </div>
-</form>
-<br/><br/><br/>
+<Form Margin="Margin.Is2" @onsubmit="Save">
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is6">
+            <FieldLabel>Nome</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o Nome..." @bind-Text="command.Name" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is6">
+            <FieldLabel>Descrição</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite a Descrição..." @bind-Text="command.Description" />
+        </Column>
+    </Row>
+    <Row Float="Float.Right">
+        <Button Type="ButtonType.Button" @onclick="Cancel" Color="Color.Danger" Outline="true" Margin="Margin.Is0.FromRight.Is2">Cancelar</Button>
+        <Button Type="ButtonType.Submit" Color="Color.Success" Margin="Margin.Is0.FromRight.Is2">Salvar</Button>
+    </Row>
+</Form>
+<br />
+<br />
+<br />
 <Error Show="ErrorAlert" Messages="Errors" />

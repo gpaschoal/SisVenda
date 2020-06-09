@@ -2,47 +2,45 @@
 @inherits ProductsIndexBase
 @using SisVenda.UI.CQRS.Responses
 
-<button class="btn btn-outline-success" @onclick="AddNewProduct"><span class="oi oi-plus" aria-hidden="true"></span> Adicionar </button>
-
-<p class="lead">Pesquisar</p>
-<button class="btn btn-secondary" @onclick="ToggleFilter"> <span class="oi oi-align-left" aria-hidden="true"></span> Filtro </button>
+<Button Color="Color.Success" Outline="true" @onclick="AddNewProduct"><i class="fas fa-plus"></i> Adicionar </Button> 
+<Button Color="Color.Secondary" @onclick="ToggleFilter"> <i class="fas fa-filter"></i> Filtro </Button>
 <br />
 <br />
-<form class="@Display" @onsubmit="Get" >
-    <div class="row">
-        <div class="form-group col-12 col-sm-6">
-            <label>Nome</label>
-            <input type="text" class="form-control" placeholder="Dígite o Nome..." @bind-value="productsFilter.Name">
-        </div>
-        <div class="form-group col-12 col-sm-6">
-            <label>Descrição</label>
-            <input type="text" class="form-control" placeholder="Dígite a Descrição..." @bind-value="productsFilter.Description">
-        </div>
-    </div>
-    <div class="float-right">
-        <button type="submit" class="btn btn-secondary"> Pesquisar </button>
-    </div>
+<Form class="@Display" @onsubmit="Get">
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is6">
+            <FieldLabel>Nome</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o Nome..." @bind-Text="productsFilter.Name" />
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is6">
+            <FieldLabel>Descrição</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite a Descrição..." @bind-Text="productsFilter.Description" />
+        </Column>
+    </Row>
+    <Row Float="Float.Right">
+        <Button Type="ButtonType.Submit" Color="Color.Secondary" Margin="Margin.Is2"> Pesquisar </Button>
+    </Row>
     <br />
     <br />
-</form>
-<table class="table"  >
-    <thead class="thead-dark">
-        <tr>
-            <th>Detalhes</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-        </tr>
-    </thead>
-    <tbody>
+</Form>
+<Table Bordered="true" Hoverable="true" FullWidth="true">
+    <TableHeader ThemeContrast="ThemeContrast.Dark">
+        <TableRow>
+            <TableHeaderCell>Detalhes</TableHeaderCell>
+            <TableHeaderCell>Nome</TableHeaderCell>
+            <TableHeaderCell>Descrição</TableHeaderCell>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
         @foreach (ProductResponse response in responseList)
         {
-            <tr>
-                <td>
-                    <button class="btn btn-outline-primary" @onclick="(() => EditProduct(response.Id))"> <span class="oi oi-browser" aria-hidden="true"></span> </button>
-                </td>
-                <td>@response.Name</td>
-                <td>@response.Description</td>
-            </tr>
+            <TableRow>
+                <TableRowCell>
+                    <Button Color="Color.Primary" Outline="true" @onclick="(() => EditProduct(response.Id))"> <span class="oi oi-browser" aria-hidden="true"></span> </Button>
+                </TableRowCell>
+                <TableRowCell>@response.Name</TableRowCell>
+                <TableRowCell>@response.Description</TableRowCell>
+            </TableRow>
         }
-    </tbody>
-</table>
+    </TableBody>
+</Table>

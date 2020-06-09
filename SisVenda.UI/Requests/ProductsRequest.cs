@@ -76,7 +76,7 @@ namespace SisVenda.UI.Requests
 
             // My result as string
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
-            
+
             // If not success
             if (!httpResponse.IsSuccessStatusCode)
                 return (false, new GenericPaginatorResponse<ProductResponse>());
