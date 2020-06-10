@@ -1,20 +1,16 @@
-﻿@page "/Products"
-@inherits ProductsIndexBase
+﻿@page "/UnitMeasurement"
+@inherits UnitMeasurementIndexBase
 @using SisVenda.UI.CQRS.Responses
 
-<Button Color="Color.Success" Outline="true" @onclick="AddNewProduct"><i class="fas fa-plus"></i> Adicionar </Button> 
+<Button Color="Color.Success" Outline="true" @onclick="AddNewProduct"><i class="fas fa-plus"></i> Adicionar </Button>
 <Button Color="Color.Secondary" @onclick="ToggleFilter"> <i class="fas fa-filter"></i> Filtro </Button>
 <br />
 <br />
 <Form class="@Display" @onsubmit="Get">
     <Row>
-        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
+        <Column ColumnSize="ColumnSize.Is12">
             <FieldLabel>Nome</FieldLabel>
-            <TextEdit Role="TextRole.Text" Placeholder="Dígite o Nome..." @bind-Text="productsFilter.Name" />
-        </Column>
-        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
-            <FieldLabel>Descrição</FieldLabel>
-            <TextEdit Role="TextRole.Text" Placeholder="Dígite a Descrição..." @bind-Text="productsFilter.Description" />
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o Nome..." @bind-Text="unitMeasurementFilter.Name" />
         </Column>
     </Row>
     <Row Float="Float.Right">
@@ -28,18 +24,16 @@
         <TableRow>
             <TableHeaderCell>Detalhes</TableHeaderCell>
             <TableHeaderCell>Nome</TableHeaderCell>
-            <TableHeaderCell>Descrição</TableHeaderCell>
         </TableRow>
     </TableHeader>
     <TableBody>
-        @foreach (ProductResponse response in responseList)
+        @foreach (UnitMeasurementResponse response in responseList)
         {
             <TableRow>
                 <TableRowCell>
                     <Button Color="Color.Primary" Outline="true" @onclick="(() => EditProduct(response.Id))"> <span class="oi oi-browser" aria-hidden="true"></span> </Button>
                 </TableRowCell>
                 <TableRowCell>@response.Name</TableRowCell>
-                <TableRowCell>@response.Description</TableRowCell>
             </TableRow>
         }
     </TableBody>

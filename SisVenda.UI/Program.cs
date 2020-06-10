@@ -30,7 +30,7 @@ namespace SisVenda.UI
             builder.Services.AddScoped<LoginRequest>();
             builder.Services.AddScoped<PeopleRequest>();
             builder.Services.AddScoped<ProductsRequest>();
-
+            builder.Services.AddScoped<UnitMeasurementRequest>();
 
             // Blazorise
             builder.Services

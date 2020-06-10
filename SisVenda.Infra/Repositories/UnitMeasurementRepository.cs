@@ -11,9 +11,7 @@ namespace SisVenda.Infra.Repositories
 {
     public class UnitMeasurementRepository : IUnitMeasurementRepository
     {
-
         private readonly SisVendaContext _context;
-
         public UnitMeasurementRepository(SisVendaContext context)
         {
             _context = context;
