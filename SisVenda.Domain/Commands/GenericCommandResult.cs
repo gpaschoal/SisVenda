@@ -6,9 +6,9 @@ using System.Collections.Generic;
 namespace SisVenda.Domain.Commands
 {
     /// <summary>
-    /// T -> My return type return
+    /// T -> My response
     /// </summary>
-    public class GenericCommandResult<T> : ICommandResult<T> where T : IResponse, new()
+    public class GenericCommandResult<T> : ICommandResult<T> where T : IResponse
     {
         public GenericCommandResult() { }
 
@@ -17,14 +17,12 @@ namespace SisVenda.Domain.Commands
             Success = success;
             Message = message;
             Notifications = notifications;
-            Data = new T();
         }
 
         public GenericCommandResult(bool success, string message, T data)
         {
             Success = success;
             Message = message;
-            Notifications = new List<Notification>();
             Data = data;
         }
 

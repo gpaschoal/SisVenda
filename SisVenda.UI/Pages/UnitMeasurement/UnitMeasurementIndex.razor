@@ -24,6 +24,7 @@
         <TableRow>
             <TableHeaderCell>Detalhes</TableHeaderCell>
             <TableHeaderCell>Nome</TableHeaderCell>
+            <TableHeaderCell>Unidade</TableHeaderCell>
         </TableRow>
     </TableHeader>
     <TableBody>
@@ -31,9 +32,10 @@
         {
             <TableRow>
                 <TableRowCell>
-                    <Button Color="Color.Primary" Outline="true" @onclick="(() => EditProduct(response.Id))"> <span class="oi oi-browser" aria-hidden="true"></span> </Button>
+                    <Button Color="Color.Primary" Outline="true" @onclick="(_ => EditProduct(response.Id))"> <span class="oi oi-browser" aria-hidden="true"></span> </Button>
                 </TableRowCell>
-                <TableRowCell>@response.Name</TableRowCell>
+                <TableRowCell >@response.Name</TableRowCell>
+                <TableRowCell>@response.QuantityLosses</TableRowCell>
             </TableRow>
         }
     </TableBody>

@@ -28,5 +28,11 @@ namespace SisVenda.Domain.Entities
         public IEnumerable<Losses> Losses { get; }
         public IEnumerable<SalesItems> SalesItems { get; }
         public IEnumerable<PurchasesItems> PurchasesItems { get; }
+        public void Update(string unitMeasurementId, string productsId, string barCode)
+        {
+            UnitMeasurementId = unitMeasurementId;
+            ProductsId = productsId;
+            BarCode = barCode;
+        }
     }
 }

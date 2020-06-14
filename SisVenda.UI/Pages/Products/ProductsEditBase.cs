@@ -14,7 +14,7 @@ namespace SisVenda.UI.Pages.Products
         public ProductsUpdateCommand command;
         public bool ErrorAlert;
         public List<string> Errors;
-        [Inject] public ProductsRequest request { get; set; }
+        [Inject] public ProductsRequest Request { get; set; }
         public ProductsEditBase()
         {
             ErrorAlert = false;
@@ -24,7 +24,7 @@ namespace SisVenda.UI.Pages.Products
 
         protected override async Task OnInitializedAsync()
         {
-            (bool result, ProductResponse response) = await request.GetById(IdProduct);
+            (bool result, ProductResponse response) = await Request.GetById(IdProduct);
             if (!result)
                 navigation.NavigateTo("/Products");
 
@@ -33,7 +33,7 @@ namespace SisVenda.UI.Pages.Products
 
         public async Task Save()
         {
-            (bool result, string message, List<ErrorMessage> Errors, _) = await request.Update(command);
+            (bool result, string message, List<ErrorMessage> Errors, _) = await Request.Update(command);
             if (result)
             {
                 navigation.NavigateTo("/Products");

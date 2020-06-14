@@ -11,6 +11,7 @@ namespace SisVenda.Infra.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UsersMap());
+            modelBuilder.ApplyConfiguration(new ProductsProfileMap());
         }
 
         public DbSet<Users> Users { get; set; }
@@ -22,7 +23,7 @@ namespace SisVenda.Infra.Contexts
         public DbSet<UnitMeasurement> UnitMeasurement { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<ProductsProfile> ProductsProfile { get; set; }
-        public DbSet<ProductsPrices> ProductPrices { get; set; }
+        public DbSet<ProductsPrices> ProductsPrices { get; set; }
         public DbSet<Purchases> Purchases { get; set; }
         public DbSet<PurchasesItems> PurchasesItems { get; set; }
         public DbSet<PurchasesPayments> PurchasePayments { get; set; }

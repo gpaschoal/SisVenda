@@ -38,11 +38,14 @@ namespace SisVenda.Server
             services.AddTransient<IPeopleRepository, PeopleRepository>();
             services.AddTransient<IUnitMeasurementRepository, UnitMeasurementRepository>();
             services.AddTransient<IProductsRepository, ProductsRepository>();
+            services.AddTransient<IProductsProfileRepository, ProductsProfileRepository>();
+            services.AddTransient<IProductsPricesRepository, ProductsPricesRepository>();
 
             //Handlers
             services.AddTransient<PeopleHandler, PeopleHandler>();
             services.AddTransient<UnitMeasurementHandler, UnitMeasurementHandler>();
             services.AddTransient<ProductsHandler, ProductsHandler>();
+            services.AddTransient<ProductsProfileHandler, ProductsProfileHandler>();
 
             byte[] key = Encoding.ASCII.GetBytes(Settings.SECRET);
             services.AddAuthentication(x =>

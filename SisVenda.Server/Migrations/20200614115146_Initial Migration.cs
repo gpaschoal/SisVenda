@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SisVenda.Server.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -342,7 +342,7 @@ namespace SisVenda.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductPrices",
+                name: "ProductsPrices",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(32)", nullable: false),
@@ -355,9 +355,9 @@ namespace SisVenda.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductPrices", x => x.Id);
+                    table.PrimaryKey("PK_ProductsPrices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductPrices_ProductsProfile_ProductsProfileId",
+                        name: "FK_ProductsPrices_ProductsProfile_ProductsProfileId",
                         column: x => x.ProductsProfileId,
                         principalTable: "ProductsProfile",
                         principalColumn: "Id",
@@ -427,7 +427,7 @@ namespace SisVenda.Server.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "DtDeleted", "DtRegister", "Name", "Password", "User" },
-                values: new object[] { "b39e91b31f8f49f5b650f9c79097632e", null, new DateTime(2020, 5, 31, 14, 31, 42, 920, DateTimeKind.Local).AddTicks(9403), "Administrador", "123", "admin" });
+                values: new object[] { "603aca511c2d405597e8de3c3fcc1601", null, new DateTime(2020, 6, 14, 8, 51, 45, 889, DateTimeKind.Local).AddTicks(3661), "Administrador", "123", "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BankAccount_BankAgencyId",
@@ -445,8 +445,8 @@ namespace SisVenda.Server.Migrations
                 column: "ProductsProfileId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductPrices_ProductsProfileId",
-                table: "ProductPrices",
+                name: "IX_ProductsPrices_ProductsProfileId",
+                table: "ProductsPrices",
                 column: "ProductsProfileId");
 
             migrationBuilder.CreateIndex(
@@ -458,6 +458,13 @@ namespace SisVenda.Server.Migrations
                 name: "IX_ProductsProfile_UnitMeasurementId",
                 table: "ProductsProfile",
                 column: "UnitMeasurementId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductsProfile_BarCode_DtDeleted",
+                table: "ProductsProfile",
+                columns: new[] { "BarCode", "DtDeleted" },
+                unique: true,
+                filter: "[DtDeleted] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PurchasePayments_PaymentMethodsId",
@@ -529,7 +536,7 @@ namespace SisVenda.Server.Migrations
                 name: "Losses");
 
             migrationBuilder.DropTable(
-                name: "ProductPrices");
+                name: "ProductsPrices");
 
             migrationBuilder.DropTable(
                 name: "PurchasePayments");

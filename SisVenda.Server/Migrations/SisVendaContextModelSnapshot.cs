@@ -288,7 +288,7 @@ namespace SisVenda.Server.Migrations
 
                     b.HasIndex("ProductsProfileId");
 
-                    b.ToTable("ProductPrices");
+                    b.ToTable("ProductsPrices");
                 });
 
             modelBuilder.Entity("SisVenda.Domain.Entities.ProductsProfile", b =>
@@ -319,6 +319,10 @@ namespace SisVenda.Server.Migrations
                     b.HasIndex("ProductsId");
 
                     b.HasIndex("UnitMeasurementId");
+
+                    b.HasIndex("BarCode", "DtDeleted")
+                        .IsUnique()
+                        .HasFilter("[DtDeleted] IS NOT NULL");
 
                     b.ToTable("ProductsProfile");
                 });
@@ -612,8 +616,8 @@ namespace SisVenda.Server.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b39e91b31f8f49f5b650f9c79097632e",
-                            DtRegister = new DateTime(2020, 5, 31, 14, 31, 42, 920, DateTimeKind.Local).AddTicks(9403),
+                            Id = "603aca511c2d405597e8de3c3fcc1601",
+                            DtRegister = new DateTime(2020, 6, 14, 8, 51, 45, 889, DateTimeKind.Local).AddTicks(3661),
                             Name = "Administrador",
                             Password = "123",
                             User = "admin"

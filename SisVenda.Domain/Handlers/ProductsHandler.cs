@@ -25,7 +25,7 @@ namespace SisVenda.Domain.Handlers
         {
             command.Validate();
             if (command.Invalid)
-                return new GenericCommandResult<ProductsResponse>(false, "Houve erros na validação", command.Notifications);
+                return new GenericCommandResult<ProductsResponse>(false, "Houve erro na validação", command.Notifications);
 
             Products products = new Products(command.Name, command.Description);
 
@@ -37,7 +37,7 @@ namespace SisVenda.Domain.Handlers
         {
             command.Validate();
             if (command.Invalid)
-                return new GenericCommandResult<ProductsResponse>(false, "Houve erros na validação", command.Notifications);
+                return new GenericCommandResult<ProductsResponse>(false, "Houve erro na validação", command.Notifications);
 
             Products products = _repository.GetById(command.Id);
             if (products is null)
@@ -52,7 +52,7 @@ namespace SisVenda.Domain.Handlers
         {
             command.Validate();
             if (command.Invalid)
-                return new GenericCommandResult<ProductsResponse>(false, "Houve erros na validação", command.Notifications);
+                return new GenericCommandResult<ProductsResponse>(false, "Houve erro na validação", command.Notifications);
 
             Products products = _repository.GetById(command.Id);
             if (products is null)
