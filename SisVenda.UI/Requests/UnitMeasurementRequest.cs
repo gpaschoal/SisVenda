@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace SisVenda.UI.Requests
 {
-    public class UnitMeasurementRequest : AbstractRequest
+    public class UnitMeasurementRequest :
+        AbstractRequest,
+        IRequestBase<UnitMeasurementCreateCommand, UnitMeasurementUpdateCommand, UnitMeasurementDeleteCommand, UnitMeasurementResponse, UnitMeasurementFilter>
     {
         public UnitMeasurementRequest(HttpClient http) : base(http) { }
 
@@ -19,7 +21,7 @@ namespace SisVenda.UI.Requests
         {
             string json = JsonSerializer.Serialize(command);
             Console.WriteLine(command.ToString());
-            HttpResponseMessage httpResponse = await http.PostAsync("api/UnitMeasurement/", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PostAsync("api/UnitMeasurement/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
             GenericCommandResult<UnitMeasurementResponse> result = JsonSerializer.Deserialize<GenericCommandResult<UnitMeasurementResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -35,7 +37,7 @@ namespace SisVenda.UI.Requests
         public async Task<(bool result, string message, List<ErrorMessage> Notifications, UnitMeasurementResponse Data)> Update(UnitMeasurementUpdateCommand command)
         {
             string json = JsonSerializer.Serialize(command);
-            HttpResponseMessage httpResponse = await http.PutAsync("api/UnitMeasurement/", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PutAsync("api/UnitMeasurement/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
             GenericCommandResult<UnitMeasurementResponse> result = JsonSerializer.Deserialize<GenericCommandResult<UnitMeasurementResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -55,7 +57,7 @@ namespace SisVenda.UI.Requests
         public async Task<(bool result, UnitMeasurementResponse response)> GetById(string id)
         {
             // api request
-            HttpResponseMessage httpResponse = await http.GetAsync("api/UnitMeasurement/" + id);
+            HttpResponseMessage httpResponse = await Http.GetAsync("api/UnitMeasurement/" + id);
 
             // My result as string
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
@@ -73,7 +75,7 @@ namespace SisVenda.UI.Requests
             string json = JsonSerializer.Serialize(filter);
 
             // Request my api // if were a get filter.HttpQueryBuilder()
-            HttpResponseMessage httpResponse = await http.PostAsync("api/UnitMeasurement/get", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PostAsync("api/UnitMeasurement/get", new StringContent(json, Encoding.UTF8, "application/json"));
 
             // My result as string
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();

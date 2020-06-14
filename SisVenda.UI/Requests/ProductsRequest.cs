@@ -11,14 +11,16 @@ using System.Threading.Tasks;
 
 namespace SisVenda.UI.Requests
 {
-    public class ProductsRequest : AbstractRequest
+    public class ProductsRequest :
+        AbstractRequest,
+        IRequestBase<ProductsCreateCommand, ProductsUpdateCommand, ProductsDeleteCommand, ProductResponse, ProductsFilter>
     {
         public ProductsRequest(HttpClient http) : base(http) { }
 
         public async Task<(bool result, string message, List<ErrorMessage> Notifications, ProductResponse Data)> Create(ProductsCreateCommand command)
         {
             string json = JsonSerializer.Serialize(command);
-            HttpResponseMessage httpResponse = await http.PostAsync("api/Products/", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PostAsync("api/Products/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
             GenericCommandResult<ProductResponse> result = JsonSerializer.Deserialize<GenericCommandResult<ProductResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -34,7 +36,7 @@ namespace SisVenda.UI.Requests
         public async Task<(bool result, string message, List<ErrorMessage> Notifications, ProductResponse Data)> Update(ProductsUpdateCommand command)
         {
             string json = JsonSerializer.Serialize(command);
-            HttpResponseMessage httpResponse = await http.PutAsync("api/Products/", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PutAsync("api/Products/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
             GenericCommandResult<ProductResponse> result = JsonSerializer.Deserialize<GenericCommandResult<ProductResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -54,7 +56,7 @@ namespace SisVenda.UI.Requests
         public async Task<(bool result, ProductResponse response)> GetById(string id)
         {
             // api request
-            HttpResponseMessage httpResponse = await http.GetAsync("api/Products/" + id);
+            HttpResponseMessage httpResponse = await Http.GetAsync("api/Products/" + id);
 
             // My result as string
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
@@ -72,7 +74,7 @@ namespace SisVenda.UI.Requests
             string json = JsonSerializer.Serialize(filter);
 
             // Request my api // if were a get filter.HttpQueryBuilder()
-            HttpResponseMessage httpResponse = await http.PostAsync("api/Products/get", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PostAsync("api/Products/get", new StringContent(json, Encoding.UTF8, "application/json"));
 
             // My result as string
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();

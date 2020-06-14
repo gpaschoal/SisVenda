@@ -11,14 +11,16 @@ using System.Threading.Tasks;
 
 namespace SisVenda.UI.Requests
 {
-    public class PeopleRequest : AbstractRequest
+    public class PeopleRequest :
+        AbstractRequest,
+        IRequestBase<PeopleCreateCommand, PeopleUpdateCommand, PeopleDeleteCommand, PeopleResponse, PeopleFilter>
     {
         public PeopleRequest(HttpClient http) : base(http) { }
 
         public async Task<(bool result, string message, List<ErrorMessage> Notifications, PeopleResponse Data)> Create(PeopleCreateCommand command)
         {
             string json = JsonSerializer.Serialize(command);
-            HttpResponseMessage httpResponse = await http.PostAsync("api/people/", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PostAsync("api/people/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
             GenericCommandResult<PeopleResponse> result = JsonSerializer.Deserialize<GenericCommandResult<PeopleResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -34,7 +36,7 @@ namespace SisVenda.UI.Requests
         public async Task<(bool result, string message, List<ErrorMessage> Notifications, PeopleResponse Data)> Update(PeopleUpdateCommand command)
         {
             string json = JsonSerializer.Serialize(command);
-            HttpResponseMessage httpResponse = await http.PutAsync("api/people/", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PutAsync("api/people/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
             GenericCommandResult<PeopleResponse> result = JsonSerializer.Deserialize<GenericCommandResult<PeopleResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -54,7 +56,7 @@ namespace SisVenda.UI.Requests
         public async Task<(bool result, PeopleResponse response)> GetById(string id)
         {
             // api request
-            HttpResponseMessage httpResponse = await http.GetAsync("api/people/" + id);
+            HttpResponseMessage httpResponse = await Http.GetAsync("api/people/" + id);
 
             // My result as string
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
@@ -73,7 +75,7 @@ namespace SisVenda.UI.Requests
             string json = JsonSerializer.Serialize(filter);
 
             // Request my api // if were a get filter.HttpQueryBuilder()
-            HttpResponseMessage httpResponse = await http.PostAsync("api/people/get", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PostAsync("api/people/get", new StringContent(json, Encoding.UTF8, "application/json"));
 
             // My result as string
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();

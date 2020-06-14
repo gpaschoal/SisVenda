@@ -20,7 +20,7 @@ namespace SisVenda.UI.Requests
         public async Task<(bool, string)> Login(UsersLoginCommand loginCommand)
         {
             string loginAsJson = JsonSerializer.Serialize(loginCommand);
-            HttpResponseMessage httpResponse = await http.PostAsync("api/login/login", new StringContent(loginAsJson, Encoding.UTF8, "application/json"));
+            HttpResponseMessage httpResponse = await Http.PostAsync("api/login/login", new StringContent(loginAsJson, Encoding.UTF8, "application/json"));
             if (httpResponse.IsSuccessStatusCode)
             {
                 string responseAsString = await httpResponse.Content.ReadAsStringAsync();

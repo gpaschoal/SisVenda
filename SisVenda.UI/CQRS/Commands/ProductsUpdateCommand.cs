@@ -2,7 +2,7 @@
 
 namespace SisVenda.UI.CQRS.Commands
 {
-    public class ProductsUpdateCommand
+    public class ProductsUpdateCommand : IUpdateCommand
     {
         public ProductsUpdateCommand() { }
         public ProductsUpdateCommand(ProductResponse response)

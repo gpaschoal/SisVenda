@@ -1,6 +1,6 @@
 ﻿namespace SisVenda.UI.CQRS.Commands
 {
-    public class PeopleCreateCommand
+    public class PeopleCreateCommand : ICreateCommand
     {
         public bool? IsCustomer { get; set; }
         public bool? IsSupplier { get; set; }

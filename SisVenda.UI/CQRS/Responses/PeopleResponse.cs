@@ -1,6 +1,6 @@
 ﻿namespace SisVenda.UI.CQRS.Responses
 {
-    public class PeopleResponse
+    public class PeopleResponse : IResponse
     {
         public string Id { get; set; }
         public bool? IsCustomer { get; set; }

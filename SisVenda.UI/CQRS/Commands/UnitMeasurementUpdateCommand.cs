@@ -2,7 +2,7 @@
 
 namespace SisVenda.UI.CQRS.Commands
 {
-    public class UnitMeasurementUpdateCommand
+    public class UnitMeasurementUpdateCommand : IUpdateCommand
     {
         public UnitMeasurementUpdateCommand() { }
         public UnitMeasurementUpdateCommand(UnitMeasurementResponse response)

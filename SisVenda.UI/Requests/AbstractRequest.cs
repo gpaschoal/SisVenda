@@ -5,10 +5,10 @@ namespace SisVenda.UI.Requests
 {
     public abstract class AbstractRequest : ComponentBase
     {
-        [Inject] public HttpClient http { get; set; }
+        [Inject] public HttpClient Http { get; set; }
         protected AbstractRequest(HttpClient http)
         {
-            this.http = http;
+            Http = http;
         }
     }
 }
