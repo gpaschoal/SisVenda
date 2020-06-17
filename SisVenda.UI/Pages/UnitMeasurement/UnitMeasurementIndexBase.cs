@@ -26,11 +26,11 @@ namespace SisVenda.UI.Pages.UnitMeasurement
         }
         public void AddNewProduct()
         {
-            navigation.NavigateTo("/UnitMeasurement/Add");
+            Navigation.NavigateTo("/UnitMeasurement/Add");
         }
         public void EditProduct(string id)
         {
-            navigation.NavigateTo("/UnitMeasurement/Edit/" + id);
+            Navigation.NavigateTo("/UnitMeasurement/Edit/" + id);
         }
         public void ToggleFilter()
         {

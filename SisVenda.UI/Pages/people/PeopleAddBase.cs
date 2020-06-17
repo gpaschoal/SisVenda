@@ -23,7 +23,7 @@ namespace SisVenda.UI.Pages.People
 
         public void Cancel()
         {
-            navigation.NavigateTo("/people");
+            Navigation.NavigateTo("/people");
         }
 
         public async Task Save()
@@ -32,12 +32,12 @@ namespace SisVenda.UI.Pages.People
 
             if (result)
             {
-                navigation.NavigateTo("/people");
+                Navigation.NavigateTo("/people");
             }
             else
             {
                 ErrorAlert = true;
-                this.Errors = Errors.Select(x => x.message).ToList();
+                this.Errors = Errors.Select(x => x.Message).ToList();
             }
         }
     }

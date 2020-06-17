@@ -13,47 +13,47 @@ namespace SisVenda.UI.Requests
 {
     public class ProductsRequest :
         AbstractRequest,
-        IRequestBase<ProductsCreateCommand, ProductsUpdateCommand, ProductsDeleteCommand, ProductResponse, ProductsFilter>
+        IRequestBase<ProductsCreateCommand, ProductsUpdateCommand, ProductsDeleteCommand, ProductsResponse, ProductsFilter>
     {
         public ProductsRequest(HttpClient http) : base(http) { }
 
-        public async Task<(bool result, string message, List<ErrorMessage> Notifications, ProductResponse Data)> Create(ProductsCreateCommand command)
+        public async Task<(bool result, string message, List<ErrorMessage> Notifications, ProductsResponse Data)> Create(ProductsCreateCommand command)
         {
             string json = JsonSerializer.Serialize(command);
             HttpResponseMessage httpResponse = await Http.PostAsync("api/Products/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
-            GenericCommandResult<ProductResponse> result = JsonSerializer.Deserialize<GenericCommandResult<ProductResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            GenericCommandResult<ProductsResponse> result = JsonSerializer.Deserialize<GenericCommandResult<ProductsResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             if (!httpResponse.IsSuccessStatusCode)
-                return (false, "Ops, houve um erro inexperado!", new List<ErrorMessage>(), new ProductResponse());
+                return (false, "Ops, houve um erro inexperado!", new List<ErrorMessage>(), new ProductsResponse());
 
             if (result.Success)
                 return (true, "Cadastrado com sucesso!", result.Notifications, result.Data);
 
             return (false, "Ops, houve algum erro ao cadastrar!", result.Notifications, result.Data);
         }
-        public async Task<(bool result, string message, List<ErrorMessage> Notifications, ProductResponse Data)> Update(ProductsUpdateCommand command)
+        public async Task<(bool result, string message, List<ErrorMessage> Notifications, ProductsResponse Data)> Update(ProductsUpdateCommand command)
         {
             string json = JsonSerializer.Serialize(command);
             HttpResponseMessage httpResponse = await Http.PutAsync("api/Products/", new StringContent(json, Encoding.UTF8, "application/json"));
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
-            GenericCommandResult<ProductResponse> result = JsonSerializer.Deserialize<GenericCommandResult<ProductResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            GenericCommandResult<ProductsResponse> result = JsonSerializer.Deserialize<GenericCommandResult<ProductsResponse>>(responseAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             if (!httpResponse.IsSuccessStatusCode)
-                return (false, "Ops, houve um erro inexperado!", new List<ErrorMessage>(), new ProductResponse());
+                return (false, "Ops, houve um erro inexperado!", new List<ErrorMessage>(), new ProductsResponse());
 
             if (result.Success)
                 return (true, "Editado com sucesso!", result.Notifications, result.Data);
 
             return (false, "Ops, houve algum erro ao editar!", result.Notifications, result.Data);
         }
-        public async Task<(bool result, string message, object response)> Delete(ProductsDeleteCommand command)
+        public async Task<(bool result, string message)> Delete(ProductsDeleteCommand command)
         {
             throw new NotImplementedException();
         }
-        public async Task<(bool result, ProductResponse response)> GetById(string id)
+        public async Task<(bool result, ProductsResponse response)> GetById(string id)
         {
             // api request
             HttpResponseMessage httpResponse = await Http.GetAsync("api/Products/" + id);
@@ -62,14 +62,14 @@ namespace SisVenda.UI.Requests
             string responseAsString = await httpResponse.Content.ReadAsStringAsync();
 
             // If not success
-            if (!httpResponse.IsSuccessStatusCode) return (false, new ProductResponse());
+            if (!httpResponse.IsSuccessStatusCode) return (false, new ProductsResponse());
 
             // Desserialize my json response
-            ProductResponse response = responseAsString.Deserialize<ProductResponse>();
+            ProductsResponse response = responseAsString.Deserialize<ProductsResponse>();
 
             return (true, response);
         }
-        public async Task<(bool result, GenericPaginatorResponse<ProductResponse> response)> Get(ProductsFilter filter)
+        public async Task<(bool result, GenericPaginatorResponse<ProductsResponse> response)> Get(ProductsFilter filter)
         {
             string json = JsonSerializer.Serialize(filter);
 
@@ -81,10 +81,10 @@ namespace SisVenda.UI.Requests
 
             // If not success
             if (!httpResponse.IsSuccessStatusCode)
-                return (false, new GenericPaginatorResponse<ProductResponse>());
+                return (false, new GenericPaginatorResponse<ProductsResponse>());
 
             // Desserialize my json response
-            GenericPaginatorResponse<ProductResponse> response = responseAsString.Deserialize<GenericPaginatorResponse<ProductResponse>>();
+            GenericPaginatorResponse<ProductsResponse> response = responseAsString.Deserialize<GenericPaginatorResponse<ProductsResponse>>();
 
             return (true, response);
         }

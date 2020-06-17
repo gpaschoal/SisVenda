@@ -1,0 +1,35 @@
+﻿@page "/Products/ProductsProfile/{ProductsId}/Add"
+@inherits ProductsProfileAddBase
+@using SisVenda.UI.CQRS.Responses;
+
+<Form Margin="Margin.Is2" @onsubmit="Save">
+    <Row>
+        <Column ColumnSize="ColumnSize.Is12">
+            <FieldLabel>Nome</FieldLabel>
+            <FieldLabel>@(ProductsResponse?.Name ?? "")</FieldLabel>
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
+            <FieldLabel>Unidade de Medida</FieldLabel>
+            <Select @bind-SelectedValue="@command.UnitMeasurementId">
+                @foreach (UnitMeasurementResponse item in LstUnitMeasurementResponse)
+                {
+                    <SelectItem Value="item.Id">@item.Name</SelectItem>
+                }
+            </Select>
+        </Column>
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
+            <FieldLabel>Código de Barras</FieldLabel>
+            <TextEdit Role="TextRole.Text" Placeholder="Dígite o Código de Barras..." @bind-Text="command.BarCode" />
+        </Column>
+    </Row>
+    <Row Float="Float.Right">
+        <Button Type="ButtonType.Button" @onclick="Cancel" Color="Color.Danger" Outline="true" Margin="Margin.Is0.FromRight.Is2">Cancelar</Button>
+        <Button Type="ButtonType.Submit" Color="Color.Success" Margin="Margin.Is0.FromRight.Is2">Salvar</Button>
+    </Row>
+</Form>
+<br />
+<br />
+<br />
+<Error Show="ErrorAlert" Messages="Errors" />

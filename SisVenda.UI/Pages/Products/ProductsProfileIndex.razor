@@ -1,0 +1,31 @@
+﻿@page "/Products/ProductsProfile/{ProductsId}"
+@inherits ProductsProfileIndexBase
+@using SisVenda.UI.CQRS.Responses
+
+<Button Color="Color.Success" Outline="true" @onclick="_ => Add()">
+    <i class="fas fa-plus"></i> Adicionar
+</Button>
+
+<Table Bordered="true" Hoverable="true" FullWidth="true">
+    <TableHeader ThemeContrast="ThemeContrast.Dark">
+        <TableRow>
+            <TableHeaderCell>Detalhes</TableHeaderCell>
+            <TableHeaderCell>Produto</TableHeaderCell>
+            <TableHeaderCell>Descrição</TableHeaderCell>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        @foreach (ProductsProfileResponse response in responseList)
+        {
+            <TableRow>
+                <TableRowCell>
+                    <Button Color="Color.Primary" Outline="true" @onclick="(_ => Edit(response.Id))">
+                        <i class="fas fa-edit"></i>
+                    </Button>
+                </TableRowCell>
+                <TableRowCell>@response.ProductsName</TableRowCell>
+                <TableRowCell>@response.UnitMeasurementName</TableRowCell>
+            </TableRow>
+        }
+    </TableBody>
+</Table>

@@ -49,7 +49,7 @@ namespace SisVenda.UI.Requests
 
             return (false, "Ops, houve algum erro ao editar!", result.Notifications, result.Data);
         }
-        public async Task<(bool result, string message, object response)> Delete(PeopleDeleteCommand command)
+        public async Task<(bool result, string message)> Delete(PeopleDeleteCommand command)
         {
             throw new NotImplementedException();
         }

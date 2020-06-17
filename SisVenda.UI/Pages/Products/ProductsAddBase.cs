@@ -23,7 +23,7 @@ namespace SisVenda.UI.Pages.Products
 
         public void Cancel()
         {
-            navigation.NavigateTo("/Products");
+            Navigation.NavigateTo("/Products");
         }
 
         public async Task Save()
@@ -32,12 +32,12 @@ namespace SisVenda.UI.Pages.Products
 
             if (result)
             {
-                navigation.NavigateTo("/Products");
+                Navigation.NavigateTo("/Products");
             }
             else
             {
                 ErrorAlert = true;
-                this.Errors = Errors.Select(x => x.message).ToList();
+                this.Errors = Errors.Select(x => x.Message).ToList();
             }
         }
     }

@@ -26,7 +26,7 @@ namespace SisVenda.UI.Pages.UnitMeasurement
         {
             (bool result, UnitMeasurementResponse response) = await Request.GetById(IdUnitMeasurement);
             if (!result)
-                navigation.NavigateTo("/UnitMeasurement");
+                Navigation.NavigateTo("/UnitMeasurement");
 
             command = new UnitMeasurementUpdateCommand(response);
         }
@@ -36,18 +36,18 @@ namespace SisVenda.UI.Pages.UnitMeasurement
             (bool result, string message, List<ErrorMessage> Errors, _) = await Request.Update(command);
             if (result)
             {
-                navigation.NavigateTo("/UnitMeasurement");
+                Navigation.NavigateTo("/UnitMeasurement");
             }
             else
             {
                 ErrorAlert = true;
-                this.Errors = Errors.Select(x => x.message).ToList();
+                this.Errors = Errors.Select(x => x.Message).ToList();
             }
         }
 
         public void Cancel()
         {
-            navigation.NavigateTo("/UnitMeasurement");
+            Navigation.NavigateTo("/UnitMeasurement");
         }
     }
 }

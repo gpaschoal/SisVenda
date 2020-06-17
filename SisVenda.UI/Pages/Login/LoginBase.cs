@@ -17,7 +17,7 @@ namespace SisVenda.UI.Pages.Login
         {
             (bool result, _) = await Request.Login(loginCommand);
 
-            if (result) navigation.NavigateTo("/");
+            if (result) Navigation.NavigateTo("/");
             else {/*  */}
         }
     }

@@ -26,11 +26,11 @@ namespace SisVenda.UI.Pages.People
         }
         public void AddNewPeople()
         {
-            navigation.NavigateTo("/people/add");
+            Navigation.NavigateTo("/people/add");
         }
         public void EditPeople(string id)
         {
-            navigation.NavigateTo("/people/Edit/" + id);
+            Navigation.NavigateTo("/people/Edit/" + id);
         }
         public void ToggleFilter()
         {

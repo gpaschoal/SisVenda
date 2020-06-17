@@ -31,6 +31,7 @@ namespace SisVenda.UI
             builder.Services.AddScoped<PeopleRequest>();
             builder.Services.AddScoped<ProductsRequest>();
             builder.Services.AddScoped<UnitMeasurementRequest>();
+            builder.Services.AddScoped<ProductsProfileRequest>();
 
             // Blazorise
             builder.Services

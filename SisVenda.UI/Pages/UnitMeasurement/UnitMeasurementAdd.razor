@@ -4,11 +4,11 @@
 <p class="lead">Nova Unidade de Medida</p>
 <Form Margin="Margin.Is2" @onsubmit="Save">
     <Row>
-        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is6">
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
             <FieldLabel>Nome</FieldLabel>
             <TextEdit Role="TextRole.Text" Placeholder="Dígite o nome..." @bind-Text="command.Name" />
         </Column>
-        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is6">
+        <Column ColumnSize="ColumnSize.Is6.OnTablet.Is12">
             <FieldLabel>Unidade de Medida</FieldLabel>
             <NumericEdit @bind-Value="command.QuantityLosses" Placeholder="Dígite a Unidade de Medida..."  />
         </Column>

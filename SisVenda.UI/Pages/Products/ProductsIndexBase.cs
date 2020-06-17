@@ -12,13 +12,13 @@ namespace SisVenda.UI.Pages.Products
         public ProductsFilter productsFilter;
         public bool filter;
         public string Display => filter ? "d-none" : null;
-        public List<ProductResponse> responseList;
+        public List<ProductsResponse> responseList;
         [Inject] public ProductsRequest Request { get; set; }
         public ProductsIndexBase()
         {
             productsFilter = new ProductsFilter { Description = "", Name = "", PageNumber = 1, RowsByPage = 20, };
             filter = true;
-            responseList = new List<ProductResponse>();
+            responseList = new List<ProductsResponse>();
         }
         protected override async Task OnInitializedAsync()
         {
@@ -26,11 +26,15 @@ namespace SisVenda.UI.Pages.Products
         }
         public void AddNewProduct()
         {
-            navigation.NavigateTo("/Products/Add");
+            Navigation.NavigateTo("/Products/Add");
         }
         public void EditProduct(string id)
         {
-            navigation.NavigateTo("/Products/Edit/" + id);
+            Navigation.NavigateTo("/Products/Edit/" + id);
+        }
+        public void ProductProfiles(string id)
+        {
+            Navigation.NavigateTo("/Products/ProductsProfile/" + id);
         }
         public void ToggleFilter()
         {
@@ -38,7 +42,7 @@ namespace SisVenda.UI.Pages.Products
         }
         public async Task Get()
         {
-            (bool result, GenericPaginatorResponse<ProductResponse> response) = await Request.Get(productsFilter);
+            (bool result, GenericPaginatorResponse<ProductsResponse> response) = await Request.Get(productsFilter);
             if (result)
             {
                 responseList = response.Page;

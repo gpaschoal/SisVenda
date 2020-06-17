@@ -24,9 +24,9 @@ namespace SisVenda.UI.Pages.Products
 
         protected override async Task OnInitializedAsync()
         {
-            (bool result, ProductResponse response) = await Request.GetById(IdProduct);
+            (bool result, ProductsResponse response) = await Request.GetById(IdProduct);
             if (!result)
-                navigation.NavigateTo("/Products");
+                Navigation.NavigateTo("/Products");
 
             command = new ProductsUpdateCommand(response);
         }
@@ -36,18 +36,18 @@ namespace SisVenda.UI.Pages.Products
             (bool result, string message, List<ErrorMessage> Errors, _) = await Request.Update(command);
             if (result)
             {
-                navigation.NavigateTo("/Products");
+                Navigation.NavigateTo("/Products");
             }
             else
             {
                 ErrorAlert = true;
-                this.Errors = Errors.Select(x => x.message).ToList();
+                this.Errors = Errors.Select(x => x.Message).ToList();
             }
         }
 
         public void Cancel()
         {
-            navigation.NavigateTo("/Products");
+            Navigation.NavigateTo("/Products");
         }
     }
 }

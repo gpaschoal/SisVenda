@@ -26,7 +26,7 @@ namespace SisVenda.UI.Pages.People
         {
             (bool result, PeopleResponse response) = await request.GetById(IdPeople);
             if (!result)
-                navigation.NavigateTo("/people");
+                Navigation.NavigateTo("/people");
 
             command = new PeopleUpdateCommand(response);
         }
@@ -36,18 +36,18 @@ namespace SisVenda.UI.Pages.People
             (bool result, string message, List<ErrorMessage> Errors, _) = await request.Update(command);
             if (result)
             {
-                navigation.NavigateTo("/people");
+                Navigation.NavigateTo("/people");
             }
             else
             {
                 ErrorAlert = true;
-                this.Errors = Errors.Select(x => x.message).ToList();
+                this.Errors = Errors.Select(x => x.Message).ToList();
             }
         }
 
         public void Cancel()
         {
-            navigation.NavigateTo("/people");
+            Navigation.NavigateTo("/people");
         }
     }
 

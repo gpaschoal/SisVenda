@@ -23,7 +23,7 @@ namespace SisVenda.UI.Pages.UnitMeasurement
 
         public void Cancel()
         {
-            navigation.NavigateTo("/UnitMeasurement");
+            Navigation.NavigateTo("/UnitMeasurement");
         }
 
         public async Task Save()
@@ -32,12 +32,12 @@ namespace SisVenda.UI.Pages.UnitMeasurement
 
             if (result)
             {
-                navigation.NavigateTo("/UnitMeasurement");
+                Navigation.NavigateTo("/UnitMeasurement");
             }
             else
             {
                 ErrorAlert = true;
-                this.Errors = Errors.Select(x => x.message).ToList();
+                this.Errors = Errors.Select(x => x.Message).ToList();
             }
         }
     }

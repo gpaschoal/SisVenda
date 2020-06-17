@@ -1,6 +1,6 @@
 ﻿namespace SisVenda.UI.CQRS.Responses
 {
-    public class ProductResponse : IResponse
+    public class ProductsResponse : IResponse
     {
         public string Id { get; set; }
         public string Name { get; set; }

@@ -2,7 +2,7 @@
 @inherits ProductsIndexBase
 @using SisVenda.UI.CQRS.Responses
 
-<Button Color="Color.Success" Outline="true" @onclick="AddNewProduct"><i class="fas fa-plus"></i> Adicionar </Button> 
+<Button Color="Color.Success" Outline="true" @onclick="AddNewProduct"><i class="fas fa-plus"></i> Adicionar </Button>
 <Button Color="Color.Secondary" @onclick="ToggleFilter"> <i class="fas fa-filter"></i> Filtro </Button>
 <br />
 <br />
@@ -32,11 +32,16 @@
         </TableRow>
     </TableHeader>
     <TableBody>
-        @foreach (ProductResponse response in responseList)
+        @foreach (ProductsResponse response in responseList)
         {
             <TableRow>
                 <TableRowCell>
-                    <Button Color="Color.Primary" Outline="true" @onclick="(() => EditProduct(response.Id))"> <span class="oi oi-browser" aria-hidden="true"></span> </Button>
+                    <Button Color="Color.Primary" Outline="true" @onclick="(() => EditProduct(response.Id))">
+                        <i class="fas fa-edit"></i>
+                    </Button>
+                    <Button Color="Color.Info" Outline="true" @onclick="(() => ProductProfiles(response.Id))">
+                        <i class="fas fa-sitemap"></i>
+                    </Button>
                 </TableRowCell>
                 <TableRowCell>@response.Name</TableRowCell>
                 <TableRowCell>@response.Description</TableRowCell>

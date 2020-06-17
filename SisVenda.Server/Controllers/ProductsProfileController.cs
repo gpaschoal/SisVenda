@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SisVenda.Domain.Commands;
 using SisVenda.Domain.Entities;
 using SisVenda.Domain.Handlers;
@@ -62,7 +63,7 @@ namespace SisVenda.Server.Controllers
             (IQueryable<ProductsProfile> page, int pageNumber, int countsInThisPage, int pageCount) = filteredProductsProfile.AsQueryable().Paginator(filter);
 
             /* Filtering data to my response */
-            List<ProductsProfileResponse> response = page.ToList().Select(x => new ProductsProfileResponse(x)).ToList();
+            List<ProductsProfileResponse> response = page.Include(x => x.Products).Include(x => x.UnitMeasurement).Select(x => new ProductsProfileResponse(x)).ToList();
 
             /* Creating my Generic Response */
             return new GenericPaginatorResponse<ProductsProfileResponse>(pageNumber, countsInThisPage, pageCount, response);
