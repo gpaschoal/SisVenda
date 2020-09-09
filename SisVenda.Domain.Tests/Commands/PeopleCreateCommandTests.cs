@@ -85,5 +85,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_street_is_null()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.Street = null;
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Street", invalidCommand.Notifications.First().Property);
+        }
     }
 }
