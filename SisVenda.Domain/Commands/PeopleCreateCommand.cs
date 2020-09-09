@@ -8,7 +8,21 @@ namespace SisVenda.Domain.Commands
     {
         public PeopleCreateCommand() { }
 
-        public PeopleCreateCommand(bool? isCustomer, bool? isSupplier, string name, string contact, string cpf, string cnpj, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail, string phoneNumber)
+        public PeopleCreateCommand(
+            bool? isCustomer,
+            bool? isSupplier,
+            string name,
+            string contact,
+            string cpf,
+            string cnpj,
+            string street,
+            string number,
+            string neighborhood,
+            string city,
+            string state,
+            string zipCode,
+            string adressEmail,
+            string phoneNumber)
         {
             IsCustomer = isCustomer;
             IsSupplier = isSupplier;
@@ -49,8 +63,7 @@ namespace SisVenda.Domain.Commands
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .HasMinLen(Name, 3, "Name", "O Nome precisa ter pelo menos 3 dígitos")
-                    .HasMaxLen(Name, 150, "Name", "O Nome precisa ter no máximo 150 dígitos")
+                    .IsBetween(Name?.Length ?? 0, 3, 150, "Name", "O Nome precisa ter entre 3 e 150 dígitos")
                     .HasMinLen(Contact, 4, "Contact", "O Contato precisa ter no mínimo 4 dígitos")
                     .HasMaxLen(Contact, 150, "Contact", "O Contato precisa ter no máximo 150 dígitos")
                     .HasMinLen(Street, 6, "Street", "A rua precisa ter no mínimo 6 dígitos")
