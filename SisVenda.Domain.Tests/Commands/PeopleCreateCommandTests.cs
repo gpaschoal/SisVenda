@@ -65,7 +65,7 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
         }
-  
+
         [TestMethod]
         public void Validation_should_fail_when_the_contact_has_no_min_length()
         {
@@ -75,7 +75,7 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
         }
-   
+
         [TestMethod]
         public void Validation_should_fail_when_the_contact_exceed_the_max_length()
         {
@@ -101,6 +101,16 @@ namespace SisVenda.Domain.Tests.Commands
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Street = "";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Street", invalidCommand.Notifications.First().Property);
+        }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_street_exceed_the_max_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.Street = "".PadLeft(151, '0');
             invalidCommand.Validate();
 
             Assert.AreEqual("Street", invalidCommand.Notifications.First().Property);
