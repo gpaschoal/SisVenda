@@ -30,7 +30,7 @@ namespace SisVenda.Domain.Tests.Commands
         public void Validation_should_fail_when_the_name_does_not_require_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
-            invalidCommand.Name = null;
+            invalidCommand.Name = string.Empty;
             invalidCommand.Validate();
 
             Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
