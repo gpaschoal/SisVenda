@@ -63,7 +63,7 @@ namespace SisVenda.Domain.Commands
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .IsBetween(Name?.Length ?? 0, 3, 150, "Name", "O Nome precisa ter entre 3 e 150 dígitos")
+                    .IsBetween(Name?.Trim().Length ?? 0, 3, 150, "Name", "O Nome precisa ter entre 3 e 150 dígitos")
                     .HasMinLen(Contact, 4, "Contact", "O Contato precisa ter no mínimo 4 dígitos")
                     .HasMaxLen(Contact, 150, "Contact", "O Contato precisa ter no máximo 150 dígitos")
                     .HasMinLen(Street, 6, "Street", "A rua precisa ter no mínimo 6 dígitos")
