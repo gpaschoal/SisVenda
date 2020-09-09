@@ -14,13 +14,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="Entities\" />
     <Folder Include="Handlers\" />
     <Folder Include="ValueObjects\" />
     <Folder Include="Responses\" />
     <Folder Include="Repositories\" />
     <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SisVenda.Domain\SisVenda.Domain.csproj" />
   </ItemGroup>
 
 </Project>
