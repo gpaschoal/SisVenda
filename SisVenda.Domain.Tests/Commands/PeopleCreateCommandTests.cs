@@ -37,7 +37,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_name_does_not_require_min_length()
+        public void Validation_should_fail_when_the_name_has_no_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Name = string.Empty;
@@ -67,7 +67,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
   
         [TestMethod]
-        public void Validation_should_fail_when_the_contact_does_not_require_min_length()
+        public void Validation_should_fail_when_the_contact_has_no_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Contact = "";
@@ -97,7 +97,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_street_does_not_require_min_length()
+        public void Validation_should_fail_when_the_street_has_no_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Street = "";
