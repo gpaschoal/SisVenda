@@ -45,5 +45,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_name_exceed_the_max_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.Name = "".PadLeft(151, '0');
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+        }
     }
 }
