@@ -27,6 +27,16 @@ namespace SisVenda.Domain.Tests.Commands
                 "phoneNumber");
 
         [TestMethod]
+        public void Validation_should_fail_when_the_name_is_null()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.Name = null;
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+        }
+
+        [TestMethod]
         public void Validation_should_fail_when_the_name_does_not_require_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
