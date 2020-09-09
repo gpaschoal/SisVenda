@@ -57,10 +57,20 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_Contact_is_null()
+        public void Validation_should_fail_when_the_contact_is_null()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Contact = null;
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
+        }
+  
+        [TestMethod]
+        public void Validation_should_fail_when_the_contact_does_not_require_min_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.Contact = "";
             invalidCommand.Validate();
 
             Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
