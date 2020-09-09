@@ -75,5 +75,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
         }
+   
+        [TestMethod]
+        public void Validation_should_fail_when_the_contact_exceed_the_max_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.Contact = "".PadLeft(151, '0');
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
+        }
     }
 }
