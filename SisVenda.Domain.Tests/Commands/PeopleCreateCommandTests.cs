@@ -204,5 +204,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("PhoneNumber", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_CPF_exceeds_the_max_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.CPF = "";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("CPF", invalidCommand.Notifications.First().Property);
+        }
     }
 }
