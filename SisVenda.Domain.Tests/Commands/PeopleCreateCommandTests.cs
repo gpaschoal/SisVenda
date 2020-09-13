@@ -184,5 +184,15 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Validate();
             Assert.AreEqual("State", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_phoneNumber_has_no_min_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.PhoneNumber = "";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("PhoneNumber", invalidCommand.Notifications.First().Property);
+        }
     }
 }
