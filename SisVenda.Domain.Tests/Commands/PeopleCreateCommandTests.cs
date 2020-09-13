@@ -175,5 +175,14 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("ZipCode", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_state_has_a_different_len()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.State = "".PadLeft(3, '0');
+            invalidCommand.Validate();
+            Assert.AreEqual("State", invalidCommand.Notifications.First().Property);
+        }
     }
 }
