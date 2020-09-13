@@ -165,5 +165,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("City", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_zipcode_exceed_the_max_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.ZipCode = "".PadLeft(11, '0');
+            invalidCommand.Validate();
+
+            Assert.AreEqual("ZipCode", invalidCommand.Notifications.First().Property);
+        }
     }
 }
