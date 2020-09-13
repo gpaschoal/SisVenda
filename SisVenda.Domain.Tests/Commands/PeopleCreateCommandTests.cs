@@ -214,5 +214,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("CPF", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_CNPJ_exceeds_the_max_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.CNPJ = "";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("CNPJ", invalidCommand.Notifications.First().Property);
+        }
     }
 }
