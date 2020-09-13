@@ -125,5 +125,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Number", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_number_exceed_the_max_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.Number = "".PadLeft(11, '0');
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Number", invalidCommand.Notifications.First().Property);
+        }
     }
 }
