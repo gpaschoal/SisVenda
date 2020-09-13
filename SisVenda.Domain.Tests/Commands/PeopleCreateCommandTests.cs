@@ -135,5 +135,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Number", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_neighborhood_has_no_min_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.Neighborhood = "";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Neighborhood", invalidCommand.Notifications.First().Property);
+        }
     }
 }
