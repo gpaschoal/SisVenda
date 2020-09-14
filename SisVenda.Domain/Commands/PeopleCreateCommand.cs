@@ -74,8 +74,8 @@ namespace SisVenda.Domain.Commands
                     .IsBetween(PhoneNumber?.Trim().Length ?? 0, 8, 11, "PhoneNumber", "O número do telefone precisa ter entre 8 e 11 dígitos")
                     .HasMaxLen(CPF, 11, "CPF", "O número do CPF precisa ter no máximo 11 dígitos")
                     .HasMaxLen(CNPJ, 14, "CNPJ", "O número do CNPJ precisa ter no máximo 14 dígitos")
+                    .HasMaxLen(AdressEmail, 50, "AdressEmail", "O e-mail precisa ter no máximo 50 dígitos")
                     .IsEmail(AdressEmail, "AdressEmail", "O e-mail é Inválido, por favor digite um e-mail válido")
-                    .HasMaxLen(AdressEmail, 50, "AddresEmail", "O e-mail precisa ter no máximo 50 dígitos")
             );
         }
     }
