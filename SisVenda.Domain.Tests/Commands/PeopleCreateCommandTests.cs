@@ -224,5 +224,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("CNPJ", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_adressEmail_is_invalid()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.AdressEmail = "invalid_email";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("AdressEmail", invalidCommand.Notifications.First().Property);
+        }
     }
 }
