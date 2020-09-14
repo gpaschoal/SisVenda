@@ -234,5 +234,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("AdressEmail", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Validation_should_fail_when_the_adressEmail_exceeds_the_max_length()
+        {
+            var invalidCommand = MakeValidPeopleCreateCommand();
+            invalidCommand.AdressEmail = "mail@mail.com".PadLeft(51, '0');
+            invalidCommand.Validate();
+
+            Assert.AreEqual("AdressEmail", invalidCommand.Notifications.First().Property);
+        }
     }
 }
