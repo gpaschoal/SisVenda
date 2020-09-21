@@ -244,5 +244,14 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("AdressEmail", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Should_suceeds_when_PeopleCreateCommand_is_valid()
+        {
+            var validCommand = MakeValidPeopleCreateCommand();
+            validCommand.Validate();
+
+            Assert.AreEqual(true, validCommand.Valid);
+        }
     }
 }
