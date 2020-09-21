@@ -27,7 +27,7 @@ namespace SisVenda.Domain.Tests.Commands
                 "phoneNumber");
 
         [TestMethod]
-        public void Validation_should_fail_when_the_name_is_null()
+        public void Should_fail_when_the_name_is_null()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Name = null;
@@ -37,7 +37,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_name_has_no_min_length()
+        public void Should_fail_when_the_name_has_no_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Name = string.Empty;
@@ -47,7 +47,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_name_exceed_the_max_length()
+        public void Should_fail_when_the_name_exceed_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Name = "".PadLeft(151, '0');
@@ -57,7 +57,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_contact_is_null()
+        public void Should_fail_when_the_contact_is_null()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Contact = null;
@@ -67,7 +67,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_contact_has_no_min_length()
+        public void Should_fail_when_the_contact_has_no_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Contact = "";
@@ -77,7 +77,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_contact_exceed_the_max_length()
+        public void Should_fail_when_the_contact_exceed_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Contact = "".PadLeft(151, '0');
@@ -87,7 +87,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_street_is_null()
+        public void Should_fail_when_the_street_is_null()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Street = null;
@@ -97,7 +97,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_street_has_no_min_length()
+        public void Should_fail_when_the_street_has_no_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Street = "";
@@ -107,7 +107,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_street_exceed_the_max_length()
+        public void Should_fail_when_the_street_exceed_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Street = "".PadLeft(151, '0');
@@ -117,7 +117,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_number_has_no_min_length()
+        public void Should_fail_when_the_number_has_no_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Number = "";
@@ -127,7 +127,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_number_exceed_the_max_length()
+        public void Should_fail_when_the_number_exceed_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Number = "".PadLeft(11, '0');
@@ -137,7 +137,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_neighborhood_has_no_min_length()
+        public void Should_fail_when_the_neighborhood_has_no_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Neighborhood = "";
@@ -147,7 +147,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_neighborhood_exceed_the_max_length()
+        public void Should_fail_when_the_neighborhood_exceed_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.Neighborhood = "".PadLeft(31, '0');
@@ -157,7 +157,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_city_exceed_the_max_length()
+        public void Should_fail_when_the_city_exceed_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.City = "".PadLeft(51, '0');
@@ -167,7 +167,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_zipcode_exceed_the_max_length()
+        public void Should_fail_when_the_zipcode_exceed_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.ZipCode = "".PadLeft(11, '0');
@@ -177,7 +177,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_state_has_a_different_len()
+        public void Should_fail_when_the_state_has_a_different_len()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.State = "".PadLeft(3, '0');
@@ -186,7 +186,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_phoneNumber_has_no_min_length()
+        public void Should_fail_when_the_phoneNumber_has_no_min_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.PhoneNumber = "";
@@ -196,7 +196,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_phoneNumber_exceeds_the_max_length()
+        public void Should_fail_when_the_phoneNumber_exceeds_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.PhoneNumber = "".PadLeft(12, '0');
@@ -206,27 +206,27 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_CPF_exceeds_the_max_length()
+        public void Should_fail_when_the_CPF_exceeds_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
-            invalidCommand.CPF = "";
+            invalidCommand.CPF = "".PadLeft(12, '0');
             invalidCommand.Validate();
 
             Assert.AreEqual("CPF", invalidCommand.Notifications.First().Property);
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_CNPJ_exceeds_the_max_length()
+        public void Should_fail_when_the_CNPJ_exceeds_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
-            invalidCommand.CNPJ = "";
+            invalidCommand.CNPJ = "".PadLeft(15, '0');
             invalidCommand.Validate();
 
             Assert.AreEqual("CNPJ", invalidCommand.Notifications.First().Property);
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_adressEmail_is_invalid()
+        public void Should_fail_when_the_adressEmail_is_invalid()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.AdressEmail = "invalid_email";
@@ -236,7 +236,7 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
-        public void Validation_should_fail_when_the_adressEmail_exceeds_the_max_length()
+        public void Should_fail_when_the_adressEmail_exceeds_the_max_length()
         {
             var invalidCommand = MakeValidPeopleCreateCommand();
             invalidCommand.AdressEmail = "mail@mail.com".PadLeft(51, '0');
