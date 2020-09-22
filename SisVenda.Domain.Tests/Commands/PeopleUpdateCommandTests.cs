@@ -115,5 +115,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Street", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Should_fail_when_the_street_has_no_min_length()
+        {
+            var invalidCommand = MakeValidPeopleUpdateCommand();
+            invalidCommand.Street = string.Empty;
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Street", invalidCommand.Notifications.First().Property);
+        }
     }
 }
