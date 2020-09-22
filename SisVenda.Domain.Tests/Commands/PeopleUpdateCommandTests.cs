@@ -55,5 +55,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Should_fail_when_the_name_has_no_min_length()
+        {
+            var invalidCommand = MakeValidPeopleUpdateCommand();
+            invalidCommand.Name = string.Empty;
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+        }
     }
 }
