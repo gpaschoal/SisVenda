@@ -85,5 +85,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Should_fail_when_the_contact_has_no_min_length()
+        {
+            var invalidCommand = MakeValidPeopleUpdateCommand();
+            invalidCommand.Contact = string.Empty;
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
+        }
     }
 }
