@@ -165,5 +165,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Neighborhood", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Should_fail_when_the_neighborhood_exceed_the_max_length()
+        {
+            var invalidCommand = MakeValidPeopleUpdateCommand();
+            invalidCommand.Neighborhood = "".PadLeft(31, '0');
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Neighborhood", invalidCommand.Notifications.First().Property);
+        }
     }
 }
