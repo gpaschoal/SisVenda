@@ -25,11 +25,22 @@ namespace SisVenda.Domain.Tests.Commands
                  "adressEmail@mail.com", 
                  "phoneNumber"
             );
+
         [TestMethod]
         public void Should_fail_when_Id_is_empty()
         {
             var invalidCommand = MakeValidPeopleUpdateCommand();
             invalidCommand.Id = "";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
+        }
+
+        [TestMethod]
+        public void Should_fail_when_Id_is_null()
+        {
+            var invalidCommand = MakeValidPeopleUpdateCommand();
+            invalidCommand.Id = null;
             invalidCommand.Validate();
 
             Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
