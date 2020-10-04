@@ -32,6 +32,16 @@ namespace SisVenda.Domain.Tests.Commands
         }
 
         [TestMethod]
+        public void Should_fail_when_the_name_exceeds_max_length()
+        {
+            var invalidCommand = MakeProductsUpdateCommandCommand();
+            invalidCommand.Name = "".PadLeft(151, '0');
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+        }
+
+        [TestMethod]
         public void Should_fail_when_id_is_empty()
         {
             var invalidCommand = MakeProductsUpdateCommandCommand();
