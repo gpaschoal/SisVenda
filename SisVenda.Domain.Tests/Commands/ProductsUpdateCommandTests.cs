@@ -9,12 +9,12 @@ namespace SisVenda.Domain.Tests.Commands
     {
         public ProductsUpdateCommandTests() { }
 
-        private ProductsUpdateCommand ProductsUpdateCommandCommand() => new ProductsUpdateCommand("valid_id", "Name", "Description");
+        private ProductsUpdateCommand MakeProductsUpdateCommandCommand() => new ProductsUpdateCommand("valid_id", "Name", "Description");
 
         [TestMethod]
         public void Should_fail_when_the_name_is_null()
         {
-            var invalidCommand = ProductsUpdateCommandCommand();
+            var invalidCommand = MakeProductsUpdateCommandCommand();
             invalidCommand.Name = null;
             invalidCommand.Validate();
 
@@ -24,11 +24,22 @@ namespace SisVenda.Domain.Tests.Commands
         [TestMethod]
         public void Should_fail_when_the_name_is_empty()
         {
-            var invalidCommand = ProductsUpdateCommandCommand();
+            var invalidCommand = MakeProductsUpdateCommandCommand();
             invalidCommand.Name = "";
             invalidCommand.Validate();
 
             Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+        }
+
+
+        [TestMethod]
+        public void Should_fail_when_id_is_empty()
+        {
+            var invalidCommand = MakeProductsUpdateCommandCommand();
+            invalidCommand.Id = "";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
         }
     }
 }
