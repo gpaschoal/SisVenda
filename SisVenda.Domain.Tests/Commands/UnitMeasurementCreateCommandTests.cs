@@ -59,5 +59,14 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("QuantityLosses", invalidCommand.Notifications.Single().Property);
         }
+
+        [TestMethod]
+        public void Should_succeeds_when_command_is_valid()
+        {
+            var invalidCommand = MakeUnitMeasurementCreateCommand();
+            invalidCommand.Validate();
+
+            Assert.AreEqual(0, invalidCommand.Notifications.Count);
+        }
     }
 }
