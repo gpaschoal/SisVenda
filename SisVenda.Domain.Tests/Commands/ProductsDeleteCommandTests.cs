@@ -32,5 +32,14 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Should_succeeds_when_ProductsDeleteCommand_is_valid()
+        {
+            var invalidCommand = MakeValidProductsDeleteCommand();
+            invalidCommand.Validate();
+
+            Assert.AreEqual(0, invalidCommand.Notifications.Count);
+        }
     }
 }
