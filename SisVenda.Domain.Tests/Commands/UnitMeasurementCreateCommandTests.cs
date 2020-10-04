@@ -8,7 +8,7 @@ namespace SisVenda.Domain.Tests.Commands
     public class UnitMeasurementCreateCommandTests
     {
         public UnitMeasurementCreateCommandTests() { }
-        private UnitMeasurementCreateCommand MakeUnitMeasurementCreateCommand() => new UnitMeasurementCreateCommand("", 1);
+        private UnitMeasurementCreateCommand MakeUnitMeasurementCreateCommand() => new UnitMeasurementCreateCommand("ValidName", 1);
 
         [TestMethod]
         public void Should_fail_when_Name_is_null()
@@ -38,6 +38,16 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Validate();
 
             Assert.AreEqual("Name", invalidCommand.Notifications.Single().Property);
+        }
+
+        [TestMethod]
+        public void Should_fail_when_QuantityLosses_is_null()
+        {
+            var invalidCommand = MakeUnitMeasurementCreateCommand();
+            invalidCommand.QuantityLosses = null;
+            invalidCommand.Validate();
+
+            Assert.AreEqual("QuantityLosses", invalidCommand.Notifications.Single().Property);
         }
     }
 }
