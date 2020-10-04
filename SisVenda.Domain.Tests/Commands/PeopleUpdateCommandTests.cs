@@ -9,20 +9,20 @@ namespace SisVenda.Domain.Tests.Commands
     {
         public PeopleUpdateCommandTests() { }
         private PeopleUpdateCommand MakeValidPeopleUpdateCommand() => new PeopleUpdateCommand(
-                 "valid_id", 
-                 true, 
-                 true, 
-                 "name", 
-                 "contact", 
-                 "cpf", 
-                 "cnpj", 
+                 "valid_id",
+                 true,
+                 true,
+                 "name",
+                 "contact",
+                 "cpf",
+                 "cnpj",
                  "street",
-                 "number", 
-                 "neighborhood", 
-                 "city", 
-                 "UF", 
-                 "zipCode", 
-                 "adressEmail@mail.com", 
+                 "number",
+                 "neighborhood",
+                 "city",
+                 "UF",
+                 "zipCode",
+                 "adressEmail@mail.com",
                  "phoneNumber"
             );
 
