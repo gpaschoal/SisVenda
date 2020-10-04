@@ -59,5 +59,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("BarCode", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Should_fail_when_BarCode_is_empty()
+        {
+            var invalidCommand = MakeProductsProfileCreateCommand();
+            invalidCommand.BarCode = "";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("BarCode", invalidCommand.Notifications.First().Property);
+        }
     }
 }
