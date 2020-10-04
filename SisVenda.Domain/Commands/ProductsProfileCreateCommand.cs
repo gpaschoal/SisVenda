@@ -7,6 +7,14 @@ namespace SisVenda.Domain.Commands
     public class ProductsProfileCreateCommand : Notifiable, ICommand
     {
         public ProductsProfileCreateCommand() { }
+
+        public ProductsProfileCreateCommand(string unitMeasurementId, string productsId, string barCode)
+        {
+            UnitMeasurementId = unitMeasurementId;
+            ProductsId = productsId;
+            BarCode = barCode;
+        }
+
         public string UnitMeasurementId { get; set; }
         public string ProductsId { get; set; }
         public string BarCode { get; set; }
