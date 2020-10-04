@@ -72,5 +72,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Description", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Should_succeeds_when_ProductsCreateCommand_is_Valid()
+        {
+            var invalidCommand = MakeValidProductsCreateCommand();
+            invalidCommand.Description = "".PadLeft(151, '0');
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Description", invalidCommand.Notifications.First().Property);
+        }
     }
 }
