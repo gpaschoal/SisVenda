@@ -24,10 +24,8 @@ namespace SisVenda.Domain.Commands
               new Contract()
                   .Requires()
                   .IsNotNullOrEmpty(Id, "Id", "É necessário identificar o código")
-                  .HasMinLen(Name, 3, "Name", "O Nome precisa ter pelo menos 3 dígitos")
-                  .HasMaxLen(Name, 150, "Name", "O Nome precisa ter no máximo 150 dígitos")
-                  .HasMinLen(Description, 4, "Description", "A Descrição precisa ter no mínimo 4 dígitos")
-                  .HasMaxLen(Description, 150, "Description", "A Descrição precisa ter no máximo 150 dígitos")
+                  .IsBetween(Name?.Trim().Length ?? 0, 3, 150, "Name", "O Nome precisa ter pelo menos 3 dígitos")
+                  .IsBetween(Description?.Trim().Length ?? 0, 4, 150, "Description", "A Descrição precisa ter no mínimo 4 dígitos")
           );
         }
     }

@@ -27,7 +27,7 @@ namespace SisVenda.Domain.Handlers
             if (command.Invalid)
                 return new GenericCommandResult<UnitMeasurementResponse>(false, "Houve erros na validação", command.Notifications);
 
-            UnitMeasurement unitMeasurement = new UnitMeasurement(command.Name, command.QuantityLosses);
+            UnitMeasurement unitMeasurement = new UnitMeasurement(command.Name, command.QuantityLosses??0);
             _repository.Create(unitMeasurement);
 
             return new GenericCommandResult<UnitMeasurementResponse>(true, "Cadastrado com sucesso", new UnitMeasurementResponse(unitMeasurement));

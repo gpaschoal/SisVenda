@@ -8,6 +8,14 @@ namespace SisVenda.Domain.Commands
     {
         public ProductsProfileUpdateCommand() { }
 
+        public ProductsProfileUpdateCommand(string id, string unitMeasurementId, string productsId, string barCode)
+        {
+            Id = id;
+            UnitMeasurementId = unitMeasurementId;
+            ProductsId = productsId;
+            BarCode = barCode;
+        }
+
         public string Id { get; set; }
         public string UnitMeasurementId { get; set; }
         public string ProductsId { get; set; }
@@ -18,12 +26,9 @@ namespace SisVenda.Domain.Commands
                 new Contract()
                     .Requires()
                     .IsNotNullOrEmpty(Id, "Id", "É necessário identificar o código")
-                    .HasMinLen(UnitMeasurementId, 32, "UnitMeasurementId", "A Unidade de medida é inválida!")
-                    .HasMaxLen(UnitMeasurementId, 32, "UnitMeasurementId", "A Unidade de medida é inválida!")
-                    .HasMinLen(ProductsId, 32, "ProductsId", "O Produto é inválido!")
-                    .HasMaxLen(ProductsId, 32, "ProductsId", "O Produto é inválido!")
-                    .HasMinLen(BarCode, 003, "BarCode", "O código de barras precisa ter no mínimo 3 digitos!")
-                    .HasMaxLen(BarCode, 100, "BarCode", "O código de barras precisa ter no máximo 100 digitos!")
+                    .IsNotNullOrEmpty(UnitMeasurementId, "UnitMeasurementId", "O código da unidade de medida é inválida!")
+                    .IsNotNullOrEmpty(ProductsId, "ProductsId", "O código do produto é inválido!")
+                    .IsBetween(BarCode?.Trim().Length ?? 0, 003, 100, "BarCode", "O código de barras precisa ter no entre 3 e 100 digitos!")
             );
         }
     }

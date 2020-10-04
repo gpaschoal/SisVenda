@@ -8,7 +8,21 @@ namespace SisVenda.Domain.Commands
     {
         public PeopleCreateCommand() { }
 
-        public PeopleCreateCommand(bool? isCustomer, bool? isSupplier, string name, string contact, string cpf, string cnpj, string street, string number, string neighborhood, string city, string state, string zipCode, string adressEmail, string phoneNumber)
+        public PeopleCreateCommand(
+            bool? isCustomer,
+            bool? isSupplier,
+            string name,
+            string contact,
+            string cpf,
+            string cnpj,
+            string street,
+            string number,
+            string neighborhood,
+            string city,
+            string state,
+            string zipCode,
+            string adressEmail,
+            string phoneNumber)
         {
             IsCustomer = isCustomer;
             IsSupplier = isSupplier;
@@ -49,26 +63,19 @@ namespace SisVenda.Domain.Commands
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .HasMinLen(Name, 3, "Name", "O Nome precisa ter pelo menos 3 dígitos")
-                    .HasMaxLen(Name, 150, "Name", "O Nome precisa ter no máximo 150 dígitos")
-                    .HasMinLen(Contact, 4, "Contact", "O Contato precisa ter no mínimo 4 dígitos")
-                    .HasMaxLen(Contact, 150, "Contact", "O Contato precisa ter no máximo 150 dígitos")
-                    .HasMinLen(Street, 6, "Street", "A rua precisa ter no mínimo 6 dígitos")
-                    .HasMaxLen(Street, 100, "Street", "A rua  precisa ter no máximo 100 dígitos")
-                    .HasMinLen(Number, 1, "Number", "O número do endereço precisa ter pelo menos 1 dígito")
-                    .HasMaxLen(Number, 10, "Number", "O número do endereço precisa ter no máximo 10 dígitos")
-                    .HasMinLen(Neighborhood, 5, "Neighborhood", "O bairro precisa ter no mínimo 5 dígitos")
-                    .HasMaxLen(Neighborhood, 30, "Neighborhood", "O bairro precisa ter no máximo 30 dígitos")
+                    .IsBetween(Name?.Trim().Length ?? 0, 3, 150, "Name", "O Nome precisa ter entre 3 e 150 dígitos")
+                    .IsBetween(Contact?.Trim().Length ?? 0, 4, 150, "Contact", "O Contato precisa ter entre 4 e 150 dígitos")
+                    .IsBetween(Street?.Trim().Length ?? 0, 4, 150, "Street", "O Contato precisa ter entre 4 e 150 dígitos")
+                    .IsBetween(Number?.Trim().Length ?? 0, 1, 10, "Number", "O número do endereço precisa ter entre 1 e 150 dígitos")
+                    .IsBetween(Neighborhood?.Trim().Length ?? 0, 5, 30, "Neighborhood", "O bairro precisa ter entre 5 e 30 dígitos")
                     .HasMaxLen(City, 50, "City", "A cidade precisa ter no máximo 50 dígitos")
                     .HasMaxLen(ZipCode, 10, "ZipCode", "O CEP precisa ter no máximo 10 dígitos")
-                    .HasMinLen(State, 2, "State", "A UF do estado precisa ter 2 dígitos")
-                    .HasMaxLen(State, 2, "State", "A UF do estado precisa ter 2 dígitos")
-                    .HasMinLen(PhoneNumber, 8, "PhoneNumber", "O número do telefone precisa ter no mínimo 8 dígitos")
-                    .HasMaxLen(PhoneNumber, 11, "PhoneNumber", "O número do telefone precisa ter no máximo 11 dígitos")
+                    .HasLen(State, 2, "State", "A UF do estado precisa ter 2 dígitos")
+                    .IsBetween(PhoneNumber?.Trim().Length ?? 0, 8, 11, "PhoneNumber", "O número do telefone precisa ter entre 8 e 11 dígitos")
                     .HasMaxLen(CPF, 11, "CPF", "O número do CPF precisa ter no máximo 11 dígitos")
                     .HasMaxLen(CNPJ, 14, "CNPJ", "O número do CNPJ precisa ter no máximo 14 dígitos")
+                    .HasMaxLen(AdressEmail, 50, "AdressEmail", "O e-mail precisa ter no máximo 50 dígitos")
                     .IsEmail(AdressEmail, "AdressEmail", "O e-mail é Inválido, por favor digite um e-mail válido")
-                    .HasMaxLen(AdressEmail, 50, "AddresEmail", "O e-mail precisa ter no máximo 50 dígitos")
             );
         }
     }
