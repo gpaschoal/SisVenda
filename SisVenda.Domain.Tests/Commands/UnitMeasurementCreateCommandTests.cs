@@ -19,5 +19,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Name", invalidCommand.Notifications.Single().Property);
         }
+
+        [TestMethod]
+        public void Should_fail_when_Name_is_empty()
+        {
+            var invalidCommand = MakeUnitMeasurementCreateCommand();
+            invalidCommand.Name = "";
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Name", invalidCommand.Notifications.Single().Property);
+        }
     }
 }
