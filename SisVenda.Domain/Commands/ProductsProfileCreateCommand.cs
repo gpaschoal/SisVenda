@@ -1,7 +1,6 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
 using SisVenda.Domain.Commands.Contracts;
-using SisVenda.Domain.Repositories;
 
 namespace SisVenda.Domain.Commands
 {
