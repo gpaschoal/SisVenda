@@ -8,6 +8,14 @@ namespace SisVenda.Domain.Commands
     {
         public ProductsProfileUpdateCommand() { }
 
+        public ProductsProfileUpdateCommand(string id, string unitMeasurementId, string productsId, string barCode)
+        {
+            Id = id;
+            UnitMeasurementId = unitMeasurementId;
+            ProductsId = productsId;
+            BarCode = barCode;
+        }
+
         public string Id { get; set; }
         public string UnitMeasurementId { get; set; }
         public string ProductsId { get; set; }
