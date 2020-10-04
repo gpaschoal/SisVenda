@@ -17,7 +17,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.UnitMeasurementId = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("UnitMeasurementId", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("UnitMeasurementId", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.UnitMeasurementId = "";
             invalidCommand.Validate();
 
-            Assert.AreEqual("UnitMeasurementId", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("UnitMeasurementId", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.ProductsId = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("ProductsId", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("ProductsId", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.ProductsId = "";
             invalidCommand.Validate();
 
-            Assert.AreEqual("ProductsId", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("ProductsId", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.BarCode = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("BarCode", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("BarCode", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.BarCode = "";
             invalidCommand.Validate();
 
-            Assert.AreEqual("BarCode", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("BarCode", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.BarCode = "".PadLeft(101, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("BarCode", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("BarCode", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]

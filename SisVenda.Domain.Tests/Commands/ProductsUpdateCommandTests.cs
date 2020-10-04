@@ -18,7 +18,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Name = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Name", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Name = "";
             invalidCommand.Validate();
 
-            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Name", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Name = "".PadLeft(151, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Name", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Id = "";
             invalidCommand.Validate();
 
-            Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Id", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Id = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Id", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -68,7 +68,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Description = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Description", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Description", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -78,7 +78,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Description = "";
             invalidCommand.Validate();
 
-            Assert.AreEqual("Description", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Description", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -88,7 +88,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Description = "".PadLeft(151, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("Description", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Description", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]

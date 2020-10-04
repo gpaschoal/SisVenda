@@ -33,7 +33,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Id = "";
             invalidCommand.Validate();
 
-            Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Id", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Id = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Id", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Name = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Name", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Name = string.Empty;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Name", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -73,7 +73,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Name = "".PadLeft(151, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("Name", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Name", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Contact = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Contact", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -93,7 +93,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Contact = string.Empty;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Contact", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -103,7 +103,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Contact = "".PadLeft(151, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("Contact", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Contact", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -113,7 +113,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Street = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Street", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Street", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Street = string.Empty;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Street", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Street", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -133,7 +133,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Street = "".PadLeft(151, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("Street", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Street", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -143,7 +143,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Number = string.Empty;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Number", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Number", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -153,7 +153,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Number = "".PadLeft(11, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("Number", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Number", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -163,7 +163,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Neighborhood = string.Empty;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Neighborhood", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Neighborhood", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -173,7 +173,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Neighborhood = "".PadLeft(31, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("Neighborhood", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Neighborhood", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -183,7 +183,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.City = "".PadLeft(51, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("City", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("City", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -193,7 +193,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.ZipCode = "".PadLeft(11, '0');
             invalidCommand.Validate();
 
-            Assert.AreEqual("ZipCode", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("ZipCode", invalidCommand.Notifications.Single().Property);
         }
     }
 }

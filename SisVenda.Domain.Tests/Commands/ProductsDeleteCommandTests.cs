@@ -20,7 +20,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Id = "";
             invalidCommand.Validate();
 
-            Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Id", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace SisVenda.Domain.Tests.Commands
             invalidCommand.Id = null;
             invalidCommand.Validate();
 
-            Assert.AreEqual("Id", invalidCommand.Notifications.First().Property);
+            Assert.AreEqual("Id", invalidCommand.Notifications.Single().Property);
         }
 
         [TestMethod]
