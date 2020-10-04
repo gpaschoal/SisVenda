@@ -62,5 +62,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Description", invalidCommand.Notifications.First().Property);
         }
+
+        [TestMethod]
+        public void Should_fail_when_the_description_exceeds_max_length()
+        {
+            var invalidCommand = MakeValidProductsCreateCommand();
+            invalidCommand.Description = "".PadLeft(151, '0');
+            invalidCommand.Validate();
+
+            Assert.AreEqual("Description", invalidCommand.Notifications.First().Property);
+        }
     }
 }
