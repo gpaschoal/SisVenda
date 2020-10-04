@@ -30,5 +30,15 @@ namespace SisVenda.Domain.Tests.Commands
 
             Assert.AreEqual("Id", invalidCommand.Notifications.Single().Property);
         }
+
+        [TestMethod]
+        public void Should_fail_when_UnitMeasurementId_is_null()
+        {
+            var invalidCommand = MakeProductsProfileUpdateCommand();
+            invalidCommand.UnitMeasurementId = null;
+            invalidCommand.Validate();
+
+            Assert.AreEqual("UnitMeasurementId", invalidCommand.Notifications.Single().Property);
+        }
     }
 }
