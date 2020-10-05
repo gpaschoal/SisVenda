@@ -28,5 +28,13 @@ namespace SisVenda.Domain.Tests.Entities.Base
 
             Assert.AreNotEqual(null, entityStub.DtRegister);
         }
+
+        [TestMethod]
+        public void After_create_DtDeleted_should_be_null()
+        {
+            var entityStub = new EntityStub();
+
+            Assert.AreEqual(null, entityStub.DtDeleted);
+        }
     }
 }
