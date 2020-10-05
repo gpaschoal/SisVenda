@@ -26,7 +26,7 @@ namespace SisVenda.Domain.Tests.Entities.Base
         {
             var entityStub = new EntityStub();
 
-            Assert.AreNotEqual(null, entityStub.DtRegister);
+            Assert.AreNotEqual(DateTime.MinValue, entityStub.DtRegister);
         }
 
         [TestMethod]
@@ -35,6 +35,15 @@ namespace SisVenda.Domain.Tests.Entities.Base
             var entityStub = new EntityStub();
 
             Assert.AreEqual(null, entityStub.DtDeleted);
+        }
+
+        [TestMethod]
+        public void After_Delete_Method_is_called_DtDeleted_should_has_value()
+        {
+            var entityStub = new EntityStub();
+            entityStub.Delete();
+
+            Assert.AreNotEqual(null, entityStub.DtDeleted);
         }
     }
 }
