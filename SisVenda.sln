@@ -13,9 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SisVenda.Infra", "SisVenda.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SisVenda.UI", "SisVenda.UI\SisVenda.UI.csproj", "{4869BD29-9FC8-47E4-A86C-324483F7DCF9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SisVenda.Domain.Tests", "SisVenda.Domain.Tests\SisVenda.Domain.Tests.csproj", "{4783104D-34B3-42BD-B10B-781DB75A6B69}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisVenda.UIMVC", "SisVenda.UIMVC\SisVenda.UIMVC.csproj", "{42B3F54D-7481-4592-BD24-BF3A7255A391}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisVenda.Domain.Tests", "SisVenda.Domain.Tests\SisVenda.Domain.Tests.csproj", "{4783104D-34B3-42BD-B10B-781DB75A6B69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +45,6 @@ Global
 		{4783104D-34B3-42BD-B10B-781DB75A6B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4783104D-34B3-42BD-B10B-781DB75A6B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4783104D-34B3-42BD-B10B-781DB75A6B69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42B3F54D-7481-4592-BD24-BF3A7255A391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42B3F54D-7481-4592-BD24-BF3A7255A391}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42B3F54D-7481-4592-BD24-BF3A7255A391}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42B3F54D-7481-4592-BD24-BF3A7255A391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
