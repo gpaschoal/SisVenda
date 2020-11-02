@@ -36,9 +36,5 @@
     <ProjectReference Include="..\SisVenda.Infra\SisVenda.Infra.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 
 </Project>
